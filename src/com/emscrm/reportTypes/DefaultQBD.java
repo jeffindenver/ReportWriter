@@ -14,6 +14,19 @@ public class DefaultQBD extends QueueByDateReport {
                 new String[]{"none"});
     }
 
+    public int getDataSheetIndex() {
+        return excelDataSheetIndex;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    @Override
+    public String getWeeklyReportFilename() {
+        return weeklyReportFilename;
+    }
+
     @Override
     public String toString() {
         return reportName;

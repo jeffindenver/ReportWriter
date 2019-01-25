@@ -16,40 +16,40 @@ import java.util.List;
  */
 public class Model {
 
-    private ReportComposer filter;
+    private ReportComposer composer;
     private boolean isEmail;
 
-    Model(ReportComposer filter) {
-        this.filter = filter;
+    Model(ReportComposer aComposer) {
+        this.composer = aComposer;
         isEmail = false;
     }
 
-    ReportComposer getFilter() {
-        return filter;
+    String runReport(List<String> source) throws InvalidFormatException, IOException{
+       return composer.runReport(source);
     }
 
-    void setFilter(ReportComposer aFilter) {
-        this.filter = aFilter;
+private ReportComposer getComposer() {
+        return composer;
+    }
+
+    void setComposer(ReportComposer aFilter) {
+        this.composer = aFilter;
     }
 
     public String getReportName() {
-        return this.getFilter().getReportName();
+        return this.getComposer().getReportName();
     }
 
     String getSummary(List<String> list) {
-        return this.getFilter().getSummary(list);
+        return this.getComposer().getSummary(list);
     }
 
     LocalDate getDateFromList(List<String> source) {
-        return filter.getDateFromList(source);
+        return composer.getDateFromList(source);
     }
 
     String formatRow(String s) {
-        return getFilter().formatCsvRow(s);
-    }
-
-    String cleanString(String line) {
-        return filter.cleanString(line);
+        return getComposer().formatCsvRow(s);
     }
 
     List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
@@ -60,17 +60,17 @@ public class Model {
 
     @SuppressWarnings("all")
     void writeSummaryToExcelFile(String summary) throws InvalidFormatException, IOException {
-        System.out.println("In writeSummaryToExcelFile() method." + " " + getFilter().toString());
+        System.out.println("In writeSummaryToExcelFile() method." + " " + getComposer().toString());
         ExcelOps excelOps = new ExcelOps();
 
-        String filename = filter.getExcelFilepath();
+        String filename = composer.getExcelFilepath();
 
         XSSFWorkbook wb = (XSSFWorkbook) excelOps.openWorkbook(filename);
-        XSSFSheet sheet = wb.getSheetAt(getFilter().getDataSheetIndex());
+        XSSFSheet sheet = wb.getSheetAt(getComposer().getDataSheetIndex());
 
-        sheet = filter.composeExcelSheet(sheet, summary);
+        sheet = composer.composeSheet(sheet, summary);
 
-        excelOps.writeWorkbook(wb, filter.getExcelFilepath());
+        excelOps.writeWorkbook(wb, composer.getExcelFilepath());
     }
 
     void writeListToFile(List<String> list) {
@@ -126,7 +126,8 @@ public class Model {
 
     @Override
     public String toString() {
-        return "filter: " + filter.toString() + " isEmail == " + isEmail;
+        return "composer: " + composer.toString() + " isEmail == " + isEmail;
     }
+
 
 }

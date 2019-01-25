@@ -17,6 +17,19 @@ public class CPaTQBD extends QueueByDateReport {
     }
 
     @Override
+    public String getWeeklyReportFilename() {
+        return weeklyReportFilename;
+    }
+
+    public int getDataSheetIndex(){
+        return excelDataSheetIndex;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    @Override
     public String toString() {
         return reportName;
     }

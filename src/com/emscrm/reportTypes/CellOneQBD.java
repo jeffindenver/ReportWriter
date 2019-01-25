@@ -18,6 +18,19 @@ public class CellOneQBD extends QueueByDateReport {
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne Weekly Report.xlsx";
     }
 
+    public int getDataSheetIndex() {
+        return excelDataSheetIndex;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    @Override
+    public String getWeeklyReportFilename() {
+        return weeklyReportFilename;
+    }
+
     @Override
     public String getExcelFilename() {
         return weeklyReportFilename;

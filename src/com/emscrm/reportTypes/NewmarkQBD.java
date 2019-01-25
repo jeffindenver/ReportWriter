@@ -32,6 +32,19 @@ public class NewmarkQBD extends QueueByDateReport {
                         "NGKF Zurich Email", "NGKF Cigna Email", "NGKF TK Service Email"});
     }
 
+    public int getDataSheetIndex() {
+        return excelDataSheetIndex;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    @Override
+    public String getWeeklyReportFilename() {
+        return weeklyReportFilename;
+    }
+
     @Override
     public String toString() {
         return reportName;

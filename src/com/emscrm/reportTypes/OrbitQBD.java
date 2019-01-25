@@ -18,6 +18,19 @@ public class OrbitQBD extends QueueByDateReport {
                 new String[]{"Orbit Cased Email", "Orbit Cased Email 2", "Orbit Email", "Orbit OSSD Email"});
     }
 
+    public int getDataSheetIndex() {
+        return excelDataSheetIndex;
+    }
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    @Override
+    public String getWeeklyReportFilename() {
+        return weeklyReportFilename;
+    }
+
     @Override
     public String toString() {
         return reportName;

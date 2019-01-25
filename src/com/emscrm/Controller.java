@@ -10,7 +10,6 @@ import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,8 +44,7 @@ public class Controller {
                 List<File> droppedFiles = Collections.EMPTY_LIST;
                 try {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
-                    droppedFiles
-                            = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    droppedFiles = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
                 } catch (UnsupportedFlavorException | IOException ex) {
                     view.printError(ex.getMessage());
                 }
@@ -60,11 +58,10 @@ public class Controller {
 
         for (File file : droppedFiles) {
             String line = processFile(file);
-            writeSummaryToExcelFile(line);
+//            writeSummaryToExcelFile(line);
 
-            String reportName = model.getReportName();
-            line = reportName + "\t" + line;
-            output.add(line);
+            String namePlusLine = model.getReportName() + "\t" + line;
+            output.add(namePlusLine);
         }
 
         List<String> formattedOutput = output.stream()
@@ -81,32 +78,19 @@ public class Controller {
 
         view.printMessage(pathname);
 
-        model.setFilter(new ReportComposer(selectReport(pathname)));
+        model.setComposer(new ReportComposer(selectReport(pathname)));
 
-        List<String> source = readReport(pathname);
+        List<String> source = readSourceFile(pathname);
 
-        LocalDate date = getReportDate(source);
-        model.getFilter().getReport().setDate(date);
-
-        String summary = getSummaryLine(source);
-
-        return model.cleanString(summary);
-    }
-
-    private LocalDate getReportDate(List<String> source) {
-
-        if (isEmptyList(source)) {
-            return LocalDate.MIN;
+        String summary = "";
+        try {
+           summary = model.runReport(source);
+           System.out.println("In controller::processFile method. Summary equals " + summary);
+        } catch(InvalidFormatException | IOException e) {
+            view.printError(e.getMessage());
         }
-        return model.getDateFromList(source);
-    }
 
-    private String getSummaryLine(List<String> source) {
-
-        if (isEmptyList(source)) {
-            return "";
-        }
-        return model.getSummary(source);
+        return summary;
     }
 
     private void writeSummaryToExcelFile(String summary) {
@@ -117,7 +101,7 @@ public class Controller {
         }
     }
 
-    private List<String> readReport(String filename) {
+    private List<String> readSourceFile(String filename) {
         @SuppressWarnings("unchecked")
         List<String> list = Collections.EMPTY_LIST;
         try {
@@ -136,9 +120,9 @@ public class Controller {
         return list.isEmpty();
     }
 
-    private QueueByDateReport selectReport(String filepath) {
+    private Report selectReport(String filepath) {
 
-        QueueByDateReport report = new DefaultQBD();
+        Report report = new DefaultQBD();
         Set<String> keys = QbdConstants.REPORT_TYPES.keySet();
 
         for (String s : keys) {

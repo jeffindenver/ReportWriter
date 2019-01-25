@@ -35,15 +35,15 @@ final class QbdConstants {
 
     final static int QBD_REPORT_LENGTH = 15;
 
-    final static Map<String, QueueByDateReport> REPORT_TYPES = initializeMap();
+    final static Map<String, Report> REPORT_TYPES = initializeMap();
 
     final static String GRAND_TOTAL = "Grand Total:";
 
     private QbdConstants() {
     }
 
-    private static Map<String, QueueByDateReport> initializeMap() {
-        Map<String, QueueByDateReport> map = new HashMap<>();
+    private static Map<String, Report> initializeMap() {
+        Map<String, Report> map = new HashMap<>();
         map.put("CellOneCallsQBD", new CellOneQBD());
         map.put("CPaTCallsQBD", new CPaTQBD());
         map.put("EntrustCallsQBD", new EntrustQBD());
@@ -59,6 +59,7 @@ final class QbdConstants {
         map.put("EntrustEmailQBD", new EmailEntrustQBD());
         map.put("NetworkForGoodEmailQBD", new EmailNetworkForGoodQBD());
         map.put("NetworkForGoodVMQBD", new VMNetworkForGoodQBD());
+        map.put("CPaTShortAband", new CPaTShortAband());
 
         return map;
     }
