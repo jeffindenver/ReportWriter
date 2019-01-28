@@ -1,21 +1,24 @@
 package com.emscrm;
 
+import org.apache.poi.ss.util.CellAddress;
+import org.apache.poi.xssf.usermodel.*;
+
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 public abstract class ShortAbandonReport implements Report {
 
-    //the report will handle writing to the excel file. Pass the source list to the
-    //run method of the class. Still return a string of the summary so that the csv file can be written.
-
-    protected abstract int getShortAbandons();
-    protected abstract void setShortAbandons(int abandons);
     public abstract String getWeeklyReportFilename();
 
     protected String weeklyReportFilename;
     protected int excelDataSheetIndex;
-    private int shortAbandons;
+    private int shortAbandIndex;
+    private double shortAbandons;
+    private LocalDate date;
 
     protected ShortAbandonReport() {
+        shortAbandIndex = 13;
         shortAbandons = 0;
         excelDataSheetIndex = 0;
         weeklyReportFilename = System.getProperty("user.home")
@@ -24,8 +27,62 @@ public abstract class ShortAbandonReport implements Report {
                 + "_ShortAbandonReport.xlsx";
     }
 
-    public String run() {
+    public String getSummary(List<String> source) {
+        Optional<String> summary = source.stream()
+                .filter(s -> s.contains("Grand Total:"))
+                .findFirst();
 
-        return String.valueOf(getShortAbandons());
+        return summary.orElse("");
     }
+
+    @Override
+    public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
+        List<XSSFTable> tables = sheet.getTables();
+        XSSFTable myTable = tables.get(0);
+
+        int lastRowIndex = myTable.getEndRowIndex();
+        XSSFRow row = sheet.getRow(lastRowIndex);
+
+        String[] v = summary.split("\t");
+        this.shortAbandons = Double.valueOf(v[1]);
+
+        row.getCell(shortAbandIndex).setCellValue(shortAbandons);
+
+        myTable.updateReferences();
+
+        refreshFormulaCell(row, shortAbandIndex);
+
+        sheet.setActiveCell(CellAddress.A1);
+
+        return sheet;
+    }
+
+    private void refreshFormulaCell(XSSFRow row, int shortAbandCellIndex) {
+        XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
+        evaluator.notifyUpdateCell(row.getCell(shortAbandCellIndex));
+        int formulaCellIndex = shortAbandCellIndex + 1;
+        evaluator.notifySetFormula(row.getCell(formulaCellIndex));
+        evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
+    }
+
+    private LocalDate getDate() {
+        return this.date;
+    }
+
+    public void setDate(List<String> source) {
+        int dateIndex = 5;
+
+        String line = source.get(dateIndex);
+
+        System.out.println("This is the date line: " + line);
+
+        String[] items = line.split(" ");
+        String[] tokenizedDate = items[0].split("/");
+        int month = Integer.parseInt(tokenizedDate[0]);
+        int day = Integer.parseInt(tokenizedDate[1]);
+        int year = Integer.parseInt(tokenizedDate[2]);
+
+        this.date = LocalDate.of(year, month, day);
+    }
+
 }

@@ -10,8 +10,6 @@ public class DefaultQBD extends QueueByDateReport {
 
     public DefaultQBD() {
 
-        super(new String[]{"none"},
-                new String[]{"none"});
     }
 
     public int getDataSheetIndex() {

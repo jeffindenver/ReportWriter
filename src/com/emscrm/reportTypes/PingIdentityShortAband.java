@@ -1,15 +1,17 @@
 package com.emscrm.reportTypes;
 
+import com.emscrm.ShortAbandonReport;
+
 import java.time.LocalDate;
 
-public class CPaTShortAband extends com.emscrm.ShortAbandonReport {
+public class PingIdentityShortAband extends ShortAbandonReport {
 
-    private static final String reportName = "CPaT Short Abandons";
+    private static final String reportName = "Ping Identity Short Abandons";
     protected int excelDataSheetIndex;
     private LocalDate date;
 
-    public CPaTShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
+    public PingIdentityShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2019.xlsx";
         excelDataSheetIndex = 0;
         setDate(LocalDate.now());
 

@@ -8,12 +8,9 @@ import com.emscrm.QueueByDateReport;
 public class CellOneQBD extends QueueByDateReport {
 
     private final static String reportName = "Cellular One";
-    //what is the index of the data sheet
 
     public CellOneQBD() {
-        //@ToDo add the workgroups for CellOneQBD
-        super(new String[]{"none"},
-                new String[]{"none"});
+
         this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne Weekly Report.xlsx";
     }
@@ -28,11 +25,6 @@ public class CellOneQBD extends QueueByDateReport {
 
     @Override
     public String getWeeklyReportFilename() {
-        return weeklyReportFilename;
-    }
-
-    @Override
-    public String getExcelFilename() {
         return weeklyReportFilename;
     }
 

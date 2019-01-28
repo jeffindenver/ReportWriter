@@ -2,14 +2,14 @@ package com.emscrm.reportTypes;
 
 import java.time.LocalDate;
 
-public class CPaTShortAband extends com.emscrm.ShortAbandonReport {
+public class EntrustShortAband extends com.emscrm.ShortAbandonReport {
 
-    private static final String reportName = "CPaT Short Abandons";
+    private static final String reportName = "Entrust Short Abandons";
     protected int excelDataSheetIndex;
     private LocalDate date;
 
-    public CPaTShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
+    public EntrustShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\Entrust\\Entrust Weekly Stats 2019.xlsx";
         excelDataSheetIndex = 0;
         setDate(LocalDate.now());
 

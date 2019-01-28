@@ -10,8 +10,6 @@ public class CPaTQBD extends QueueByDateReport {
     private static final String reportName = "CPaT";
 
     public CPaTQBD() {
-        super(new String[]{"CPaT", "CPaT Chat", "CPaT Spanish"},
-                new String[]{"CPaT Email"});
         this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
     }

@@ -24,11 +24,11 @@ public class Model {
         isEmail = false;
     }
 
-    String runReport(List<String> source) throws InvalidFormatException, IOException{
-       return composer.runReport(source);
+    String runReport(List<String> source) throws InvalidFormatException, IOException {
+        return composer.runReport(source);
     }
 
-private ReportComposer getComposer() {
+    private ReportComposer getComposer() {
         return composer;
     }
 
@@ -38,14 +38,6 @@ private ReportComposer getComposer() {
 
     public String getReportName() {
         return this.getComposer().getReportName();
-    }
-
-    String getSummary(List<String> list) {
-        return this.getComposer().getSummary(list);
-    }
-
-    LocalDate getDateFromList(List<String> source) {
-        return composer.getDateFromList(source);
     }
 
     String formatRow(String s) {

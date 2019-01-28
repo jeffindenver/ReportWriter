@@ -11,7 +11,6 @@ public class EmailGPSTrackitQBD extends QueueByDateReport {
 
 
     public EmailGPSTrackitQBD() {
-        super(new String[]{"none"}, new String[]{"none"});
         this.excelDataSheetIndex = 1;
         this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
     }

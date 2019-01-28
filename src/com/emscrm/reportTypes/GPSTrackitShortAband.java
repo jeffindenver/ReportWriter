@@ -2,14 +2,14 @@ package com.emscrm.reportTypes;
 
 import java.time.LocalDate;
 
-public class CPaTShortAband extends com.emscrm.ShortAbandonReport {
+public class GPSTrackitShortAband extends com.emscrm.ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
     protected int excelDataSheetIndex;
     private LocalDate date;
 
-    public CPaTShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
+    public GPSTrackitShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
         excelDataSheetIndex = 0;
         setDate(LocalDate.now());
 

@@ -9,46 +9,28 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static com.emscrm.QbdConstants.*;
+import static com.emscrm.ReportConstants.*;
 
 /**
  * @author JShepherd
  */
 public abstract class QueueByDateReport implements Report {
 
-    private final String[] GROUP_NAMES;
-    private final String[] EMAIL_GROUP_NAMES;
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
     private LocalDate date;
-    private String groupName;
-    private int interactionsAnswered;
-    private Duration averageTalkTime;
-    private Duration totalTalkTime;
-    private Duration avgAcw;
-    private Duration totalAcw;
-    private int interactionsAbandoned;
-    private Duration averageAbandonDelay;
-    private double percentAbandoned;
-    private Duration maxWait;
-    private Duration averageSpeedOfAnswer;
-    private double serviceLevel;
 
-    public QueueByDateReport(String[] groupOne, String[] groupTwo) {
-        GROUP_NAMES = groupOne;
-        EMAIL_GROUP_NAMES = groupTwo;
+
+    public QueueByDateReport() {
+
+        date = LocalDate.now();
+
         excelDataSheetIndex = 0;
 
         weeklyReportFilename = System.getProperty("user.home")
                 + "\\desktop\\"
                 + LocalDate.now().toString()
                 + "_QueueByDateReport.xlsx";
-    }
-
-    public String run() {
-
-
-        return "";
     }
 
     public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
@@ -66,7 +48,9 @@ public abstract class QueueByDateReport implements Report {
         XSSFRow formattedRow = formatCells(wb, initialRow);
 
         String[] v = summary.split("\t");
-        XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
+
+        @SuppressWarnings("unused")//it is used thank you very much
+                XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
 
         myTable.updateReferences();
 
@@ -74,7 +58,7 @@ public abstract class QueueByDateReport implements Report {
     }
 
     private XSSFRow createCells(XSSFRow row) {
-        for (int i = 0; i < QbdConstants.QBD_REPORT_LENGTH; i++) {
+        for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
             row.createCell(i);
         }
         return row;
@@ -171,13 +155,14 @@ public abstract class QueueByDateReport implements Report {
         return totalTime / secondsInADay;
     }
 
+    //ShortAbandReport has the same function. How to reduce?
     public String getSummary(List<String> list) {
         String summary = "";
         int lastLine = list.size() - 1;
 
         //The line with Grand Total should always be last
         for (int i = lastLine; i >= 0; i--) {
-            if (list.get(i).contains(QbdConstants.GRAND_TOTAL)) {
+            if (list.get(i).contains(ReportConstants.GRAND_TOTAL)) {
                 summary = list.get(i);
                 break;
             }
@@ -235,126 +220,21 @@ public abstract class QueueByDateReport implements Report {
 
 
     private LocalDate getDate() {
-        return date;
+        return this.date;
+
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDate(List<String> source) {
+        int dateIndex = 4;
+        String line = source.get(dateIndex);
+        String[] values = line.split("\t");
+        String[] items = values[1].split(" ");
+        String[] tokenizedDate = items[0].split("/");
+        int month = Integer.parseInt(tokenizedDate[0]);
+        int day = Integer.parseInt(tokenizedDate[1]);
+        int year = Integer.parseInt(tokenizedDate[2]);
+
+        this.date = LocalDate.of(year, month, day);
     }
 
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public Duration getAverageTalkTime() {
-        return averageTalkTime;
-    }
-
-    public void setAverageTalkTime(Duration averageTalkTime) {
-        this.averageTalkTime = averageTalkTime;
-    }
-
-    public Duration getTotalTalkTime() {
-        return totalTalkTime;
-    }
-
-    public void setTotalTalkTime(Duration totalTalkTime) {
-        this.totalTalkTime = totalTalkTime;
-    }
-
-    public Duration getAvgAcw() {
-        return avgAcw;
-    }
-
-    public void setAvgAcw(Duration avgAcw) {
-        this.avgAcw = avgAcw;
-    }
-
-    public Duration getTotalAcw() {
-        return totalAcw;
-    }
-
-    public void setTotalAcw(Duration totalAcw) {
-        this.totalAcw = totalAcw;
-    }
-
-    public int getInteractionsAnswered() {
-        return interactionsAnswered;
-    }
-
-    public void setInteractionsAnswered(int interactionsAnswered) {
-        this.interactionsAnswered = interactionsAnswered;
-    }
-
-    public int getInteractionsAbandoned() {
-        return interactionsAbandoned;
-    }
-
-    public void setInteractionsAbandoned(int interactionsAbandoned) {
-        this.interactionsAbandoned = interactionsAbandoned;
-    }
-
-    public Duration getAverageAbandonDelay() {
-        return averageAbandonDelay;
-    }
-
-    public void setAverageAbandonDelay(Duration averageAbandonDelay) {
-        this.averageAbandonDelay = averageAbandonDelay;
-    }
-
-    public double getPercentAbandoned() {
-        return percentAbandoned;
-    }
-
-    public void setPercentAbandoned(double percentAbandoned) {
-        this.percentAbandoned = percentAbandoned;
-    }
-
-    public Duration getMaxWait() {
-        return maxWait;
-    }
-
-    public void setMaxWait(Duration maxWait) {
-        this.maxWait = maxWait;
-    }
-
-    public Duration getAverageSpeedOfAnswer() {
-        return averageSpeedOfAnswer;
-    }
-
-    public void setAverageSpeedOfAnswer(Duration averageSpeedOfAnswer) {
-        this.averageSpeedOfAnswer = averageSpeedOfAnswer;
-    }
-
-    public double getServiceLevel() {
-        return serviceLevel;
-    }
-
-    public void setServiceLevel(double serviceLevel) {
-        this.serviceLevel = serviceLevel;
-    }
-
-    public String[] getGroupNames() {
-        return GROUP_NAMES;
-    }
-
-    public String[] getEmailGroupNames() {
-        return EMAIL_GROUP_NAMES;
-    }
-
-    public String getGroupNameE(int index) {
-        return GROUP_NAMES[index];
-    }
-
-    public String getEmailGroupNameE(int index) {
-        return EMAIL_GROUP_NAMES[index];
-    }
-
-    public String getExcelFilename() {
-        return weeklyReportFilename;
-    }
 }

@@ -11,11 +11,6 @@ public class OrbitQBD extends QueueByDateReport {
 
     public OrbitQBD() {
 
-        super(new String[]{"Orbit Callback", "Orbit HE Product", "Orbit HE Timer", "Orbit Hydro-Rain",
-                        "Orbit Hydro-Rain Manuals", "Orbit Hydro-Rain Other", "Orbit Hydro-Rain Pro", "Orbit Hydro-Rain Pro Callback",
-                        "Orbit Iris HE Timer", "Orbit Iris UG Timer", "Orbit Orders", "Orbit Other", "Orbit UG Sprinkler",
-                        "Orbit UG Timer"},
-                new String[]{"Orbit Cased Email", "Orbit Cased Email 2", "Orbit Email", "Orbit OSSD Email"});
     }
 
     public int getDataSheetIndex() {

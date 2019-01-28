@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author JShepherd
  */
-final class QbdConstants {
+final class ReportConstants {
 
     final static int ACCOUNT_NAME = 0;
     final static int GROUP_NAME = 1;
@@ -39,7 +39,7 @@ final class QbdConstants {
 
     final static String GRAND_TOTAL = "Grand Total:";
 
-    private QbdConstants() {
+    private ReportConstants() {
     }
 
     private static Map<String, Report> initializeMap() {
@@ -60,6 +60,13 @@ final class QbdConstants {
         map.put("NetworkForGoodEmailQBD", new EmailNetworkForGoodQBD());
         map.put("NetworkForGoodVMQBD", new VMNetworkForGoodQBD());
         map.put("CPaTShortAband", new CPaTShortAband());
+        map.put("EntrustShortAband", new EntrustShortAband());
+        map.put("GPSTrackitShortAband", new GPSTrackitShortAband());
+        map.put("HabitatReStoreShortAband", new HabitatReStoreShortAband());
+        map.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());
+        map.put("NelnetShortAband", new NaturalWirelessShortAband());
+        map.put("NetworkForGoodShortAband", new NetworkForGoodShortAband());
+        map.put("PingIdentityShortAband", new PingIdentityShortAband());
 
         return map;
     }

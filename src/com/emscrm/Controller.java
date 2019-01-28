@@ -58,8 +58,6 @@ public class Controller {
 
         for (File file : droppedFiles) {
             String line = processFile(file);
-//            writeSummaryToExcelFile(line);
-
             String namePlusLine = model.getReportName() + "\t" + line;
             output.add(namePlusLine);
         }
@@ -85,20 +83,12 @@ public class Controller {
         String summary = "";
         try {
            summary = model.runReport(source);
-           System.out.println("In controller::processFile method. Summary equals " + summary);
+           System.out.println("In controller.processFile() method. Summary equals " + summary);
         } catch(InvalidFormatException | IOException e) {
             view.printError(e.getMessage());
         }
 
         return summary;
-    }
-
-    private void writeSummaryToExcelFile(String summary) {
-        try {
-            model.writeSummaryToExcelFile(summary);
-        } catch (InvalidFormatException | IOException e) {
-            view.printError(e.getMessage());
-        }
     }
 
     private List<String> readSourceFile(String filename) {
@@ -123,11 +113,11 @@ public class Controller {
     private Report selectReport(String filepath) {
 
         Report report = new DefaultQBD();
-        Set<String> keys = QbdConstants.REPORT_TYPES.keySet();
+        Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
 
-        for (String s : keys) {
-            if (filepath.contains(s)) {
-                report = QbdConstants.REPORT_TYPES.get(s);
+        for (String key : keys) {
+            if (filepath.contains(key)) {
+                report = ReportConstants.REPORT_TYPES.get(key);
                 break;
             }
         }
