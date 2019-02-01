@@ -1,22 +1,22 @@
 package com.emscrm;
 
 import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class ShortAbandonReport implements Report {
-
-    public abstract String getWeeklyReportFilename();
+public abstract class ShortAbandonReport extends Report {
 
     protected String weeklyReportFilename;
     protected int excelDataSheetIndex;
     private int shortAbandIndex;
     private double shortAbandons;
     private LocalDate date;
-
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
         shortAbandons = 0;
@@ -27,11 +27,11 @@ public abstract class ShortAbandonReport implements Report {
                 + "_ShortAbandonReport.xlsx";
     }
 
-    public String getSummary(List<String> source) {
-        Optional<String> summary = source.stream()
-                .filter(s -> s.contains("Grand Total:"))
-                .findFirst();
+    public abstract String getWeeklyReportFilename();
 
+    String run(List<String> source) {
+        setDate(source);
+        Optional<String> summary = getSummary(source);
         return summary.orElse("");
     }
 

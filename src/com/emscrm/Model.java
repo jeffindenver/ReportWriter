@@ -25,23 +25,19 @@ public class Model {
     }
 
     String runReport(List<String> source) throws InvalidFormatException, IOException {
-        return composer.runReport(source);
+        return composer.runAndWriteReport(source);
     }
 
-    private ReportComposer getComposer() {
-        return composer;
-    }
-
-    void setComposer(ReportComposer aFilter) {
-        this.composer = aFilter;
+    void setComposer(ReportComposer aComposer) {
+        this.composer = aComposer;
     }
 
     public String getReportName() {
-        return this.getComposer().getReportName();
+        return composer.getReportName();
     }
 
     String formatRow(String s) {
-        return getComposer().formatCsvRow(s);
+        return composer.formatCsvRow(s);
     }
 
     List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
@@ -52,13 +48,13 @@ public class Model {
 
     @SuppressWarnings("all")
     void writeSummaryToExcelFile(String summary) throws InvalidFormatException, IOException {
-        System.out.println("In writeSummaryToExcelFile() method." + " " + getComposer().toString());
+        System.out.println("In writeSummaryToExcelFile() method." + " " + composer.toString());
         ExcelOps excelOps = new ExcelOps();
 
         String filename = composer.getExcelFilepath();
 
         XSSFWorkbook wb = (XSSFWorkbook) excelOps.openWorkbook(filename);
-        XSSFSheet sheet = wb.getSheetAt(getComposer().getDataSheetIndex());
+        XSSFSheet sheet = wb.getSheetAt(composer.getDataSheetIndex());
 
         sheet = composer.composeSheet(sheet, summary);
 

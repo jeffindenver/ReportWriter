@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.StringJoiner;
 
 import static com.emscrm.ReportConstants.*;
@@ -14,7 +15,7 @@ import static com.emscrm.ReportConstants.*;
 /**
  * @author JShepherd
  */
-public abstract class QueueByDateReport implements Report {
+public abstract class QueueByDateReport extends Report {
 
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
@@ -31,6 +32,13 @@ public abstract class QueueByDateReport implements Report {
                 + "\\desktop\\"
                 + LocalDate.now().toString()
                 + "_QueueByDateReport.xlsx";
+    }
+
+    String run(List<String> source) {
+        setDate(source);
+        Optional<String> summary = getSummary(source);
+        summary.ifPresent(this::cleanString);
+        return summary.orElse("");
     }
 
     public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
@@ -156,19 +164,20 @@ public abstract class QueueByDateReport implements Report {
     }
 
     //ShortAbandReport has the same function. How to reduce?
-    public String getSummary(List<String> list) {
-        String summary = "";
-        int lastLine = list.size() - 1;
-
-        //The line with Grand Total should always be last
-        for (int i = lastLine; i >= 0; i--) {
-            if (list.get(i).contains(ReportConstants.GRAND_TOTAL)) {
-                summary = list.get(i);
-                break;
-            }
-        }
-        return cleanString(summary);
-    }
+//    public String getSummary(List<String> list) {
+//        String summary = "";
+//        int lastLine = list.size() - 1;
+//
+//        //The line with Grand Total should always be last
+//        for (int i = lastLine; i >= 0; i--) {
+//            if (list.get(i).contains(ReportConstants.GRAND_TOTAL)) {
+//                summary = list.get(i);
+//                break;
+//            }
+//        }
+//        //function is doing two things and should do only one
+//        return cleanString(summary);
+//    }
 
     private String cleanString(String summary) {
         System.out.println("Summary line equals " + summary);

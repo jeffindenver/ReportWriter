@@ -3,16 +3,31 @@ package com.emscrm;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.util.List;
+import java.util.Optional;
 
-interface Report {
+abstract class Report {
 
-    String getReportName();
-    XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
-    int getDataSheetIndex();
-    String getWeeklyReportFilename();
-    void setDate(List<String> source);
-    String getSummary(List<String> source);
-    String formatCsvRow(String s);
+    abstract String run(List<String> source);
+
+    abstract String getReportName();
+
+    abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
+
+    abstract int getDataSheetIndex();
+
+    abstract String getWeeklyReportFilename();
+
+    abstract void setDate(List<String> source);
+
+    abstract String formatCsvRow(String s);
+
+    Optional<String> getSummary(List<String> source) {
+
+        return source.stream()
+                .filter(s -> s.contains("Grand Total:"))
+                .findFirst();
+
+    }
 
 
 }
