@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFTable;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public abstract class ShortAbandonReport extends Report {
 
@@ -16,7 +15,8 @@ public abstract class ShortAbandonReport extends Report {
     protected int excelDataSheetIndex;
     private int shortAbandIndex;
     private double shortAbandons;
-    private LocalDate date;
+    private static final int datelineIndex = 5;
+
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
         shortAbandons = 0;
@@ -27,12 +27,9 @@ public abstract class ShortAbandonReport extends Report {
                 + "_ShortAbandonReport.xlsx";
     }
 
-    public abstract String getWeeklyReportFilename();
-
-    String run(List<String> source) {
+    protected String run(List<String> source) {
         setDate(source);
-        Optional<String> summary = getSummary(source);
-        return summary.orElse("");
+        return getSummary(source);
     }
 
     @Override
@@ -58,31 +55,22 @@ public abstract class ShortAbandonReport extends Report {
     }
 
     private void refreshFormulaCell(XSSFRow row, int shortAbandCellIndex) {
+
         XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
+
         evaluator.notifyUpdateCell(row.getCell(shortAbandCellIndex));
+
         int formulaCellIndex = shortAbandCellIndex + 1;
+
         evaluator.notifySetFormula(row.getCell(formulaCellIndex));
+
         evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
     }
 
-    private LocalDate getDate() {
+
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public void setDate(List<String> source) {
-        int dateIndex = 5;
-
-        String line = source.get(dateIndex);
-
-        System.out.println("This is the date line: " + line);
-
-        String[] items = line.split(" ");
-        String[] tokenizedDate = items[0].split("/");
-        int month = Integer.parseInt(tokenizedDate[0]);
-        int day = Integer.parseInt(tokenizedDate[1]);
-        int year = Integer.parseInt(tokenizedDate[2]);
-
-        this.date = LocalDate.of(year, month, day);
-    }
 
 }

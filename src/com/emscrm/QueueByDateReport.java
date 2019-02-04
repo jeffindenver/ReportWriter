@@ -7,7 +7,6 @@ import org.apache.poi.xssf.usermodel.*;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 import static com.emscrm.ReportConstants.*;
@@ -19,12 +18,10 @@ public abstract class QueueByDateReport extends Report {
 
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
-    private LocalDate date;
+    private static final int datelineIndex = 4;
 
 
     public QueueByDateReport() {
-
-        date = LocalDate.now();
 
         excelDataSheetIndex = 0;
 
@@ -34,11 +31,10 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    String run(List<String> source) {
+    protected String run(List<String> source) {
         setDate(source);
-        Optional<String> summary = getSummary(source);
-        summary.ifPresent(this::cleanString);
-        return summary.orElse("");
+        String summary = getSummary(source);
+        return cleanString(summary);
     }
 
     public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
@@ -150,6 +146,7 @@ public abstract class QueueByDateReport extends Report {
     }
 
     private double toFractionOfDay(String duration) {
+        System.out.println("In method toFractionOfDay. Duration equals " + duration);
         String[] v = duration.split(":");
         Duration someTime = Duration.ZERO;
         someTime = someTime.plusHours(Long.parseLong(v[0]));
@@ -163,22 +160,6 @@ public abstract class QueueByDateReport extends Report {
         return totalTime / secondsInADay;
     }
 
-    //ShortAbandReport has the same function. How to reduce?
-//    public String getSummary(List<String> list) {
-//        String summary = "";
-//        int lastLine = list.size() - 1;
-//
-//        //The line with Grand Total should always be last
-//        for (int i = lastLine; i >= 0; i--) {
-//            if (list.get(i).contains(ReportConstants.GRAND_TOTAL)) {
-//                summary = list.get(i);
-//                break;
-//            }
-//        }
-//        //function is doing two things and should do only one
-//        return cleanString(summary);
-//    }
-
     private String cleanString(String summary) {
         System.out.println("Summary line equals " + summary);
 
@@ -189,6 +170,7 @@ public abstract class QueueByDateReport extends Report {
 
         String[] v = cleanedSummary.split("\t");
         cleanedSummary = excludeLastElement(v);
+
         System.out.println("Cleaned Summary equals " + cleanedSummary);
         return cleanedSummary;
     }
@@ -225,25 +207,6 @@ public abstract class QueueByDateReport extends Report {
 
         System.out.println("Ending string: " + joiner.toString());
         return joiner.toString();
-    }
-
-
-    private LocalDate getDate() {
-        return this.date;
-
-    }
-
-    public void setDate(List<String> source) {
-        int dateIndex = 4;
-        String line = source.get(dateIndex);
-        String[] values = line.split("\t");
-        String[] items = values[1].split(" ");
-        String[] tokenizedDate = items[0].split("/");
-        int month = Integer.parseInt(tokenizedDate[0]);
-        int day = Integer.parseInt(tokenizedDate[1]);
-        int year = Integer.parseInt(tokenizedDate[2]);
-
-        this.date = LocalDate.of(year, month, day);
     }
 
 }
