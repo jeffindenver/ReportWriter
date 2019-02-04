@@ -15,7 +15,6 @@ public abstract class ShortAbandonReport extends Report {
     protected int excelDataSheetIndex;
     private int shortAbandIndex;
     private double shortAbandons;
-    private static final int datelineIndex = 5;
 
     protected ShortAbandonReport() {
         shortAbandIndex = 13;

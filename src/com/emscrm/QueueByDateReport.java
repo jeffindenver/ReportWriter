@@ -18,7 +18,6 @@ public abstract class QueueByDateReport extends Report {
 
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
-    private static final int datelineIndex = 4;
 
 
     public QueueByDateReport() {
@@ -40,6 +39,7 @@ public abstract class QueueByDateReport extends Report {
     public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
 
         List<XSSFTable> tables = sheet.getTables();
+        System.out.println("In composeExcelSheet method. Sheet tables contains #" + tables.size());
         XSSFTable myTable = tables.get(0);
 
         int newRowIndex = myTable.getEndRowIndex() + 1;

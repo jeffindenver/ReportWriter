@@ -26,18 +26,19 @@ abstract class Report {
 
     protected abstract String run(List<String> source);
 
-    private Optional<String> getDateFromList(DateParser dp, List<String> source) {
+    protected void setDate(List<String> source) {
+        DateParser dp = new DateParser("(\\d+)/(\\d+)/(\\d{4})");
+
+        Optional<String> dateline = getDatelineFromList(dp, source);
+        System.out.println(dateline.orElse("Report line 33: dateline is empty."));
+        Optional<LocalDate> theDate = dateline.map(dp::parseDate);
+        this.date = theDate.orElse(LocalDate.MIN);
+    }
+
+    private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
         return source.stream()
                 .filter(dp::containsDate)
                 .findFirst();
-    }
-
-    protected void setDate(List<String> source) {
-        DateParser dp = new DateParser("(d+)/(d+)/(dddd)");
-
-        Optional<String> dateline = getDateFromList(dp, source);
-        Optional<LocalDate> theDate = dateline.map(dp::parseDate);
-        this.date = theDate.orElse(LocalDate.MIN);
     }
 
     String getSummary(List<String> source) {
@@ -48,6 +49,5 @@ abstract class Report {
         return summary.orElse("");
 
     }
-
 
 }

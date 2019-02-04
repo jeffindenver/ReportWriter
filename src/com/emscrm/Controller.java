@@ -23,10 +23,12 @@ public class Controller {
 
     private final Model model;
     private final ReportWriterGUI view;
+    private int countOfFilesProcessed;
 
     Controller(ReportWriterGUI aView, Model aModel) {
         this.view = aView;
         this.model = aModel;
+        countOfFilesProcessed = 0;
     }
 
     void start() {
@@ -58,6 +60,7 @@ public class Controller {
 
         for (File file : droppedFiles) {
             String line = processFile(file);
+            countOfFilesProcessed++;
             String namePlusLine = model.getReportName() + "\t" + line;
             output.add(namePlusLine);
         }
@@ -68,7 +71,7 @@ public class Controller {
 
         model.writeListToFile(formattedOutput);
 
-        view.setStatus(formattedOutput.size() + " files processed.");
+        view.setStatus(countOfFilesProcessed + " files processed.");
     }
 
     private String processFile(File file) {

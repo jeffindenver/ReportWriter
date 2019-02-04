@@ -12,22 +12,23 @@ class DateParser {
         pattern = Pattern.compile(regexPattern);
     }
 
-    LocalDate parseDate(String dateline) {
-            LocalDate date = LocalDate.MIN;
-            Matcher matcher = pattern.matcher(dateline);
-
-            if(matcher.matches()) {
-                int month = Integer.parseInt(matcher.group(0));
-                int day = Integer.parseInt(matcher.group(1));
-                int year = Integer.parseInt(matcher.group(2));
-                date = LocalDate.of(year, month, day);
-            }
-            return date;
-    }
-
     boolean containsDate(String dateline) {
         Matcher matcher = pattern.matcher(dateline);
         return matcher.find();
+    }
+
+    LocalDate parseDate(String dateline) {
+        System.out.println("Dateline is " + dateline);
+        LocalDate date = LocalDate.of(1977, 5, 25);
+        Matcher matcher = pattern.matcher(dateline);
+
+        if (matcher.find()) {
+            int month = Integer.parseInt(matcher.group(1));
+            int day = Integer.parseInt(matcher.group(2));
+            int year = Integer.parseInt(matcher.group(3));
+            date = LocalDate.of(year, month, day);
+        }
+        return date;
     }
 
 }
