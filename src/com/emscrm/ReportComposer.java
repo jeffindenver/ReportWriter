@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * @author JShepherd
  */
+
+//This class needs to go away. Move functions to Report class
 public class ReportComposer {
 
     private final Report report;

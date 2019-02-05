@@ -2,6 +2,7 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+
 /**
  * @author JShepherd
  */
@@ -10,9 +11,8 @@ public class CellOneQBD extends QueueByDateReport {
     private final static String reportName = "Cellular One";
 
     public CellOneQBD() {
-
         this.excelDataSheetIndex = 0;
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne Weekly Report.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne Daily Report.xlsx";
     }
 
     public int getDataSheetIndex() {

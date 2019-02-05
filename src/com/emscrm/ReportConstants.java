@@ -37,14 +37,13 @@ final class ReportConstants {
 
     final static Map<String, Report> REPORT_TYPES = initializeMap();
 
-    final static String GRAND_TOTAL = "Grand Total:";
-
     private ReportConstants() {
     }
 
     private static Map<String, Report> initializeMap() {
         Map<String, Report> map = new HashMap<>();
         map.put("CellOneCallsQBD", new CellOneQBD());
+        map.put("CellOneDailyQBD", new CellOneQBD());
         map.put("CPaTCallsQBD", new CPaTQBD());
         map.put("EntrustCallsQBD", new EntrustQBD());
         map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
