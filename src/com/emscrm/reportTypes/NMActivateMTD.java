@@ -2,16 +2,11 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+public class NMActivateMTD extends QueueByDateReport {
+    private final static String reportName = "NM Activate MTD";
 
-/**
- * @author JShepherd
- */
-public class CellOneQBD extends QueueByDateReport {
-
-    private final static String reportName = "Cellular One";
-
-    public CellOneQBD() {
-        this.excelDataSheetIndex = 0;
+    public NMActivateMTD() {
+        this.excelDataSheetIndex = 8;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 
@@ -32,5 +27,4 @@ public class CellOneQBD extends QueueByDateReport {
     public String toString() {
         return reportName;
     }
-
 }
