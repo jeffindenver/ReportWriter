@@ -59,7 +59,9 @@ public class Controller {
         List<String> output = new ArrayList<>();
 
         for (File file : droppedFiles) {
+
             String line = processFile(file);
+
             countOfFilesProcessed++;
             String namePlusLine = model.getReportName() + "\t" + line;
             output.add(namePlusLine);
@@ -104,13 +106,6 @@ public class Controller {
             view.printError(e.getMessage());
         }
         return list;
-    }
-
-    private boolean isEmptyList(List<String> list) {
-        if (list.isEmpty()) {
-            view.printError("The filename was not valid.");
-        }
-        return list.isEmpty();
     }
 
     private Report selectReport(String filepath) {
