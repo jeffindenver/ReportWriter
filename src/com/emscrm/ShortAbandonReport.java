@@ -63,11 +63,4 @@ public abstract class ShortAbandonReport extends Report {
 
         evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
     }
-
-
-    public LocalDate getDate() {
-        return this.date;
-    }
-
-
 }
