@@ -14,10 +14,6 @@ abstract class Report {
 
     protected abstract String formatCsvRow(String s);
 
-    LocalDate getDate() {
-        return this.date;
-    }
-
     protected abstract String getReportName();
 
     protected abstract int getDataSheetIndex();
@@ -25,6 +21,10 @@ abstract class Report {
     protected abstract String getWeeklyReportFilename();
 
     protected abstract String run(List<String> source);
+
+    LocalDate getDate() {
+        return this.date;
+    }
 
     void setDate(List<String> source) {
         DateParser dp = new DateParser();
@@ -47,7 +47,5 @@ abstract class Report {
                 .filter(s -> s.contains("Grand Total:"))
                 .findFirst();
         return summary.orElse("");
-
     }
-
 }
