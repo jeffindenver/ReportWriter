@@ -88,16 +88,6 @@ class Model {
         return MONTHS[month];
     }
 
-    private String getTypeString() {
-        String type;
-        if (isEmail) {
-            type = "Email";
-        } else {
-            type = "Calls";
-        }
-        return type;
-    }
-
     private String composeFilepath() {
         StringBuilder sb = new StringBuilder();
 
@@ -106,7 +96,6 @@ class Model {
         sb.append(directory);
         sb.append("\\desktop\\");
         sb.append(getPreviousMonth());
-        sb.append(getTypeString());
         sb.append(".csv");
 
         return sb.toString();
