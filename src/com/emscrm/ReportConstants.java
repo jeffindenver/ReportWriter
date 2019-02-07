@@ -10,7 +10,6 @@ import java.util.Map;
  * constants below correspond to the order of elements of those lines of the
  * exported report, shifted one to the right because account name is inserted
  * at the beginning.
- * <p>
  * The lines look like the following
  * Grand Total: 175 :07:09 20:51:15 :00:24 01:09:41 44 :02:52 20.09% :29:11
  * :01:04 74.86% 97.27%
@@ -79,7 +78,7 @@ final class ReportConstants {
         map.put("NMRenewMTD", new NMRenewMTD());
         map.put("NMRenewWTD", new NMRenewWTD());
         map.put("NMWebSalesEmailMTD", new NMWebSalesEmailMTD());
-        map.put("NMWebsSalesEmailWTD", new NMWebSalesEmailWTD());
+        map.put("NMWebSalesEmailWTD", new NMWebSalesEmailWTD());
         map.put("PrepaidCSMTD", new PrepaidCSMTD());
         map.put("PrepaidCSWTD", new PrepaidCSWTD());
         map.put("PrepaidTSMTD", new PrepaidTSMTD());
