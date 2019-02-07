@@ -8,13 +8,13 @@ import java.util.Optional;
 
 abstract class Report {
 
-    protected LocalDate date;
+    LocalDate date;
 
     protected abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
 
     protected abstract String formatCsvRow(String s);
 
-    protected LocalDate getDate() {
+    LocalDate getDate() {
         return this.date;
     }
 
@@ -26,8 +26,8 @@ abstract class Report {
 
     protected abstract String run(List<String> source);
 
-    protected void setDate(List<String> source) {
-        DateParser dp = new DateParser("(\\d+)/(\\d+)/(\\d{4})");
+    void setDate(List<String> source) {
+        DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
         System.out.println(dateline.orElse("Report line 33: dateline is empty."));

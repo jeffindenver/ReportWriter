@@ -18,7 +18,7 @@ import com.emscrm.reportTypes.DefaultQBD;
  *
  * @author JShepherd
  */
-public class ReportWriter {
+class ReportWriter {
 
     public static void main(String[] args) {
 

@@ -20,7 +20,7 @@ public abstract class QueueByDateReport extends Report {
     protected String weeklyReportFilename;
 
 
-    public QueueByDateReport() {
+    protected QueueByDateReport() {
 
         excelDataSheetIndex = 0;
 

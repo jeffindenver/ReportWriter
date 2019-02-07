@@ -2,6 +2,7 @@ package com.emscrm;
 
 import com.emscrm.reportTypes.DefaultQBD;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * @author JShepherd
  */
-public class Controller {
+class Controller {
 
     private final Model model;
     private final ReportWriterGUI view;
@@ -67,9 +68,7 @@ public class Controller {
             output.add(namePlusLine);
         }
 
-        List<String> formattedOutput = output.stream()
-                .map(model::formatRow)
-                .collect(Collectors.toList());
+        List<String> formattedOutput = formatOutput(output);
 
         model.writeListToFile(formattedOutput);
 
@@ -94,6 +93,13 @@ public class Controller {
         }
 
         return summary;
+    }
+
+    @NotNull
+    private List<String> formatOutput(List<String> output) {
+        return output.stream()
+                    .map(model::formatRow)
+                    .collect(Collectors.toList());
     }
 
     private List<String> readSourceFile(String filename) {

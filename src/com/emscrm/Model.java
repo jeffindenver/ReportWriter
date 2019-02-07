@@ -14,10 +14,10 @@ import java.util.List;
 /**
  * @author JShepherd
  */
-public class Model {
+class Model {
 
     private ReportComposer composer;
-    private boolean isEmail;
+    private final boolean isEmail;
 
     Model(ReportComposer aComposer) {
         this.composer = aComposer;

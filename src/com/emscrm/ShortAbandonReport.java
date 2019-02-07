@@ -12,14 +12,12 @@ import java.util.List;
 public abstract class ShortAbandonReport extends Report {
 
     protected String weeklyReportFilename;
-    protected int excelDataSheetIndex;
-    private int shortAbandIndex;
+    private final int shortAbandIndex;
     private double shortAbandons;
 
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
         shortAbandons = 0;
-        excelDataSheetIndex = 0;
         weeklyReportFilename = System.getProperty("user.home")
                 + "\\desktop\\"
                 + LocalDate.now().toString()

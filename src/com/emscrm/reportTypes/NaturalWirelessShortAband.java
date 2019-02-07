@@ -1,22 +1,13 @@
 package com.emscrm.reportTypes;
 
-import java.time.LocalDate;
-
 public class NaturalWirelessShortAband extends com.emscrm.ShortAbandonReport {
 
     private static final String reportName = "Natural Wireless Short Abandons";
-    protected int excelDataSheetIndex;
-    private LocalDate date;
+    private final int excelDataSheetIndex;
 
     public NaturalWirelessShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\Natural Wireless\\Natural Wireless Weekly Stats 2019.xlsx";
         excelDataSheetIndex = 0;
-        setDate(LocalDate.now());
-
-    }
-
-    public void setDate(LocalDate aDate) {
-        date = aDate;
     }
 
     @Override

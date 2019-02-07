@@ -1,22 +1,13 @@
 package com.emscrm.reportTypes;
 
-import java.time.LocalDate;
-
 public class GPSTrackitShortAband extends com.emscrm.ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
-    protected int excelDataSheetIndex;
-    private LocalDate date;
+    private final int excelDataSheetIndex;
 
     public GPSTrackitShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
         excelDataSheetIndex = 0;
-        setDate(LocalDate.now());
-
-    }
-
-    public void setDate(LocalDate aDate) {
-        date = aDate;
     }
 
     @Override

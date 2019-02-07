@@ -6,10 +6,10 @@ import java.util.regex.Pattern;
 
 class DateParser {
 
-    private Pattern pattern;
+    private final Pattern pattern;
 
-    DateParser(String regexPattern) {
-        pattern = Pattern.compile(regexPattern);
+    DateParser() {
+        pattern = Pattern.compile("(\\d+)/(\\d+)/(\\d{4})");
     }
 
     boolean containsDate(String dateline) {

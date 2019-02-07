@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 //This class needs to go away. Move functions to Report class
-public class ReportComposer {
+class ReportComposer {
 
     private final Report report;
 

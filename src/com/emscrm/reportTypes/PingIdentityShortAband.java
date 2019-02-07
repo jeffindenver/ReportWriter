@@ -5,7 +5,7 @@ import com.emscrm.ShortAbandonReport;
 public class PingIdentityShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Ping Identity Short Abandons";
-    protected int excelDataSheetIndex;
+    private final int excelDataSheetIndex;
 
 
     public PingIdentityShortAband() {
