@@ -4,7 +4,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.StringJoiner;
@@ -40,6 +39,7 @@ public abstract class QueueByDateReport extends Report {
 
         List<XSSFTable> tables = sheet.getTables();
         System.out.println("In composeExcelSheet method. Sheet tables contains #" + tables.size());
+        //Can also get the table based on the table name
         XSSFTable myTable = tables.get(0);
 
         int newRowIndex = myTable.getEndRowIndex() + 1;
@@ -126,38 +126,22 @@ public abstract class QueueByDateReport extends Report {
         LocalDate date = getDate();
 
         row.getCell(0).setCellType(CellType.NUMERIC);
-        //the number of days passed since 1900-Jan-0
         long daysElapsedFrom1900To1970 = 25569;//
         row.getCell(0).setCellValue(date.toEpochDay() + daysElapsedFrom1900To1970);
 
         row.getCell(1).setCellValue(Double.parseDouble(v[1]));
-        row.getCell(2).setCellValue(toFractionOfDay(v[2]));
-        row.getCell(3).setCellValue(toFractionOfDay(v[3]));
-        row.getCell(4).setCellValue(toFractionOfDay(v[4]));
-        row.getCell(5).setCellValue(toFractionOfDay(v[5]));
+        row.getCell(2).setCellValue(DurationUtility.toFractionOfDay(v[2]));
+        row.getCell(3).setCellValue(DurationUtility.toFractionOfDay(v[3]));
+        row.getCell(4).setCellValue(DurationUtility.toFractionOfDay(v[4]));
+        row.getCell(5).setCellValue(DurationUtility.toFractionOfDay(v[5]));
         row.getCell(6).setCellValue(Double.parseDouble(v[6]));
-        row.getCell(7).setCellValue(toFractionOfDay(v[7]));
+        row.getCell(7).setCellValue(DurationUtility.toFractionOfDay(v[7]));
         row.getCell(8).setCellValue(Double.parseDouble(v[8]) / 100);
-        row.getCell(9).setCellValue(toFractionOfDay(v[9]));
-        row.getCell(10).setCellValue(toFractionOfDay(v[10]));
+        row.getCell(9).setCellValue(DurationUtility.toFractionOfDay(v[9]));
+        row.getCell(10).setCellValue(DurationUtility.toFractionOfDay(v[10]));
         row.getCell(11).setCellValue(Double.parseDouble(v[11]) / 100);
 
         return row;
-    }
-
-    private double toFractionOfDay(String duration) {
-        System.out.println("In method toFractionOfDay. Duration equals " + duration);
-        String[] v = duration.split(":");
-        Duration someTime = Duration.ZERO;
-        someTime = someTime.plusHours(Long.parseLong(v[0]));
-        someTime = someTime.plusMinutes(Long.parseLong(v[1]));
-        someTime = someTime.plusSeconds(Long.parseLong(v[2]));
-
-        double totalTime = someTime.toMillis() / 1000.0;
-
-        //Excel represents time as a fraction. 0.25 is six hours or 6:00 AM
-        int secondsInADay = 86400;
-        return totalTime / secondsInADay;
     }
 
     private String cleanString(String summary) {
