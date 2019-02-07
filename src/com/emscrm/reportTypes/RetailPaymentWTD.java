@@ -6,7 +6,7 @@ public class RetailPaymentWTD extends QueueByDateReport {
     private final static String reportName = "Retail Payment WTD";
 
     public RetailPaymentWTD() {
-        this.excelDataSheetIndex = 25;
+        this.excelDataSheetIndex = 27;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

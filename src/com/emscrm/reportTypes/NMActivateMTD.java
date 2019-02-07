@@ -6,7 +6,7 @@ public class NMActivateMTD extends QueueByDateReport {
     private final static String reportName = "NM Activate MTD";
 
     public NMActivateMTD() {
-        this.excelDataSheetIndex = 8;
+        this.excelDataSheetIndex = 10;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

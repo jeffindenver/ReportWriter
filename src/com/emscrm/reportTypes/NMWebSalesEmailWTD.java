@@ -6,7 +6,7 @@ public class NMWebSalesEmailWTD extends QueueByDateReport {
     private final static String reportName = "NM Web Sales WTD";
 
     public NMWebSalesEmailWTD() {
-        this.excelDataSheetIndex = 15;
+        this.excelDataSheetIndex = 17;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

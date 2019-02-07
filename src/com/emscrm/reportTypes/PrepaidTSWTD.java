@@ -6,7 +6,7 @@ public class PrepaidTSWTD extends QueueByDateReport {
     private final static String reportName = "Prepaid TS WTD";
 
     public PrepaidTSWTD() {
-        this.excelDataSheetIndex = 19;
+        this.excelDataSheetIndex = 21;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

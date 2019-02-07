@@ -7,7 +7,7 @@ public class NMRenewMTD extends QueueByDateReport {
     private final static String reportName = "NM Renew MTD";
 
     public NMRenewMTD() {
-        this.excelDataSheetIndex = 12;
+        this.excelDataSheetIndex = 14;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

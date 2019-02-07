@@ -6,7 +6,7 @@ public class WebOrdersEmailWTD extends QueueByDateReport {
     private final static String reportName = "Web Orders Email WTD";
 
     public WebOrdersEmailWTD() {
-        this.excelDataSheetIndex = 29;
+        this.excelDataSheetIndex = 31;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

@@ -6,7 +6,7 @@ public class RecertificationWTD extends QueueByDateReport {
     private final static String reportName = "Recertification WTD";
 
     public RecertificationWTD() {
-        this.excelDataSheetIndex = 21;
+        this.excelDataSheetIndex = 23;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 
