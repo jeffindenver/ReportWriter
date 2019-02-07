@@ -53,8 +53,8 @@ public abstract class QueueByDateReport extends Report {
 
         String[] v = summary.split("\t");
 
-        @SuppressWarnings("unused")//it is used thank you very much
-                XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
+        @SuppressWarnings("unused")
+        XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
 
         myTable.updateReferences();
 
