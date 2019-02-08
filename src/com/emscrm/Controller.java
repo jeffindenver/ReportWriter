@@ -50,6 +50,7 @@ class Controller {
                     view.printError(ex.getMessage());
                 }
                 processDroppedFiles(droppedFiles);
+                view.setStatus(countOfFilesProcessed + " files processed.");
             }
         });
     }
@@ -61,14 +62,10 @@ class Controller {
 
             countOfFilesProcessed++;
         }
-
-        view.setStatus(countOfFilesProcessed + " files processed.");
     }
 
     private void processFile(File file) {
         String pathname = file.toString();
-
-        view.printMessage(pathname);
 
         model.setComposer(new ReportComposer(selectReport(pathname)));
 
@@ -79,6 +76,8 @@ class Controller {
         } catch (InvalidFormatException | IOException e) {
             view.printError(e.getMessage());
         }
+
+        view.printMessage(pathname);
     }
 
     private List<String> readSourceFile(String filename) {
