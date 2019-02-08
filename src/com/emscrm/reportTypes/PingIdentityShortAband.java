@@ -14,20 +14,12 @@ public class PingIdentityShortAband extends ShortAbandonReport {
 
     }
 
-   protected String formatCsvRow(String s) {
-        return reportName + "," + s;
-    }
-
     protected int getDataSheetIndex() {
         return excelDataSheetIndex;
     }
 
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
-    }
-
-    public String getReportName() {
-        return reportName;
     }
 
     @Override

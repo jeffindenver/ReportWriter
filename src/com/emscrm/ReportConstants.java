@@ -18,20 +18,6 @@ import java.util.Map;
  */
 final class ReportConstants {
 
-    final static int ACCOUNT_NAME = 0;
-    final static int GROUP_NAME = 1;
-    final static int INTERACTIONS_ANSWERED = 2;
-    final static int AVG_TALK_TIME = 3;
-    final static int TOTAL_TALK_TIME = 4;
-    final static int AVG_ACW = 5;
-    final static int TOTAL_ACW = 6;
-    final static int INTERACTIONS_ABANDONED = 7;
-    final static int AVG_ABAND_DELAY = 8;
-    final static int PERCENT_ABAN = 9;
-    final static int MAX_WAIT = 10;
-    final static int ASA = 11;
-    final static int SVC_LVL = 12;
-
     final static int QBD_REPORT_LENGTH = 15;
 
     final static Map<String, Report> REPORT_TYPES = initializeMap();

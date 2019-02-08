@@ -15,10 +15,6 @@ public class NMRenewMTD extends QueueByDateReport {
         return excelDataSheetIndex;
     }
 
-    public String getReportName() {
-        return reportName;
-    }
-
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;

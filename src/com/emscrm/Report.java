@@ -8,13 +8,9 @@ import java.util.Optional;
 
 abstract class Report {
 
-    LocalDate date;
+    private LocalDate date;
 
     protected abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
-
-    protected abstract String formatCsvRow(String s);
-
-    protected abstract String getReportName();
 
     protected abstract int getDataSheetIndex();
 

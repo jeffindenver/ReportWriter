@@ -23,10 +23,6 @@ public class CPaTQBD extends QueueByDateReport {
         return excelDataSheetIndex;
     }
 
-    public String getReportName() {
-        return reportName;
-    }
-
     @Override
     public String toString() {
         return reportName;

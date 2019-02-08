@@ -11,11 +11,9 @@ import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author JShepherd
@@ -57,25 +55,17 @@ class Controller {
     }
 
     private void processDroppedFiles(List<File> droppedFiles) {
-        List<String> output = new ArrayList<>();
-
         for (File file : droppedFiles) {
 
-            String line = processFile(file);
+            processFile(file);
 
             countOfFilesProcessed++;
-            String namePlusLine = model.getReportName() + "\t" + line;
-            output.add(namePlusLine);
         }
-
-        List<String> formattedOutput = formatOutput(output);
-
-        model.writeListToFile(formattedOutput);
 
         view.setStatus(countOfFilesProcessed + " files processed.");
     }
 
-    private String processFile(File file) {
+    private void processFile(File file) {
         String pathname = file.toString();
 
         view.printMessage(pathname);
@@ -84,22 +74,11 @@ class Controller {
 
         List<String> source = readSourceFile(pathname);
 
-        String summary = "";
         try {
-           summary = model.runReport(source);
-           System.out.println("In controller.processFile() method. Summary equals " + summary);
-        } catch(InvalidFormatException | IOException e) {
+            model.runReport(source);
+        } catch (InvalidFormatException | IOException e) {
             view.printError(e.getMessage());
         }
-
-        return summary;
-    }
-
-    @NotNull
-    private List<String> formatOutput(List<String> output) {
-        return output.stream()
-                    .map(model::formatRow)
-                    .collect(Collectors.toList());
     }
 
     private List<String> readSourceFile(String filename) {
@@ -114,8 +93,9 @@ class Controller {
         return list;
     }
 
+    @NotNull
     private Report selectReport(String filepath) {
-
+        //change this to use Optional<T>
         Report report = new DefaultQBD();
         Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
 

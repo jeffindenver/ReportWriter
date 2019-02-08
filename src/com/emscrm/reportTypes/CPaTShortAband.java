@@ -11,21 +11,12 @@ public class CPaTShortAband extends com.emscrm.ShortAbandonReport {
 
     }
 
-    @Override
-    public String formatCsvRow(String s) {
-        return reportName + "," + s;
-    }
-
     public int getDataSheetIndex() {
         return excelDataSheetIndex;
     }
 
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
-    }
-
-    public String getReportName() {
-        return reportName;
     }
 
     @Override

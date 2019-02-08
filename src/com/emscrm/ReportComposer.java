@@ -21,10 +21,9 @@ class ReportComposer {
         this.report = report;
     }
 
-    String runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
+    void runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
         String line = report.run(source);
         writeToExcelFile(line);
-        return line;
     }
 
     private void writeToExcelFile(String summary) throws InvalidFormatException, IOException {
@@ -55,16 +54,8 @@ class ReportComposer {
         return this.getReport().getDataSheetIndex();
     }
 
-    String getReportName() {
-        return this.getReport().getReportName();
-    }
-
     String getExcelFilepath() {
         return this.getReport().getWeeklyReportFilename();
-    }
-
-    String formatCsvRow(String s) {
-        return report.formatCsvRow(s);
     }
 
     @Override

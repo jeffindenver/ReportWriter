@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static com.emscrm.ReportConstants.*;
-
 /**
  * @author JShepherd
  */
@@ -164,32 +162,6 @@ public abstract class QueueByDateReport extends Report {
         for (int i = 0; i < v.length - 1; i++) {
             joiner.add(v[i]);
         }
-        return joiner.toString();
-    }
-
-    public String formatCsvRow(String row) {
-        System.out.println("Starting string is : " + row);
-        StringJoiner joiner = new StringJoiner(",");
-        String[] reportCategories = row.split("\t");
-
-        double percentAban = Double.valueOf(reportCategories[PERCENT_ABAN]) / 100; //move decimal 2 places to accommodate Excel
-        double serviceLevel = Double.valueOf(reportCategories[SVC_LVL]) / 100;
-
-        joiner.add(reportCategories[ACCOUNT_NAME]);
-        joiner.add(reportCategories[GROUP_NAME]);
-        joiner.add(reportCategories[INTERACTIONS_ANSWERED]);
-        joiner.add(reportCategories[AVG_TALK_TIME]);
-        joiner.add(reportCategories[TOTAL_TALK_TIME]);
-        joiner.add(reportCategories[AVG_ACW]);
-        joiner.add(reportCategories[TOTAL_ACW]);
-        joiner.add(reportCategories[INTERACTIONS_ABANDONED]);
-        joiner.add(reportCategories[AVG_ABAND_DELAY]);
-        joiner.add(Double.toString(percentAban));
-        joiner.add(reportCategories[MAX_WAIT]);
-        joiner.add(reportCategories[ASA]);
-        joiner.add(Double.toString(serviceLevel));
-
-        System.out.println("Ending string: " + joiner.toString());
         return joiner.toString();
     }
 
