@@ -6,13 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The QBD reports contain summaries by workgroup and by grand total. The
- * constants below correspond to the order of elements of those lines of the
- * exported report, shifted one to the right because account name is inserted
- * at the beginning.
- * The lines look like the following
- * Grand Total: 175 :07:09 20:51:15 :00:24 01:09:41 44 :02:52 20.09% :29:11
- * :01:04 74.86% 97.27%
+ * The QBD reports contain summaries by workgroup and by grand total. 
  *
  * @author JShepherd
  */
@@ -28,7 +22,7 @@ final class ReportConstants {
     private static Map<String, Report> initializeMap() {
         Map<String, Report> map = new HashMap<>();
         map.put("CellOneCallsQBD", new CellOneQBD());
-         map.put("CPaTCallsQBD", new CPaTQBD());
+        map.put("CPaTCallsQBD", new CPaTQBD());
         map.put("EntrustCallsQBD", new EntrustQBD());
         map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         map.put("GPSTrackitEmailQBD", new EmailGPSTrackitQBD());
