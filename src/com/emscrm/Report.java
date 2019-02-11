@@ -26,7 +26,7 @@ abstract class Report {
         DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
-        System.out.println(dateline.orElse("Report line 33: dateline is empty."));
+        System.out.println(dateline.orElse("Report line 29: dateline is empty."));
         Optional<LocalDate> theDate = dateline.map(dp::parseDate);
         this.date = theDate.orElse(LocalDate.MIN);
     }
