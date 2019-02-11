@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The QBD reports contain summaries by workgroup and by grand total. 
+ * The QBD reports contain summaries by workgroup and by grand total.
  *
  * @author JShepherd
  */
