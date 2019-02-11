@@ -28,8 +28,7 @@ final class ReportConstants {
     private static Map<String, Report> initializeMap() {
         Map<String, Report> map = new HashMap<>();
         map.put("CellOneCallsQBD", new CellOneQBD());
-        map.put("CellOneDailyQBD", new CellOneQBD());
-        map.put("CPaTCallsQBD", new CPaTQBD());
+         map.put("CPaTCallsQBD", new CPaTQBD());
         map.put("EntrustCallsQBD", new EntrustQBD());
         map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         map.put("GPSTrackitEmailQBD", new EmailGPSTrackitQBD());
@@ -48,7 +47,7 @@ final class ReportConstants {
         map.put("GPSTrackitShortAband", new GPSTrackitShortAband());
         map.put("HabitatReStoreShortAband", new HabitatReStoreShortAband());
         map.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());
-        map.put("NelnetShortAband", new NaturalWirelessShortAband());
+        map.put("NelnetShortAband", new NelnetShortAband());
         map.put("NetworkForGoodShortAband", new NetworkForGoodShortAband());
         map.put("PingIdentityShortAband", new PingIdentityShortAband());
         map.put("CustomerCareMTD", new CustomerCareMTD());
