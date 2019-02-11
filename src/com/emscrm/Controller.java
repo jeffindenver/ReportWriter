@@ -50,21 +50,15 @@ class Controller {
                     view.printError(ex.getMessage());
                 }
                 processDroppedFiles(droppedFiles);
-                view.setStatus(countOfFilesProcessed + " files processed.");
             }
         });
     }
 
-    private void processDroppedFiles(List<File> droppedFiles) {
-        for (File file : droppedFiles) {
-
-            processFile(file);
-
-            countOfFilesProcessed++;
-        }
+    private void processDroppedFiles(@NotNull List<File> droppedFiles) {
+        droppedFiles.forEach(this::processFile);
     }
 
-    private void processFile(File file) {
+    private void processFile(@NotNull File file) {
         String pathname = file.toString();
 
         model.setComposer(new ReportComposer(selectReport(pathname)));
@@ -77,7 +71,8 @@ class Controller {
             view.printError(e.getMessage());
         }
 
-        view.printMessage(pathname);
+        countOfFilesProcessed++;
+        updateView(pathname);
     }
 
     private List<String> readSourceFile(String filename) {
@@ -94,7 +89,6 @@ class Controller {
 
     @NotNull
     private Report selectReport(String filepath) {
-        //change this to use Optional<T>
         Report report = new DefaultQBD();
         Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
 
@@ -105,6 +99,11 @@ class Controller {
             }
         }
         return report;
+    }
+
+    private void updateView(String pathname) {
+        view.printMessage(pathname);
+        view.setStatus(countOfFilesProcessed + " files processed.");
     }
 
     @Override
