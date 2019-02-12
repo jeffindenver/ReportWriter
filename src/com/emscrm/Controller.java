@@ -49,13 +49,9 @@ class Controller {
                 } catch (UnsupportedFlavorException | IOException ex) {
                     view.printError(ex.getMessage());
                 }
-                processDroppedFiles(droppedFiles);
+                droppedFiles.forEach(f -> processFile(f));
             }
         });
-    }
-
-    private void processDroppedFiles(@NotNull List<File> droppedFiles) {
-        droppedFiles.forEach(this::processFile);
     }
 
     private void processFile(@NotNull File file) {
