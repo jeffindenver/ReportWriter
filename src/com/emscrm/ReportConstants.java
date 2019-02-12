@@ -1,6 +1,9 @@
 package com.emscrm;
 
 import com.emscrm.reportTypes.*;
+import com.emscrm.reportTypes.ShortAbandons.*;
+import com.emscrm.reportTypes.CellOne.*;
+
 
 import java.util.HashMap;
 import java.util.Map;
