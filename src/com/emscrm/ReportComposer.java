@@ -43,8 +43,7 @@ class ReportComposer {
             sheet = wb.createSheet("Default");
         }
 
-        @SuppressWarnings("unused")
-        XSSFSheet composedSheet = composeSheet(sheet, summary);
+        composeSheet(sheet, summary);//sheet is an out variable
 
         excelOps.writeWorkbook(wb, this.getExcelFilepath());
     }
