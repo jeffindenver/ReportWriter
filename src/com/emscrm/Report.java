@@ -44,4 +44,5 @@ abstract class Report {
                 .findFirst();
         return summary.orElse("");
     }
+
 }
