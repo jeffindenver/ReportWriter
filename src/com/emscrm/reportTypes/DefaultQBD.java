@@ -10,7 +10,7 @@ public class DefaultQBD extends QueueByDateReport {
 
     public DefaultQBD() {
         this.excelDataSheetIndex = 0;
-        this.weeklyReportFilename = "s:\\reports\\Unknown Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\default QBD workbook.xlsx";
     }
 
     public int getDataSheetIndex() {
@@ -21,6 +21,7 @@ public class DefaultQBD extends QueueByDateReport {
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
     }
+
 
     @Override
     public String toString() {
