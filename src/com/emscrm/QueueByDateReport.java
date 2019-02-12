@@ -67,7 +67,7 @@ public abstract class QueueByDateReport extends Report {
     }
 
     private XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row) {
-        //make a method in the report, and call it from here.
+
         XSSFFont bodyFont = wb.createFont();
         bodyFont.setFontName("Calibri");
         bodyFont.setFontHeightInPoints((short) 9);

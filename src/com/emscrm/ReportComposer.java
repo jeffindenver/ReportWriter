@@ -34,7 +34,14 @@ class ReportComposer {
 
         XSSFWorkbook wb = (XSSFWorkbook) excelOps.openWorkbook(filename);
 
-        XSSFSheet sheet = wb.getSheetAt(this.getDataSheetIndex());
+        XSSFSheet sheet;
+        int numOfSheets = wb.getNumberOfSheets();
+        System.out.println("In writeToExcelFile method. Number of sheets equals" + numOfSheets);
+        if (numOfSheets >= 1) {
+            sheet = wb.getSheetAt(this.getDataSheetIndex());
+        } else {
+            sheet = wb.createSheet("Default");
+        }
 
         @SuppressWarnings("unused")
         XSSFSheet composedSheet = composeSheet(sheet, summary);
