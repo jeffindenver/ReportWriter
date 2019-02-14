@@ -13,20 +13,13 @@ import java.util.List;
  */
 class Model {
 
-    //private ReportComposer composer;
     private Report report;
-
-
-//    Model(ReportComposer aComposer) {
-//        this.composer = aComposer;
-//    }
 
     Model(Report aReport) {
         this.report = aReport;
     }
 
     void runReport(List<String> source) throws InvalidFormatException, IOException {
-       //composer.runAndWriteReport(source);
         XSSFWorkbook wb = report.run(source);
         writeWorkbookToFile(wb);
     }
@@ -35,18 +28,13 @@ class Model {
         this.report = aReport;
     }
 
-//    void setComposer(ReportComposer aComposer) {
-//        this.composer = aComposer;
-//    }
-
     List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
         ExcelOps excelOps = new ExcelOps();
         HSSFWorkbook wb = (HSSFWorkbook) excelOps.openWorkbook(filename);
         return excelOps.sheetToTabList(wb, 0);
     }
 
-    @SuppressWarnings("all")
-    void writeWorkbookToFile(XSSFWorkbook wb) throws InvalidFormatException, IOException {
+    private void writeWorkbookToFile(XSSFWorkbook wb) {
         System.out.println("In writeWorkbookToFile() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
         excelOps.writeWorkbook(wb, report.getWeeklyReportFilename());
@@ -58,7 +46,7 @@ class Model {
 
     @Override
     public String toString() {
-        return "report: " + report.toString();
+        return "Model with report: " + report.toString();
     }
 
 
