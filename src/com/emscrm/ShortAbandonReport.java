@@ -1,11 +1,10 @@
 package com.emscrm;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
+import org.apache.poi.xssf.usermodel.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,6 +13,7 @@ public abstract class ShortAbandonReport extends Report {
     protected String weeklyReportFilename;
     private final int shortAbandIndex;
     private double shortAbandons;
+    private XSSFWorkbook wb;
 
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
@@ -24,13 +24,21 @@ public abstract class ShortAbandonReport extends Report {
                 + "_ShortAbandonReport.xlsx";
     }
 
-    protected String run(List<String> source) {
+    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
-        return getSummary(source);
+
+        String summary = getSummary(source);
+
+        openWorkbook();
+
+        XSSFSheet sheet = wb.getSheetAt(this.getDataSheetIndex());
+
+        composeExcelSheet(sheet, summary);
+
+        return wb;
     }
 
-    @Override
-    public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
+    private void composeExcelSheet(XSSFSheet sheet, String summary) {
         List<XSSFTable> tables = sheet.getTables();
         XSSFTable myTable = tables.get(0);
 
@@ -48,7 +56,6 @@ public abstract class ShortAbandonReport extends Report {
 
         sheet.setActiveCell(CellAddress.A1);
 
-        return sheet;
     }
 
     private void refreshFormulaCell(XSSFRow row, int shortAbandCellIndex) {
@@ -62,5 +69,9 @@ public abstract class ShortAbandonReport extends Report {
         evaluator.notifySetFormula(row.getCell(formulaCellIndex));
 
         evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
+    }
+
+    protected void setWorkbook (XSSFWorkbook workbook) {
+        this.wb = workbook;
     }
 }

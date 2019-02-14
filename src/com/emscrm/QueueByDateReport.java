@@ -1,9 +1,11 @@
 package com.emscrm;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.StringJoiner;
@@ -15,11 +17,9 @@ public abstract class QueueByDateReport extends Report {
 
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
-
+    private XSSFWorkbook wb;
 
     protected QueueByDateReport() {
-
-        excelDataSheetIndex = 0;
 
         weeklyReportFilename = System.getProperty("user.home")
                 + "\\desktop\\"
@@ -27,13 +27,25 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    protected String run(List<String> source) {
+    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException{
         setDate(source);
+
         String summary = getSummary(source);
-        return cleanString(summary);
+
+        String cleanedSummary = cleanString(summary);
+
+        openWorkbook();
+
+        XSSFSheet sheet = wb.getSheetAt(getDataSheetIndex());
+
+        composeExcelSheet(sheet, cleanedSummary);
+
+        return wb;
     }
 
-    public XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary) {
+
+
+    private void composeExcelSheet(XSSFSheet sheet, String summary) {
 
         List<XSSFTable> tables = sheet.getTables();
         System.out.println("In composeExcelSheet method. Sheet tables contains #" + tables.size());
@@ -56,7 +68,6 @@ public abstract class QueueByDateReport extends Report {
 
         myTable.updateReferences();
 
-        return sheet;
     }
 
     private XSSFRow createCells(XSSFRow row) {
@@ -163,6 +174,10 @@ public abstract class QueueByDateReport extends Report {
             joiner.add(v[i]);
         }
         return joiner.toString();
+    }
+
+    protected void setWorkbook(XSSFWorkbook workbook) {
+        this.wb = workbook;
     }
 
 }

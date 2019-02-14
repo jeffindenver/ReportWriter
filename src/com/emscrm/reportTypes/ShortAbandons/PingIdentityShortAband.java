@@ -5,13 +5,10 @@ import com.emscrm.ShortAbandonReport;
 public class PingIdentityShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Ping Identity Short Abandons";
-    private final int excelDataSheetIndex;
-
+    private static final int excelDataSheetIndex = 0;
 
     public PingIdentityShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2019.xlsx";
-        excelDataSheetIndex = 0;
-
     }
 
     protected int getDataSheetIndex() {

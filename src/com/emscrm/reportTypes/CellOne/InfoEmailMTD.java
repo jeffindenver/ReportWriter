@@ -4,9 +4,9 @@ import com.emscrm.QueueByDateReport;
 
 public class InfoEmailMTD extends QueueByDateReport {
     private final static String reportName = "InfoEmail MTD";
+    private final static int excelDataSheetIndex = 8;
 
     public InfoEmailMTD() {
-        this.excelDataSheetIndex = 8;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

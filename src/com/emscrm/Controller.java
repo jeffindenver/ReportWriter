@@ -1,6 +1,5 @@
 package com.emscrm;
 
-import com.emscrm.reportTypes.DefaultQBD;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,11 +29,7 @@ class Controller {
         countOfFilesProcessed = 0;
     }
 
-    void start() {
-        startListeners();
-    }
-
-    private void startListeners() {
+   void start() {
 
         view.getTextArea().setDropTarget(new DropTarget() {
             private static final long serialVersionUID = 1L;
@@ -57,7 +52,8 @@ class Controller {
     private void processFile(@NotNull File file) {
         String pathname = file.toString();
 
-        model.setComposer(new ReportComposer(selectReport(pathname)));
+        //model.setComposer(new ReportComposer(selectReport(pathname)));
+        model.setReport(selectReport(pathname));
 
         List<String> source = readSourceFile(pathname);
 
@@ -71,6 +67,21 @@ class Controller {
         updateView(pathname);
     }
 
+    @NotNull
+    private Report selectReport(String filepath) {
+        Report report = model.getReport();
+
+        Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
+
+        for (String key : keys) {
+            if (filepath.contains(key)) {
+                report = ReportConstants.REPORT_TYPES.get(key);
+                break;
+            }
+        }
+        return report;
+    }
+
     private List<String> readSourceFile(String filename) {
         @SuppressWarnings("unchecked")
         List<String> list = Collections.EMPTY_LIST;
@@ -81,20 +92,6 @@ class Controller {
             view.printError(e.getMessage());
         }
         return list;
-    }
-
-    @NotNull
-    private Report selectReport(String filepath) {
-        Report report = new DefaultQBD();
-        Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
-
-        for (String key : keys) {
-            if (filepath.contains(key)) {
-                report = ReportConstants.REPORT_TYPES.get(key);
-                break;
-            }
-        }
-        return report;
     }
 
     private void updateView(String pathname) {

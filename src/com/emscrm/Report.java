@@ -1,7 +1,10 @@
 package com.emscrm;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import excelops.ExcelOps;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +13,15 @@ abstract class Report {
 
     private LocalDate date;
 
-    protected abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
+    // --Commented out by Inspection (2/14/2019 11:45 AM):protected abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
+
+    protected abstract void setWorkbook(XSSFWorkbook workbook);
 
     protected abstract int getDataSheetIndex();
 
     protected abstract String getWeeklyReportFilename();
 
-    protected abstract String run(List<String> source);
+    protected abstract XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException;
 
     LocalDate getDate() {
         return this.date;
@@ -45,4 +50,10 @@ abstract class Report {
         return summary.orElse("");
     }
 
+    void openWorkbook() throws InvalidFormatException, IOException {
+        System.out.println("In openWorkbook() method." + " " + this.toString());
+        ExcelOps excelOps = new ExcelOps();
+        XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
+        setWorkbook(workbook);
+    }
 }

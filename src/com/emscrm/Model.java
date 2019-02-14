@@ -3,7 +3,6 @@ package com.emscrm;
 import excelops.ExcelOps;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
@@ -14,21 +13,31 @@ import java.util.List;
  */
 class Model {
 
-    private ReportComposer composer;
-    private final boolean isEmail;
+    //private ReportComposer composer;
+    private Report report;
 
-    Model(ReportComposer aComposer) {
-        this.composer = aComposer;
-        isEmail = false;
+
+//    Model(ReportComposer aComposer) {
+//        this.composer = aComposer;
+//    }
+
+    Model(Report aReport) {
+        this.report = aReport;
     }
 
     void runReport(List<String> source) throws InvalidFormatException, IOException {
-       composer.runAndWriteReport(source);
+       //composer.runAndWriteReport(source);
+        XSSFWorkbook wb = report.run(source);
+        writeWorkbookToFile(wb);
     }
 
-    void setComposer(ReportComposer aComposer) {
-        this.composer = aComposer;
+    void setReport(Report aReport) {
+        this.report = aReport;
     }
+
+//    void setComposer(ReportComposer aComposer) {
+//        this.composer = aComposer;
+//    }
 
     List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
         ExcelOps excelOps = new ExcelOps();
@@ -37,23 +46,19 @@ class Model {
     }
 
     @SuppressWarnings("all")
-    void writeSummaryToExcelFile(String summary) throws InvalidFormatException, IOException {
-        System.out.println("In writeSummaryToExcelFile() method." + " " + composer.toString());
+    void writeWorkbookToFile(XSSFWorkbook wb) throws InvalidFormatException, IOException {
+        System.out.println("In writeWorkbookToFile() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
+        excelOps.writeWorkbook(wb, report.getWeeklyReportFilename());
+    }
 
-        String filename = composer.getExcelFilepath();
-
-        XSSFWorkbook wb = (XSSFWorkbook) excelOps.openWorkbook(filename);
-        XSSFSheet sheet = wb.getSheetAt(composer.getDataSheetIndex());
-
-        sheet = composer.composeSheet(sheet, summary);
-
-        excelOps.writeWorkbook(wb, composer.getExcelFilepath());
+    Report getReport() {
+        return report;
     }
 
     @Override
     public String toString() {
-        return "composer: " + composer.toString() + " isEmail == " + isEmail;
+        return "report: " + report.toString();
     }
 
 

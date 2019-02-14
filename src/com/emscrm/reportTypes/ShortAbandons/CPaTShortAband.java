@@ -3,12 +3,10 @@ package com.emscrm.reportTypes.ShortAbandons;
 public class CPaTShortAband extends com.emscrm.ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
-    private final int excelDataSheetIndex;
+    private static final int excelDataSheetIndex = 0;
 
     public CPaTShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
-        excelDataSheetIndex = 0;
-
     }
 
     public int getDataSheetIndex() {

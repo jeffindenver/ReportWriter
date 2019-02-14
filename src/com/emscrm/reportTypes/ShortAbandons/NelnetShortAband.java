@@ -5,9 +5,9 @@ import com.emscrm.QueueByDateReport;
 public class NelnetShortAband extends QueueByDateReport {
 
     private final static String reportName = "Nelnet Short Aband";
+    private final static int excelDataSheetIndex = 0;
 
     public NelnetShortAband() {
-        this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Nelnet\\Nelnet Weekly Stats 2019.xlsx";
     }
 

@@ -22,6 +22,7 @@ public class CellOneQBD extends QueueByDateReport {
         return excelDataSheetIndex;
     }
 
+
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;

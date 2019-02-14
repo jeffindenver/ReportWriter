@@ -4,9 +4,9 @@ import com.emscrm.QueueByDateReport;
 
 public class CustomerCareWTD extends QueueByDateReport {
     private final static String reportName = "Customer Care WTD";
+    private final static int excelDataSheetIndex = 5;
 
     public CustomerCareWTD() {
-        this.excelDataSheetIndex = 5;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
     }
 

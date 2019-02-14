@@ -3,11 +3,10 @@ package com.emscrm.reportTypes.ShortAbandons;
 public class GPSTrackitShortAband extends com.emscrm.ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
-    private final int excelDataSheetIndex;
+    private static final int excelDataSheetIndex = 0;
 
     public GPSTrackitShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
-        excelDataSheetIndex = 0;
     }
 
     public int getDataSheetIndex() {

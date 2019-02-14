@@ -14,7 +14,8 @@ class ReportWriter {
 
         QueueByDateReport report = new DefaultQBD();
 
-        Model model = new Model(new ReportComposer(report));
+        //Model model = new Model(new ReportComposer(report));
+        Model model = new Model(report);
 
         ReportWriterGUI view = new ReportWriterGUI();
 
