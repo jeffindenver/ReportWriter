@@ -29,7 +29,7 @@ class Controller {
         countOfFilesProcessed = 0;
     }
 
-   void start() {
+    void start() {
 
         view.getTextArea().setDropTarget(new DropTarget() {
             private static final long serialVersionUID = 1L;
@@ -52,7 +52,6 @@ class Controller {
     private void processFile(@NotNull File file) {
         String pathname = file.toString();
 
-        //model.setComposer(new ReportComposer(selectReport(pathname)));
         model.setReport(selectReport(pathname));
 
         List<String> source = readSourceFile(pathname);
