@@ -13,8 +13,6 @@ abstract class Report {
 
     private LocalDate date;
 
-    // --Commented out by Inspection (2/14/2019 11:45 AM):protected abstract XSSFSheet composeExcelSheet(XSSFSheet sheet, String summary);
-
     protected abstract void setWorkbook(XSSFWorkbook workbook);
 
     protected abstract int getDataSheetIndex();
@@ -31,7 +29,7 @@ abstract class Report {
         DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
-        System.out.println(dateline.orElse("Report line 29: dateline is empty."));
+        System.out.println(dateline.orElse("Report Class: dateline is empty."));
         Optional<LocalDate> theDate = dateline.map(dp::parseDate);
         this.date = theDate.orElse(LocalDate.MIN);
     }
