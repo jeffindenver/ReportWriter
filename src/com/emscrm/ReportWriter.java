@@ -10,6 +10,8 @@ import com.emscrm.reportTypes.DefaultQBD;
  */
 class ReportWriter {
 
+    private ReportWriter(){}
+
     public static void main(String[] args) {
 
         QueueByDateReport report = new DefaultQBD();

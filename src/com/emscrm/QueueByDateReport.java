@@ -27,7 +27,8 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException{
+    //need javadoc on how to override run() safely.
+    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
 
         String summary = getSummary(source);
@@ -58,8 +59,8 @@ public abstract class QueueByDateReport extends Report {
         XSSFRow row = sheet.createRow(newRowIndex);
         XSSFRow initialRow = createCells(row);
 
-        XSSFWorkbook wb = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(wb, initialRow);
+        XSSFWorkbook tempWorkbook = sheet.getWorkbook();
+        XSSFRow formattedRow = formatCells(tempWorkbook, initialRow);
 
         String[] v = summary.split("\t");
 
@@ -77,32 +78,32 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    private XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row) {
+    private XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
-        XSSFFont bodyFont = wb.createFont();
+        XSSFFont bodyFont = aWorkbook.createFont();
         bodyFont.setFontName("Calibri");
         bodyFont.setFontHeightInPoints((short) 9);
 
-        XSSFCellStyle monthAndDayStyle = wb.createCellStyle();
-        XSSFDataFormat monthAndDayFormat = wb.createDataFormat();
+        XSSFCellStyle monthAndDayStyle = aWorkbook.createCellStyle();
+        XSSFDataFormat monthAndDayFormat = aWorkbook.createDataFormat();
         monthAndDayStyle.setDataFormat(monthAndDayFormat.getFormat("d-mmm-yy"));
         monthAndDayStyle.setAlignment(HorizontalAlignment.CENTER);
         monthAndDayStyle.setFont(bodyFont);
 
-        XSSFCellStyle wholeNumStyle = wb.createCellStyle();
-        XSSFDataFormat wholeNumFormat = wb.createDataFormat();
+        XSSFCellStyle wholeNumStyle = aWorkbook.createCellStyle();
+        XSSFDataFormat wholeNumFormat = aWorkbook.createDataFormat();
         wholeNumStyle.setDataFormat(wholeNumFormat.getFormat("General"));
         wholeNumStyle.setAlignment(HorizontalAlignment.CENTER);
         wholeNumStyle.setFont(bodyFont);
 
-        XSSFCellStyle durationStyle = wb.createCellStyle();
-        XSSFDataFormat timeFormat = wb.createDataFormat();
+        XSSFCellStyle durationStyle = aWorkbook.createCellStyle();
+        XSSFDataFormat timeFormat = aWorkbook.createDataFormat();
         durationStyle.setDataFormat(timeFormat.getFormat("[h]:mm:ss"));
         durationStyle.setAlignment(HorizontalAlignment.CENTER);
         durationStyle.setFont(bodyFont);
 
-        XSSFCellStyle percentStyle = wb.createCellStyle();
-        XSSFDataFormat percentFormat = wb.createDataFormat();
+        XSSFCellStyle percentStyle = aWorkbook.createCellStyle();
+        XSSFDataFormat percentFormat = aWorkbook.createDataFormat();
         percentStyle.setDataFormat(percentFormat.getFormat("0.00%"));
         percentStyle.setAlignment(HorizontalAlignment.CENTER);
         percentStyle.setFont(bodyFont);

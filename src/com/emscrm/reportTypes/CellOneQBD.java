@@ -8,7 +8,7 @@ import com.emscrm.QueueByDateReport;
  */
 public final class CellOneQBD extends QueueByDateReport {
 
-    private final static String reportName = "Cellular One";
+    private static final String reportName = "Cellular One";
 
     public CellOneQBD() {
         this.excelDataSheetIndex = 0;

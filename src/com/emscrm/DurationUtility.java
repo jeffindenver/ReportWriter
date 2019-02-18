@@ -2,7 +2,7 @@ package com.emscrm;
 
 import java.time.Duration;
 
-class DurationUtility {
+final class DurationUtility {
 
     private DurationUtility() {
     }

@@ -19,7 +19,7 @@ public final class CPaTQBD extends QueueByDateReport {
         return weeklyReportFilename;
     }
 
-    public int getDataSheetIndex(){
+    public int getDataSheetIndex() {
         return excelDataSheetIndex;
     }
 
