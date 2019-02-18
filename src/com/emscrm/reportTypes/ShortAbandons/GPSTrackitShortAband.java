@@ -1,6 +1,8 @@
 package com.emscrm.reportTypes.ShortAbandons;
 
-public class GPSTrackitShortAband extends com.emscrm.ShortAbandonReport {
+import com.emscrm.ShortAbandonReport;
+
+public class GPSTrackitShortAband extends ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
     private static final int excelDataSheetIndex = 0;

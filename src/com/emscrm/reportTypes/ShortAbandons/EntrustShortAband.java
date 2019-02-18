@@ -1,6 +1,8 @@
 package com.emscrm.reportTypes.ShortAbandons;
 
-public class EntrustShortAband extends com.emscrm.ShortAbandonReport {
+import com.emscrm.ShortAbandonReport;
+
+public class EntrustShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Entrust Short Abandons";
     private static final int excelDataSheetIndex = 0;
