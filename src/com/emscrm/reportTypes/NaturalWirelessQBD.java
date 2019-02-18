@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class NaturalWirelessQBD extends QueueByDateReport {
+public final class NaturalWirelessQBD extends QueueByDateReport {
     private final static String reportName = "Natural Wireless";
 
     public NaturalWirelessQBD() {

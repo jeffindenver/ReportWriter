@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class NelnetQBD extends QueueByDateReport {
+public final class NelnetQBD extends QueueByDateReport {
 
     private final static String reportName = "Nelnet";
 

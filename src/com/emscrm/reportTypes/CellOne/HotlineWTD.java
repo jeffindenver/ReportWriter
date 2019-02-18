@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class HotlineWTD extends QueueByDateReport {
+public final class HotlineWTD extends QueueByDateReport {
     private final static String reportName = "Hotline WTD";
     private final static int excelDataSheetIndex = 7;
 

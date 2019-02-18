@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class NMActivateWTD extends QueueByDateReport {
+public final class NMActivateWTD extends QueueByDateReport {
     private final static String reportName = "NM Activate WTD";
 
     public NMActivateWTD() {

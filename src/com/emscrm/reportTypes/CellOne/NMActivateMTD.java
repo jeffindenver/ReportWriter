@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class NMActivateMTD extends QueueByDateReport {
+public final class NMActivateMTD extends QueueByDateReport {
     private final static String reportName = "NM Activate MTD";
 
     public NMActivateMTD() {

@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.ShortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
-public class PingIdentityShortAband extends ShortAbandonReport {
+public final class PingIdentityShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Ping Identity Short Abandons";
     private static final int excelDataSheetIndex = 0;

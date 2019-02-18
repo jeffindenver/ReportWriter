@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class InfoEmailWTD extends QueueByDateReport {
+public final class InfoEmailWTD extends QueueByDateReport {
     private final static String reportName = "InfoEmail WTD";
 
     public InfoEmailWTD() {

@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class HabitatReStoreQBD extends QueueByDateReport {
+public final class HabitatReStoreQBD extends QueueByDateReport {
 
     private final static String reportName = "Habitat Restore";
 

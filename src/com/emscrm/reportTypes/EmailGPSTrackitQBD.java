@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class EmailGPSTrackitQBD extends QueueByDateReport {
+public final class EmailGPSTrackitQBD extends QueueByDateReport {
 
     private static final String reportName = "GPS Trackit Email";
 

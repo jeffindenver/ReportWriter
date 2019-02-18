@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.ShortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
-public class NelnetShortAband extends ShortAbandonReport {
+public final class NelnetShortAband extends ShortAbandonReport {
 
     private final static String reportName = "Nelnet Short Aband";
     private final static int excelDataSheetIndex = 0;

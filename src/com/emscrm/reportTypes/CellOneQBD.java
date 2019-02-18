@@ -6,7 +6,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class CellOneQBD extends QueueByDateReport {
+public final class CellOneQBD extends QueueByDateReport {
 
     private final static String reportName = "Cellular One";
 

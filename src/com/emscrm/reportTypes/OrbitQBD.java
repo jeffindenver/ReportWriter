@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class OrbitQBD extends QueueByDateReport {
+public final class OrbitQBD extends QueueByDateReport {
 
     private final static String reportName = "Orbit";
 

@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class CPaTQBD extends QueueByDateReport {
+public final class CPaTQBD extends QueueByDateReport {
 
     private static final String reportName = "CPaT";
 

@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.ShortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
-public class NetworkForGoodShortAband extends ShortAbandonReport {
+public final class NetworkForGoodShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Network for Good Short Abandons";
     private static final int excelDataSheetIndex = 0;

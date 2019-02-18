@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class WebOrdersEmailMTD extends QueueByDateReport {
+public final class WebOrdersEmailMTD extends QueueByDateReport {
     private final static String reportName = "Web Orders Email MTD";
 
     public WebOrdersEmailMTD() {

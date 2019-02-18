@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.ShortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
-public class HabitatReStoreShortAband extends ShortAbandonReport {
+public final class HabitatReStoreShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Habitat ReStore Short Abandons";
     private static final int excelDataSheetIndex = 0;

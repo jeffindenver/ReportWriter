@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class PrepaidTSMTD extends QueueByDateReport {
+public final class PrepaidTSMTD extends QueueByDateReport {
     private final static String reportName = "Prepaid TS MTD";
 
     public PrepaidTSMTD() {

@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class RecertificationWTD extends QueueByDateReport {
+public final class RecertificationWTD extends QueueByDateReport {
     private final static String reportName = "Recertification WTD";
 
     public RecertificationWTD() {

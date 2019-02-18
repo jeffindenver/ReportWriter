@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class VMNetworkForGoodQBD extends QueueByDateReport {
+public final class VMNetworkForGoodQBD extends QueueByDateReport {
 
     private static final String reportName = "NetworkForGood VM";
 

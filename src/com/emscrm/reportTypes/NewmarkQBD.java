@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class NewmarkQBD extends QueueByDateReport {
+public final class NewmarkQBD extends QueueByDateReport {
 
     private final static String reportName = "Newmark";
 

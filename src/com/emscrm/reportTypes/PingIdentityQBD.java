@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class PingIdentityQBD extends QueueByDateReport {
+public final class PingIdentityQBD extends QueueByDateReport {
 
     private final static String reportName = "PingIdentity";
 

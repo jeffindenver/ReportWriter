@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class RecertificationMTD extends QueueByDateReport {
+public final class RecertificationMTD extends QueueByDateReport {
     private final static String reportName = "Recertification MTD";
 
     public RecertificationMTD() {

@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class InfoEmailMTD extends QueueByDateReport {
+public final class InfoEmailMTD extends QueueByDateReport {
     private final static String reportName = "InfoEmail MTD";
     private final static int excelDataSheetIndex = 8;
 

@@ -2,7 +2,7 @@ package com.emscrm.reportTypes.CellOne;
 
 import com.emscrm.QueueByDateReport;
 
-public class NMRenewWTD extends QueueByDateReport {
+public final class NMRenewWTD extends QueueByDateReport {
     private final static String reportName = "NM Renew WTD";
 
     public NMRenewWTD() {

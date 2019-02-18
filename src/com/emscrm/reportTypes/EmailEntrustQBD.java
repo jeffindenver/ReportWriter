@@ -5,7 +5,7 @@ import com.emscrm.QueueByDateReport;
 /**
  * @author JShepherd
  */
-public class EmailEntrustQBD extends QueueByDateReport {
+public final class EmailEntrustQBD extends QueueByDateReport {
 
     private static final String reportName = "Entrust Email";
 
