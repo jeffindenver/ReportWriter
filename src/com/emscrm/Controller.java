@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author JShepherd
@@ -45,7 +46,7 @@ class Controller {
                 } catch (UnsupportedFlavorException | IOException ex) {
                     view.printError(ex.getMessage());
                 }
-               new ProcessFileTask(droppedFiles).execute();
+                new ProcessFileTask(droppedFiles).execute();
             }
         });
     }
@@ -77,8 +78,7 @@ class Controller {
         return list;
     }
 
-    private void updateView(String pathname) {
-        view.printMessage(pathname);
+    private void updateView() {
         view.setStatus(countOfFilesProcessed + " files processed.");
     }
 
@@ -114,7 +114,6 @@ class Controller {
                 } catch (InvalidFormatException | IOException e) {
                     view.printError(e.getMessage());
                 }
-                countOfFilesProcessed++;
                 count++;
                 publish(filepath);
             }
@@ -123,8 +122,19 @@ class Controller {
         }
 
         @Override
-        protected  void process(List<String> chunks) {
-            chunks.forEach(Controller.this::updateView);
+        protected void process(List<String> chunks) {
+            chunks.forEach(view::printMessage);
+        }
+
+        @Override
+        protected void done() {
+            try {
+                countOfFilesProcessed = this.get();
+                updateView();
+            } catch (InterruptedException | ExecutionException ex) {
+                view.printError(ex.getMessage());
+            }
+
         }
     }
 
