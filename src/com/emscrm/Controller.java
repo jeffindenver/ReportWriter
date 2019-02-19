@@ -3,6 +3,7 @@ package com.emscrm;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
@@ -44,26 +45,9 @@ class Controller {
                 } catch (UnsupportedFlavorException | IOException ex) {
                     view.printError(ex.getMessage());
                 }
-                droppedFiles.forEach(f -> processFile(f));
+               new ProcessFileTask(droppedFiles).execute();
             }
         });
-    }
-
-    private void processFile(@NotNull File file) {
-        String pathname = file.toString();
-
-        model.setReport(selectReport(pathname));
-
-        List<String> source = readSourceFile(pathname);
-
-        try {
-            model.runReport(source);
-        } catch (InvalidFormatException | IOException e) {
-            view.printError(e.getMessage());
-        }
-
-        countOfFilesProcessed++;
-        updateView(pathname);
     }
 
     @NotNull
@@ -101,6 +85,47 @@ class Controller {
     @Override
     public String toString() {
         return ("Model - " + model.toString() + "\n" + "View - " + view.toString());
+    }
+
+    private class ProcessFileTask extends SwingWorker<Integer, String> {
+        //SwingWorker<T, V>
+        // T is return type of doInBackground and get methods
+        // v is the type used to carry out intermediate results by publish and process methods
+        List<File> fileList;
+
+        ProcessFileTask(List<File> list) {
+            fileList = list;
+        }
+
+        @Override
+        protected Integer doInBackground() {
+
+            int count = 0;
+
+            for (File file : fileList) {
+                String filepath = file.toString();
+
+                model.setReport(selectReport(filepath));
+
+                List<String> source = readSourceFile(filepath);
+
+                try {
+                    model.runReport(source);
+                } catch (InvalidFormatException | IOException e) {
+                    view.printError(e.getMessage());
+                }
+                countOfFilesProcessed++;
+                count++;
+                publish(filepath);
+            }
+
+            return count;
+        }
+
+        @Override
+        protected  void process(List<String> chunks) {
+            chunks.forEach(Controller.this::updateView);
+        }
     }
 
 }
