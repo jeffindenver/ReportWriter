@@ -24,10 +24,6 @@ class Model {
         writeWorkbookToFile(wb);
     }
 
-    void setReport(Report aReport) {
-        this.report = aReport;
-    }
-
     List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
         ExcelOps excelOps = new ExcelOps();
         HSSFWorkbook wb = (HSSFWorkbook) excelOps.openWorkbook(filename);
@@ -44,10 +40,13 @@ class Model {
         return report;
     }
 
+    void setReport(Report aReport) {
+        this.report = aReport;
+    }
+
     @Override
     public String toString() {
         return "Model with report: " + report.toString();
     }
-
 
 }
