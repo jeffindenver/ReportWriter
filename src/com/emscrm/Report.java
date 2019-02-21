@@ -40,6 +40,18 @@ abstract class Report {
                 .findFirst();
     }
 
+    List<String> filterByLength(List<String> list, int minLength) {
+        return new ListFilter().filterByLength(minLength, list, "/t");
+    }
+
+    //source list should be filtered by length before getting a subtotal
+    String getMatchingLine(List<String> source, String matcher) {
+        Optional<String> matchedLine = source.stream()
+                .filter(s -> s.contains(matcher))
+                .findFirst();
+        return matchedLine.orElse("");
+    }
+
     String getSummary(List<String> source) {
 
         Optional<String> summary = source.stream()
