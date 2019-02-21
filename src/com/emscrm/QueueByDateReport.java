@@ -50,7 +50,7 @@ public abstract class QueueByDateReport extends Report {
 
         List<XSSFTable> tables = sheet.getTables();
         System.out.println("In composeExcelSheet method. Sheet tables contains #" + tables.size());
-        //Can also get the table based on the table name
+        //Can also get the table based on the table name, which would be more robust
         XSSFTable myTable = tables.get(0);
 
         int newRowIndex = myTable.getEndRowIndex() + 1;
