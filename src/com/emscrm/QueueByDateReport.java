@@ -17,7 +17,7 @@ public abstract class QueueByDateReport extends Report {
 
     protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
-    private XSSFWorkbook wb;
+    protected XSSFWorkbook wb;
 
     protected QueueByDateReport() {
 
@@ -69,14 +69,14 @@ public abstract class QueueByDateReport extends Report {
         myTable.updateReferences();
     }
 
-    private XSSFRow createCells(XSSFRow row) {
+    protected XSSFRow createCells(XSSFRow row) {
         for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
             row.createCell(i);
         }
         return row;
     }
 
-    private XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
+    protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
         XSSFFont bodyFont = aWorkbook.createFont();
         bodyFont.setFontName("Calibri");
@@ -130,7 +130,7 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    private XSSFRow setValuesToCells(XSSFRow row, String[] v) {
+    protected XSSFRow setValuesToCells(XSSFRow row, String[] v) {
         LocalDate date = getDate();
 
         row.getCell(0).setCellType(CellType.NUMERIC);
@@ -152,7 +152,7 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    private String cleanString(String summary) {
+    protected String cleanString(String summary) {
         System.out.println("Summary line equals " + summary);
 
         String cleanedSummary = summary.replaceAll("\t:", "\t0:");
