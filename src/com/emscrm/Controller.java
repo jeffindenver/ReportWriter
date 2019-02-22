@@ -110,7 +110,7 @@ class Controller {
                 List<String> source = readSourceFile(filepath);
 
                 try {
-                    model.runReport(source);
+                    model.runAndWriteReport(source);
                 } catch (InvalidFormatException | IOException e) {
                     view.printError(e.getMessage());
                 }
