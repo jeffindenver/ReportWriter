@@ -24,7 +24,7 @@ final class ReportConstants {
 
     private static Map<String, Report> initializeMap() {
         Map<String, Report> map = new HashMap<>();
-        map.put("CellOneCallsQBD", new CellOne_WTD_QBD());
+        map.put("CellOne_WTD_QBD", new CellOne_WTD_QBD());
         map.put("CPaTCallsQBD", new CPaTQBD());
         map.put("EntrustCallsQBD", new EntrustQBD());
         map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
