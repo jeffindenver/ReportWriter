@@ -27,7 +27,9 @@ public abstract class ShortAbandonReport extends Report {
     protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
 
-        String summary = getSummary(source);
+        List<String> lengthFilteredSource = this.filterByLength(source, 1);
+
+        String summary = getMatchingLine(lengthFilteredSource, "Grand Total:");
 
         openWorkbook();
 

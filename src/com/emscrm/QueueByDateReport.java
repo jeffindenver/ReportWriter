@@ -30,7 +30,9 @@ public abstract class QueueByDateReport extends Report {
     protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
 
-        String summary = getSummary(source);
+        List<String> lengthFilteredSource = this.filterByLength(source, 2);
+
+        String summary = getMatchingLine(lengthFilteredSource, "Grand Total:");
 
         String cleanedSummary = cleanString(summary);
 

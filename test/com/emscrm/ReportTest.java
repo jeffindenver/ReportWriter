@@ -44,13 +44,6 @@ class ReportTest {
     }
 
     @Test
-    void getSummary() {
-        String summary = report.getSummary(testList);
-        System.out.println(summary);
-        assertTrue(summary.contains("Grand Total:"));
-    }
-
-    @Test
     void openWorkbook() {
         try{
             report.openWorkbook();
