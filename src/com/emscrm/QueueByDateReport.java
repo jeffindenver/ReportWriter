@@ -27,7 +27,6 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    //need javadoc on how to override run() safely.
     protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
 
@@ -43,8 +42,6 @@ public abstract class QueueByDateReport extends Report {
 
         return wb;
     }
-
-
 
     private void composeExcelSheet(XSSFSheet sheet, String summary) {
 
@@ -68,7 +65,6 @@ public abstract class QueueByDateReport extends Report {
         XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
 
         myTable.updateReferences();
-
     }
 
     private XSSFRow createCells(XSSFRow row) {
