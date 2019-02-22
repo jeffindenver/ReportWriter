@@ -41,7 +41,7 @@ abstract class Report {
     }
 
     List<String> filterByLength(List<String> list, int minLength) {
-        return new ListFilter().filterByLength(minLength, list, "/t");
+        return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
     //source list should be filtered by length before getting a subtotal
