@@ -89,11 +89,6 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     }
 
     @Override
-    public String getTableName(String key) {
-        return wtdMap.get(key);
-    }
-
-    @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
     }
