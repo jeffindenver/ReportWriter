@@ -40,6 +40,7 @@ abstract class Report {
                 .findFirst();
     }
 
+    @SuppressWarnings("unused")
     List<String> filterByLength(List<String> list, int minLength) {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
