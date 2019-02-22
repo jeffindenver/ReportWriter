@@ -31,7 +31,7 @@ class ModelTest {
     @Test
     void runReport() {
         try {
-            model.runReport(source);
+            model.runAndWriteReport(source);
         } catch(InvalidFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
