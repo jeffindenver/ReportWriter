@@ -19,7 +19,7 @@ class Model {
         this.report = aReport;
     }
 
-    void runReport(List<String> source) throws InvalidFormatException, IOException {
+    void runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
         XSSFWorkbook wb = report.run(source);
         writeWorkbookToFile(wb);
     }
