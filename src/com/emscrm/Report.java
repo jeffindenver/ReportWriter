@@ -25,7 +25,7 @@ abstract class Report {
         return this.date;
     }
 
-    void setDate(List<String> source) {
+    protected void setDate(List<String> source) {
         DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
@@ -40,18 +40,18 @@ abstract class Report {
                 .findFirst();
     }
 
-    List<String> filterByLength(List<String> list, int minLength) {
+    protected List<String> filterByLength(List<String> list, int minLength) {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
-    String getMatchingLine(List<String> source, String matcher) {
+    protected String getMatchingLine(List<String> source, String matcher) {
         Optional<String> matchedLine = source.stream()
                 .filter(s -> s.contains(matcher))
                 .findFirst();
         return matchedLine.orElse("");
     }
 
-    void openWorkbook() throws InvalidFormatException, IOException {
+    protected void openWorkbook() throws InvalidFormatException, IOException {
         System.out.println("In openWorkbook() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
         XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
