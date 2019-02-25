@@ -23,7 +23,7 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
     private Map<String, String> monthToDateTableNames;
 
     public CellOne_MTD_QBD() {
-        this.excelDataSheetIndex = 32;
+        this.excelDataSheetIndex = 4;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD Back.xlsx";
         monthToDateTableNames = new HashMap<>();
         monthToDateTableNames.put("CellularOne Customer Care", "CustomerCareMTD");
@@ -31,7 +31,7 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
         monthToDateTableNames.put("CellularOne Info Email", "InfoEmailMTD");
         monthToDateTableNames.put("CellularOne NM Activate", "NMActivateMTD");
         monthToDateTableNames.put("CellularOne NM Info Email", "NMInfoEmailMTD");
-        monthToDateTableNames.put("CellularOne NM Renew", "NMRenewWTD");
+        monthToDateTableNames.put("CellularOne NM Renew", "NMRenewMTD");
         monthToDateTableNames.put("CellularOne NM Web Sales Email", "NMWebSalesEmailMTD");
         monthToDateTableNames.put("CellularOne Prepaid CS", "PrepaidCSMTD");
         monthToDateTableNames.put("CellularOne Prepaid TS", "PrepaidTSMTD");
@@ -67,15 +67,13 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
 
         XSSFTable aTable = wb.getTable(tableName);
 
-        int newRowIndex = aTable.getEndRowIndex() + 1;
-        aTable.setDataRowCount(newRowIndex);
+        int endRowIndex = aTable.getEndRowIndex();
 
         XSSFSheet sheet = aTable.getXSSFSheet();
-        XSSFRow row = sheet.createRow(newRowIndex);
-        XSSFRow initialRow = createCells(row);
+        XSSFRow row = sheet.getRow(endRowIndex);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, initialRow);
+        XSSFRow formattedRow = formatCells(tempWorkbook, row);
 
         String[] v = summary.split("\t");
 
@@ -83,6 +81,7 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
         setValuesToCells(formattedRow, v);
 
         aTable.updateReferences();
+
     }
 
     public int getDataSheetIndex() {

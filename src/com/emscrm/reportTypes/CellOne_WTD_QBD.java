@@ -2,10 +2,10 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.formula.BaseFormulaEvaluator;
+import org.apache.poi.ss.formula.EvaluationCell;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     private Map<String, String> weekToDateTableNames;
 
     public CellOne_WTD_QBD() {
-        this.excelDataSheetIndex = 32;
+        this.excelDataSheetIndex = 3;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD Back.xlsx";
         weekToDateTableNames = new HashMap<>();
         weekToDateTableNames.put("CellularOne Customer Care", "CustomerCareWTD");
@@ -67,15 +67,13 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
 
         XSSFTable aTable = wb.getTable(tableName);
 
-        int newRowIndex = aTable.getEndRowIndex() + 1;
-        aTable.setDataRowCount(newRowIndex);
+        int endRowIndex = aTable.getEndRowIndex();
 
         XSSFSheet sheet = aTable.getXSSFSheet();
-        XSSFRow row = sheet.createRow(newRowIndex);
-        XSSFRow initialRow = createCells(row);
+        XSSFRow row = sheet.getRow(endRowIndex);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, initialRow);
+        XSSFRow formattedRow = formatCells(tempWorkbook, row);
 
         String[] v = summary.split("\t");
 
