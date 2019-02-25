@@ -48,34 +48,6 @@ final class ReportConstants {
         map.put("NelnetShortAband", new NelnetShortAband());
         map.put("NetworkForGoodShortAband", new NetworkForGoodShortAband());
         map.put("PingIdentityShortAband", new PingIdentityShortAband());
-        map.put("CustomerCareMTD", new CustomerCareMTD());
-        map.put("CustomerCareWTD", new CustomerCareWTD());
-        map.put("HotlineMTD", new HotlineMTD());
-        map.put("HotlineWTD", new HotlineWTD());
-        map.put("InfoEmailMTD", new InfoEmailMTD());
-        map.put("InfoEmailWTD", new InfoEmailWTD());
-        map.put("NMActivateMTD", new NMActivateMTD());
-        map.put("NMActivateWTD", new NMActivateWTD());
-        map.put("NMInfoEmailMTD", new NMInfoEmailMTD());
-        map.put("NMInfoEmailWTD", new NMInfoEmailWTD());
-        map.put("NMRenewMTD", new NMRenewMTD());
-        map.put("NMRenewWTD", new NMRenewWTD());
-        map.put("NMWebSalesEmailMTD", new NMWebSalesEmailMTD());
-        map.put("NMWebSalesEmailWTD", new NMWebSalesEmailWTD());
-        map.put("PrepaidCSMTD", new PrepaidCSMTD());
-        map.put("PrepaidCSWTD", new PrepaidCSWTD());
-        map.put("PrepaidTSMTD", new PrepaidTSMTD());
-        map.put("PrepaidTSWTD", new PrepaidTSWTD());
-        map.put("RecertificationMTD", new RecertificationMTD());
-        map.put("RecertificationWTD", new RecertificationWTD());
-        map.put("RetailCSMTD", new RetailCSMTD());
-        map.put("RetailCSWTD", new RetailCSWTD());
-        map.put("RetailPaymentMTD", new RetailPaymentMTD());
-        map.put("RetailPaymentWTD", new RetailPaymentWTD());
-        map.put("RetailTSMTD", new RetailTSMTD());
-        map.put("RetailTSWTD", new RetailTSWTD());
-        map.put("WebOrdersEmailMTD", new WebOrdersEmailMTD());
-        map.put("WebOrdersEmailWTD", new WebOrdersEmailWTD());
 
         return map;
     }
