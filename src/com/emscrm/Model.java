@@ -20,7 +20,12 @@ class Model {
     }
 
     void runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
+        System.out.println("You have reached model::runAndWriteReport");
         XSSFWorkbook wb = report.run(source);
+
+        if (wb == null) {
+            System.out.println("In model class, runAndWriteReport method. Workbook is null.");
+        }
         writeWorkbookToFile(wb);
     }
 
@@ -33,6 +38,7 @@ class Model {
     private void writeWorkbookToFile(XSSFWorkbook wb) {
         System.out.println("In writeWorkbookToFile() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
+        System.out.println("Weekly report filename is " + report.getWeeklyReportFilename());
         excelOps.writeWorkbook(wb, report.getWeeklyReportFilename());
     }
 
