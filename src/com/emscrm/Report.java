@@ -2,6 +2,8 @@ package com.emscrm;
 
 import excelops.ExcelOps;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
@@ -56,5 +58,18 @@ abstract class Report {
         ExcelOps excelOps = new ExcelOps();
         XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
         setWorkbook(workbook);
+    }
+
+     void refreshFormulaCell(XSSFRow row, int index) {
+
+        XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
+
+        evaluator.notifyUpdateCell(row.getCell(index));
+
+        int formulaCellIndex = index + 1;
+
+        evaluator.notifySetFormula(row.getCell(formulaCellIndex));
+
+        evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
     }
 }
