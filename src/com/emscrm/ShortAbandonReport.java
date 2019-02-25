@@ -60,6 +60,7 @@ public abstract class ShortAbandonReport extends Report {
 
     }
 
+    //move this to super
     private void refreshFormulaCell(XSSFRow row, int shortAbandCellIndex) {
 
         XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
