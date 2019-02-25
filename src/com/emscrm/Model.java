@@ -3,6 +3,7 @@ package com.emscrm;
 import excelops.ExcelOps;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
@@ -20,12 +21,11 @@ class Model {
     }
 
     void runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
-        System.out.println("You have reached model::runAndWriteReport");
+        System.out.println("Reached model::runAndWriteReport");
         XSSFWorkbook wb = report.run(source);
 
-        if (wb == null) {
-            System.out.println("In model class, runAndWriteReport method. Workbook is null.");
-        }
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(wb);
+
         writeWorkbookToFile(wb);
     }
 
