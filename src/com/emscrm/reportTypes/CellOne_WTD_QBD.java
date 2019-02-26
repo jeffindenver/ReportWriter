@@ -2,9 +2,6 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.formula.BaseFormulaEvaluator;
-import org.apache.poi.ss.formula.EvaluationCell;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.IOException;
@@ -24,7 +21,7 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
 
     public CellOne_WTD_QBD() {
         this.excelDataSheetIndex = 3;
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD Back.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
         weekToDateTableNames = new HashMap<>();
         weekToDateTableNames.put("CellularOne Customer Care", "CustomerCareWTD");
         weekToDateTableNames.put("CellularOne Hotline", "HotlineWTD");

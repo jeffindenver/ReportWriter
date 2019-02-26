@@ -24,7 +24,7 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
 
     public CellOne_MTD_QBD() {
         this.excelDataSheetIndex = 4;
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD Back.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
         monthToDateTableNames = new HashMap<>();
         monthToDateTableNames.put("CellularOne Customer Care", "CustomerCareMTD");
         monthToDateTableNames.put("CellularOne Hotline", "HotlineMTD");
