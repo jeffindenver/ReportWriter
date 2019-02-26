@@ -91,7 +91,7 @@ class Controller {
         //SwingWorker<T, V>
         // T is return type of doInBackground and get methods
         // v is the type used to carry out intermediate results by publish and process methods
-        List<File> fileList;
+        final List<File> fileList;
 
         ProcessFileTask(List<File> list) {
             fileList = list;
