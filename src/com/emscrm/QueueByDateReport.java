@@ -63,13 +63,13 @@ public abstract class QueueByDateReport extends Report {
 
         String[] v = summary.split("\t");
 
-        @SuppressWarnings("unused")
-        XSSFRow rowWithValues = setValuesToCells(formattedRow, v);
+        //formattedRow is an out variable
+        setValuesToCells(formattedRow, v);
 
         myTable.updateReferences();
     }
 
-    protected XSSFRow createCells(XSSFRow row) {
+    private XSSFRow createCells(XSSFRow row) {
         for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
             row.createCell(i);
         }
@@ -130,7 +130,8 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    protected XSSFRow setValuesToCells(XSSFRow row, String[] v) {
+    protected void setValuesToCells(XSSFRow row, String[] v) {
+        //row is an out variable
         LocalDate date = getDate();
 
         row.getCell(0).setCellType(CellType.NUMERIC);
@@ -148,8 +149,6 @@ public abstract class QueueByDateReport extends Report {
         row.getCell(9).setCellValue(DurationUtility.toFractionOfDay(v[9]));
         row.getCell(10).setCellValue(DurationUtility.toFractionOfDay(v[10]));
         row.getCell(11).setCellValue(Double.parseDouble(v[11]) / 100);
-
-        return row;
     }
 
     protected String cleanString(String summary) {
