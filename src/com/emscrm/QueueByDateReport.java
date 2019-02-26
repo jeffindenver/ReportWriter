@@ -4,10 +4,12 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.StringJoiner;
 
 /**
@@ -30,46 +32,47 @@ public abstract class QueueByDateReport extends Report {
     protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
 
-        List<String> lengthFilteredSource = this.filterByLength(source, 2);
-
-        String summary = getMatchingLine(lengthFilteredSource, "Grand Total:");
-
-        String cleanedSummary = cleanString(summary);
+        List<String> lengthFilteredSource = filterByLength(source, 2);
 
         openWorkbook();
 
-        XSSFSheet sheet = wb.getSheetAt(getDataSheetIndex());
+        Set<String> keySet = getTableNames().keySet();
 
-        composeExcelSheet(sheet, cleanedSummary);
+        for (String tableName : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, tableName);
+            String cleanedSummary = cleanString(summary);
+            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
+        }
 
+        System.out.println(wb.toString());
         return wb;
     }
 
-    private void composeExcelSheet(XSSFSheet sheet, String summary) {
+    private void composeExcelSheet(String summary, String tableName) {
 
-        List<XSSFTable> tables = sheet.getTables();
-        System.out.println("In composeExcelSheet method. Sheet tables contains #" + tables.size());
-        //Can also get the table based on the table name, which would be more robust
-        XSSFTable myTable = tables.get(0);
+        XSSFTable aTable = wb.getTable(tableName);
+        System.out.println("Table name is " + aTable.getName());
 
-        int newRowIndex = myTable.getEndRowIndex() + 1;
-        myTable.setDataRowCount(newRowIndex);
+        int newRowIndex = aTable.getEndRowIndex() + 1;
+        aTable.setDataRowCount(newRowIndex);
 
+        XSSFSheet sheet = aTable.getXSSFSheet();
         XSSFRow row = sheet.createRow(newRowIndex);
-        XSSFRow initialRow = createCells(row);
+        XSSFRow addedRow = createCells(row);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, initialRow);
+        XSSFRow formattedRow = formatCells(tempWorkbook, addedRow);
 
         String[] v = summary.split("\t");
 
         //formattedRow is an out variable
         setValuesToCells(formattedRow, v);
 
-        myTable.updateReferences();
+        aTable.updateReferences();
     }
 
-    private XSSFRow createCells(XSSFRow row) {
+    private XSSFRow createCells(@NotNull XSSFRow row) {
+
         for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
             row.createCell(i);
         }
