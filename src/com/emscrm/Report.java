@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 abstract class Report {
@@ -18,6 +19,8 @@ abstract class Report {
     protected abstract void setWorkbook(XSSFWorkbook workbook);
 
     protected abstract int getDataSheetIndex();
+
+    protected abstract Map<String, String> getTableNames();
 
     protected abstract String getWeeklyReportFilename();
 
