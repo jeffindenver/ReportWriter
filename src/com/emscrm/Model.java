@@ -3,7 +3,6 @@ package com.emscrm;
 import excelops.ExcelOps;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ class Model {
         System.out.println("Reached model::runAndWriteReport");
         XSSFWorkbook wb = report.run(source);
 
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(wb);
+        wb.setForceFormulaRecalculation(true);
 
         writeWorkbookToFile(wb);
     }
