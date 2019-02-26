@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static java.util.Map.entry;
+
 
 /**
  * @author JShepherd
@@ -22,21 +24,23 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     public CellOne_WTD_QBD() {
         this.excelDataSheetIndex = 3;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
-        weekToDateTableNames = new HashMap<>();
-        weekToDateTableNames.put("CellularOne Customer Care", "CustomerCareWTD");
-        weekToDateTableNames.put("CellularOne Hotline", "HotlineWTD");
-        weekToDateTableNames.put("CellularOne Info Email", "InfoEmailWTD");
-        weekToDateTableNames.put("CellularOne NM Activate", "NMActivateWTD");
-        weekToDateTableNames.put("CellularOne NM Info Email", "NMInfoEmailWTD");
-        weekToDateTableNames.put("CellularOne NM Renew", "NMRenewWTD");
-        weekToDateTableNames.put("CellularOne NM Web Sales Email", "NMWebSalesEmailWTD");
-        weekToDateTableNames.put("CellularOne Prepaid CS", "PrepaidCSWTD");
-        weekToDateTableNames.put("CellularOne Prepaid TS", "PrepaidTSWTD");
-        weekToDateTableNames.put("CellularOne Recertification", "RecertificationWTD");
-        weekToDateTableNames.put("CellularOne Retail CS", "RetailCSWTD");
-        weekToDateTableNames.put("CellularOne Retail Payment", "RetailPaymentWTD");
-        weekToDateTableNames.put("CellularOne Retail TS", "RetailTSWTD");
-        weekToDateTableNames.put("CellularOne Web Orders Email", "WebOrdersEmailWTD");
+
+        weekToDateTableNames = Map.ofEntries(
+                entry("CellularOne Customer Care", "CustomerCareWTD"),
+                entry("CellularOne Hotline", "HotlineWTD"),
+                entry("CellularOne Info Email", "InfoEmailWTD"),
+                entry("CellularOne NM Activate", "NMActivateWTD"),
+                entry("CellularOne NM Info Email", "NMInfoEmailWTD"),
+                entry("CellularOne NM Renew", "NMRenewWTD"),
+                entry("CellularOne NM Web Sales Email", "NMWebSalesEmailWTD"),
+                entry("CellularOne Prepaid CS", "PrepaidCSWTD"),
+                entry("CellularOne Prepaid TS", "PrepaidTSWTD"),
+                entry("CellularOne Recertification", "RecertificationWTD"),
+                entry("CellularOne Retail CS", "RetailCSWTD"),
+                entry("CellularOne Retail Payment", "RetailPaymentWTD"),
+                entry("CellularOne Retail TS", "RetailTSWTD"),
+                entry("CellularOne Web Orders Email", "WebOrdersEmailWTD")
+        );
 
     }
 
