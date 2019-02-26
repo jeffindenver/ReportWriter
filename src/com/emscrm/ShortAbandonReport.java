@@ -2,7 +2,10 @@ package com.emscrm;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -10,8 +13,8 @@ import java.util.List;
 
 public abstract class ShortAbandonReport extends Report {
 
-    protected String weeklyReportFilename;
     private final int shortAbandIndex;
+    protected String weeklyReportFilename;
     private double shortAbandons;
     private XSSFWorkbook wb;
 
@@ -60,7 +63,7 @@ public abstract class ShortAbandonReport extends Report {
 
     }
 
-    protected void setWorkbook (XSSFWorkbook workbook) {
+    protected void setWorkbook(XSSFWorkbook workbook) {
         this.wb = workbook;
     }
 }
