@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,20 +28,20 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
 
         monthToDateTableNames = Map.ofEntries(
-            entry("CellularOne Customer Care", "CustomerCareMTD") ,
-            entry("CellularOne Hotline", "HotlineMTD"),
-            entry("CellularOne Info Email", "InfoEmailMTD"),
-            entry("CellularOne NM Activate", "NMActivateMTD"),
-            entry("CellularOne NM Info Email", "NMInfoEmailMTD"),
-            entry("CellularOne NM Renew", "NMRenewMTD"),
-            entry("CellularOne NM Web Sales Email", "NMWebSalesEmailMTD"),
-            entry("CellularOne Prepaid CS", "PrepaidCSMTD"),
-            entry("CellularOne Prepaid TS", "PrepaidTSMTD"),
-            entry("CellularOne Recertification", "RecertificationMTD"),
-            entry("CellularOne Retail CS", "RetailCSMTD"),
-            entry("CellularOne Retail Payment", "RetailPaymentMTD"),
-            entry("CellularOne Retail TS", "RetailTSMTD"),
-            entry("CellularOne Web Orders Email", "WebOrdersEmailMTD")
+                entry("CellularOne Customer Care", "CustomerCareMTD"),
+                entry("CellularOne Hotline", "HotlineMTD"),
+                entry("CellularOne Info Email", "InfoEmailMTD"),
+                entry("CellularOne NM Activate", "NMActivateMTD"),
+                entry("CellularOne NM Info Email", "NMInfoEmailMTD"),
+                entry("CellularOne NM Renew", "NMRenewMTD"),
+                entry("CellularOne NM Web Sales Email", "NMWebSalesEmailMTD"),
+                entry("CellularOne Prepaid CS", "PrepaidCSMTD"),
+                entry("CellularOne Prepaid TS", "PrepaidTSMTD"),
+                entry("CellularOne Recertification", "RecertificationMTD"),
+                entry("CellularOne Retail CS", "RetailCSMTD"),
+                entry("CellularOne Retail Payment", "RetailPaymentMTD"),
+                entry("CellularOne Retail TS", "RetailTSMTD"),
+                entry("CellularOne Web Orders Email", "WebOrdersEmailMTD")
         );
     }
 

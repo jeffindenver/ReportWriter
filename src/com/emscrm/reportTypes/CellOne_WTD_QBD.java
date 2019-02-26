@@ -2,10 +2,12 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +43,6 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
                 entry("CellularOne Retail TS", "RetailTSWTD"),
                 entry("CellularOne Web Orders Email", "WebOrdersEmailWTD")
         );
-
     }
 
     @Override
