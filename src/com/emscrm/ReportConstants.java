@@ -28,11 +28,9 @@ final class ReportConstants {
         map.put("EntrustCallsQBD", new EntrustQBD());
         map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         map.put("GPSTrackitEmailQBD", new EmailGPSTrackitQBD());
-        map.put("HabitatReStoreCallsQBD", new HabitatReStoreQBD());
         map.put("NaturalWirelessCallsQBD", new NaturalWirelessQBD());
         map.put("NelnetCallsQBD", new NelnetQBD());
         map.put("NetworkForGoodCallsQBD", new NetworkForGoodQBD());
-        map.put("NewmarkCallsQBD", new NewmarkQBD());
         map.put("OrbitCallsQBD", new OrbitQBD());
         map.put("PingIdentityCallsQBD", new PingIdentityQBD());
         map.put("EntrustEmailQBD", new EmailEntrustQBD());
