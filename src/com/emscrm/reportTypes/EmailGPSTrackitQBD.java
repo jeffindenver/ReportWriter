@@ -2,12 +2,15 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+import java.util.Map;
+
 /**
  * @author JShepherd
  */
 public final class EmailGPSTrackitQBD extends QueueByDateReport {
 
     private static final String reportName = "GPS Trackit Email";
+    private final Map<String, String> tableNames = Map.of("Grand Total:", "EmailTable");
 
 
     public EmailGPSTrackitQBD() {
@@ -23,6 +26,11 @@ public final class EmailGPSTrackitQBD extends QueueByDateReport {
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
+    }
+
+    @Override
+    public Map<String, String> getTableNames() {
+        return tableNames;
     }
 
     @Override

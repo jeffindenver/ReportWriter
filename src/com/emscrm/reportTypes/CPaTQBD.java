@@ -2,12 +2,15 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+import java.util.Map;
+
 /**
  * @author JShepherd
  */
 public final class CPaTQBD extends QueueByDateReport {
 
     private static final String reportName = "CPaT";
+    private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public CPaTQBD() {
         this.excelDataSheetIndex = 0;
@@ -21,6 +24,10 @@ public final class CPaTQBD extends QueueByDateReport {
 
     public int getDataSheetIndex() {
         return excelDataSheetIndex;
+    }
+
+    public Map<String, String> getTableNames() {
+        return tableNames;
     }
 
     @Override

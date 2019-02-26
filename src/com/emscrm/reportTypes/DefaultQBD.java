@@ -2,11 +2,14 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+import java.util.Map;
+
 /**
  * @author JShepherd
  */
 public final class DefaultQBD extends QueueByDateReport {
     private static final String reportName = "DefaultQBD";
+    private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public DefaultQBD() {
         this.excelDataSheetIndex = 0;
@@ -22,6 +25,10 @@ public final class DefaultQBD extends QueueByDateReport {
         return weeklyReportFilename;
     }
 
+    @Override
+    public Map<String, String> getTableNames() {
+        return tableNames;
+    }
 
     @Override
     public String toString() {

@@ -21,28 +21,26 @@ import static java.util.Map.entry;
 public final class CellOne_WTD_QBD extends QueueByDateReport {
 
     private static final String reportName = "Cellular One WTD";
-    private Map<String, String> weekToDateTableNames;
+    private final Map<String, String> weekToDateTableNames = Map.ofEntries(
+            entry("CellularOne Customer Care", "CustomerCareWTD"),
+            entry("CellularOne Hotline", "HotlineWTD"),
+            entry("CellularOne Info Email", "InfoEmailWTD"),
+            entry("CellularOne NM Activate", "NMActivateWTD"),
+            entry("CellularOne NM Info Email", "NMInfoEmailWTD"),
+            entry("CellularOne NM Renew", "NMRenewWTD"),
+            entry("CellularOne NM Web Sales Email", "NMWebSalesEmailWTD"),
+            entry("CellularOne Prepaid CS", "PrepaidCSWTD"),
+            entry("CellularOne Prepaid TS", "PrepaidTSWTD"),
+            entry("CellularOne Recertification", "RecertificationWTD"),
+            entry("CellularOne Retail CS", "RetailCSWTD"),
+            entry("CellularOne Retail Payment", "RetailPaymentWTD"),
+            entry("CellularOne Retail TS", "RetailTSWTD"),
+            entry("CellularOne Web Orders Email", "WebOrdersEmailWTD")
+    );
 
     public CellOne_WTD_QBD() {
         this.excelDataSheetIndex = 3;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
-
-        weekToDateTableNames = Map.ofEntries(
-                entry("CellularOne Customer Care", "CustomerCareWTD"),
-                entry("CellularOne Hotline", "HotlineWTD"),
-                entry("CellularOne Info Email", "InfoEmailWTD"),
-                entry("CellularOne NM Activate", "NMActivateWTD"),
-                entry("CellularOne NM Info Email", "NMInfoEmailWTD"),
-                entry("CellularOne NM Renew", "NMRenewWTD"),
-                entry("CellularOne NM Web Sales Email", "NMWebSalesEmailWTD"),
-                entry("CellularOne Prepaid CS", "PrepaidCSWTD"),
-                entry("CellularOne Prepaid TS", "PrepaidTSWTD"),
-                entry("CellularOne Recertification", "RecertificationWTD"),
-                entry("CellularOne Retail CS", "RetailCSWTD"),
-                entry("CellularOne Retail Payment", "RetailPaymentWTD"),
-                entry("CellularOne Retail TS", "RetailTSWTD"),
-                entry("CellularOne Web Orders Email", "WebOrdersEmailWTD")
-        );
     }
 
     @Override
@@ -83,6 +81,11 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
         setValuesToCells(formattedRow, v);
 
         aTable.updateReferences();
+    }
+
+    @Override
+    public Map<String, String> getTableNames() {
+        return weekToDateTableNames;
     }
 
     public int getDataSheetIndex() {

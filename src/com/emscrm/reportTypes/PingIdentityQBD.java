@@ -2,12 +2,15 @@ package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
 
+import java.util.Map;
+
 /**
  * @author JShepherd
  */
 public final class PingIdentityQBD extends QueueByDateReport {
 
     private final static String reportName = "PingIdentity";
+    private final Map<String, String> tableNames = Map.of("Grand Total:","CallsTable");
 
     public PingIdentityQBD() {
         this.excelDataSheetIndex = 0;
@@ -22,6 +25,10 @@ public final class PingIdentityQBD extends QueueByDateReport {
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
+    }
+
+    public Map<String, String> getTableNames() {
+        return tableNames;
     }
 
     @Override
