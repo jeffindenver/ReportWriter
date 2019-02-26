@@ -46,6 +46,7 @@ class ReportWriterGUI {
         JOptionPane.showMessageDialog(frame, msg);
     }
 
+    @SuppressWarnings("SameParameterValue")
     void printMessage(String msg) {
         textArea.append(System.getProperty("line.separator"));
         textArea.append(msg);
