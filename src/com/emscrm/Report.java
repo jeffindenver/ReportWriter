@@ -57,7 +57,7 @@ abstract class Report {
         return wb;
     }
 
-    public abstract int getSourceLineMinimumLength();
+    protected abstract int getSourceLineMinimumLength();
 
     private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
         return source.stream()
