@@ -14,12 +14,12 @@ public final class EmailGPSTrackitQBD extends QueueByDateReport {
 
 
     public EmailGPSTrackitQBD() {
-        this.excelDataSheetIndex = 1;
         this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
 

@@ -13,12 +13,12 @@ public final class GPSTrackitQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public GPSTrackitQBD() {
-        this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

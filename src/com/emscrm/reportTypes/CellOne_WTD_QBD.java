@@ -1,16 +1,12 @@
 package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static java.util.Map.entry;
 
@@ -39,31 +35,11 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     );
 
     public CellOne_WTD_QBD() {
-        this.excelDataSheetIndex = 3;
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD backup.xlsx";
     }
 
     @Override
-    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
-        setDate(source);
-
-        List<String> lengthFilteredSource = this.filterByLength(source, 2);
-
-        openWorkbook();
-
-        Set<String> keySet = weekToDateTableNames.keySet();
-
-        for (String item : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, item);
-            String cleanedSummary = cleanString(summary);
-            composeExcelSheet(cleanedSummary, weekToDateTableNames.get(item));
-        }
-
-        System.out.println(wb.toString());
-        return wb;
-    }
-
-    private void composeExcelSheet(String summary, String tableName) {
+    protected void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
 
@@ -84,12 +60,13 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     }
 
     @Override
-    public Map<String, String> getTableNames() {
-        return weekToDateTableNames;
+    public boolean overwrite() {
+        return true;
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public Map<String, String> getTableNames() {
+        return weekToDateTableNames;
     }
 
     @Override

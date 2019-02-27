@@ -13,13 +13,13 @@ public final class NetworkForGoodQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public NetworkForGoodQBD() {
-        this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Network for Good\\Network for Good Weekly Stats 2019.xlsx";
 
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

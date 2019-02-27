@@ -13,17 +13,17 @@ public final class CPaTQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public CPaTQBD() {
-        this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
+    }
+
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
-    }
-
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
     }
 
     public Map<String, String> getTableNames() {

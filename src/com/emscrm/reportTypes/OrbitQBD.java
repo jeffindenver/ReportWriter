@@ -16,8 +16,9 @@ public final class OrbitQBD extends QueueByDateReport {
 
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

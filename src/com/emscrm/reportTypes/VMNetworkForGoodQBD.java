@@ -13,12 +13,12 @@ public final class VMNetworkForGoodQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "VMTable");
 
     public VMNetworkForGoodQBD() {
-        this.excelDataSheetIndex = 2;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Network for Good\\Network for Good Weekly Stats 2019.xlsx";
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

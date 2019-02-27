@@ -13,14 +13,13 @@ public final class PingIdentityQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:","CallsTable");
 
     public PingIdentityQBD() {
-        this.excelDataSheetIndex = 0;
         this.weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2019.xlsx";
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
-
 
     @Override
     public String getWeeklyReportFilename() {
