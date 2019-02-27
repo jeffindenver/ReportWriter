@@ -10,6 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public abstract class ShortAbandonReport extends Report {
 
@@ -32,22 +33,23 @@ public abstract class ShortAbandonReport extends Report {
 
         List<String> lengthFilteredSource = this.filterByLength(source, 1);
 
-        String summary = getMatchingLine(lengthFilteredSource, "Grand Total:");
-
         openWorkbook();
 
-        XSSFSheet sheet = wb.getSheetAt(this.getDataSheetIndex());
+        Set<String> keySet = getTableNames().keySet();
 
-        composeExcelSheet(sheet, summary);
-
+        for (String tableName : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, tableName);
+            composeExcelSheet(summary, getTableNames().get(tableName));
+        }
         return wb;
     }
 
-    private void composeExcelSheet(XSSFSheet sheet, String summary) {
-        List<XSSFTable> tables = sheet.getTables();
-        XSSFTable myTable = tables.get(0);
+    private void composeExcelSheet(String summary, String tableName) {
+        XSSFTable aTable = wb.getTable(tableName);
 
-        int lastRowIndex = myTable.getEndRowIndex();
+        int lastRowIndex = aTable.getEndRowIndex();
+
+        XSSFSheet sheet = aTable.getXSSFSheet();
         XSSFRow row = sheet.getRow(lastRowIndex);
 
         String[] v = summary.split("\t");
@@ -55,12 +57,11 @@ public abstract class ShortAbandonReport extends Report {
 
         row.getCell(shortAbandIndex).setCellValue(shortAbandons);
 
-        myTable.updateReferences();
+        aTable.updateReferences();
 
         refreshFormulaCell(row, shortAbandIndex);
 
         sheet.setActiveCell(CellAddress.A1);
-
     }
 
     protected void setWorkbook(XSSFWorkbook workbook) {
