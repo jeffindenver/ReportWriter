@@ -15,7 +15,7 @@ class ListFilter {
     private boolean validateDelimitedLength(String s, int minLength, String delimiter) {
         boolean isValid = false;
         String[] v = s.split(delimiter);
-        if (v.length > minLength) {
+        if (v.length >= minLength) {
             isValid = true;
         }
         return isValid;
