@@ -3,8 +3,9 @@ package com.emscrm;
 import com.emscrm.reportTypes.*;
 import com.emscrm.reportTypes.ShortAbandons.*;
 
-import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Map.entry;
 
 /**
  * The QBD reports contain summaries by workgroup and by grand total.
@@ -21,31 +22,30 @@ final class ReportConstants {
     }
 
     private static Map<String, Report> initializeMap() {
-        Map<String, Report> map = new HashMap<>();
-        map.put("CellOne_MTD_QBD", new CellOne_MTD_QBD());
-        map.put("CellOne_WTD_QBD", new CellOne_WTD_QBD());
-        map.put("CPaTCallsQBD", new CPaTQBD());
-        map.put("EntrustCallsQBD", new EntrustQBD());
-        map.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
-        map.put("GPSTrackitEmailQBD", new EmailGPSTrackitQBD());
-        map.put("NaturalWirelessCallsQBD", new NaturalWirelessQBD());
-        map.put("NelnetCallsQBD", new NelnetQBD());
-        map.put("NetworkForGoodCallsQBD", new NetworkForGoodQBD());
-        map.put("OrbitCallsQBD", new OrbitQBD());
-        map.put("PingIdentityCallsQBD", new PingIdentityQBD());
-        map.put("EntrustEmailQBD", new EmailEntrustQBD());
-        map.put("NetworkForGoodEmailQBD", new EmailNetworkForGoodQBD());
-        map.put("NetworkForGoodVMQBD", new VMNetworkForGoodQBD());
-        map.put("CPaTShortAband", new CPaTShortAband());
-        map.put("EntrustShortAband", new EntrustShortAband());
-        map.put("GPSTrackitShortAband", new GPSTrackitShortAband());
-        map.put("HabitatReStoreShortAband", new HabitatReStoreShortAband());
-        map.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());
-        map.put("NelnetShortAband", new NelnetShortAband());
-        map.put("NetworkForGoodShortAband", new NetworkForGoodShortAband());
-        map.put("PingIdentityShortAband", new PingIdentityShortAband());
 
-        return map;
+        return Map.ofEntries(
+                entry("CellOne_MTD_QBD", new CellOne_MTD_QBD()),
+                entry("CellOne_WTD_QBD", new CellOne_WTD_QBD()),
+                entry("CPaTCallsQBD", new CPaTQBD()),
+                entry("EntrustCallsQBD", new EntrustQBD()),
+                entry("GPSTrackitCallsQBD", new GPSTrackitQBD()),
+                entry("GPSTrackitEmailQBD", new EmailGPSTrackitQBD()),
+                entry("NaturalWirelessCallsQBD", new NaturalWirelessQBD()),
+                entry("NelnetCallsQBD", new NelnetQBD()),
+                entry("NetworkForGoodCallsQBD", new NetworkForGoodQBD()),
+                entry("OrbitCallsQBD", new OrbitQBD()),
+                entry("PingIdentityCallsQBD", new PingIdentityQBD()),
+                entry("EntrustEmailQBD", new EmailEntrustQBD()),
+                entry("NetworkForGoodEmailQBD", new EmailNetworkForGoodQBD()),
+                entry("NetworkForGoodVMQBD", new VMNetworkForGoodQBD()),
+                entry("CPaTShortAband", new CPaTShortAband()),
+                entry("EntrustShortAband", new EntrustShortAband()),
+                entry("GPSTrackitShortAband", new GPSTrackitShortAband()),
+                entry("NaturalWirelessShortAband", new NaturalWirelessShortAband()),
+                entry("NelnetShortAband", new NelnetShortAband()),
+                entry("NetworkForGoodShortAband", new NetworkForGoodShortAband()),
+                entry("PingIdentityShortAband", new PingIdentityShortAband())
+        );
     }
 
 }
