@@ -22,7 +22,7 @@ abstract class Report {
 
     protected abstract String getWeeklyReportFilename();
 
-    protected abstract boolean overwrite();
+    protected abstract boolean isSingleLineTable();
 
     protected abstract XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException;
 
