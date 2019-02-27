@@ -18,7 +18,7 @@ import java.util.StringJoiner;
 public abstract class QueueByDateReport extends Report {
 
     protected String weeklyReportFilename;
-    protected XSSFWorkbook wb;
+    private XSSFWorkbook wb;
 
     protected QueueByDateReport() {
 
@@ -46,14 +46,14 @@ public abstract class QueueByDateReport extends Report {
         return wb;
     }
 
-    protected void composeExcelSheet(String summary, String tableName) {
+    private void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
         System.out.println("Table name is " + aTable.getName());
 
         int rowIndex = getRowIndex(aTable);
 
-        aTable.setDataRowCount(rowIndex);
+        aTable.setDataRowCount(getRowCount(rowIndex));
 
         XSSFSheet sheet = aTable.getXSSFSheet();
 
@@ -70,8 +70,16 @@ public abstract class QueueByDateReport extends Report {
         aTable.updateReferences();
     }
 
+    private int getRowCount(int rowIndex) {
+        if (isSingleLineTable()) {
+            return 1;
+        } else {
+            return rowIndex;
+        }
+    }
+
     private XSSFRow getRow(XSSFSheet sheet, int index) {
-       if (this.overwrite()) {
+       if (isSingleLineTable()) {
            return sheet.getRow(index);
        }
        XSSFRow row = sheet.createRow(index);
@@ -80,7 +88,7 @@ public abstract class QueueByDateReport extends Report {
 
     private int getRowIndex(XSSFTable aTable) {
         int index = aTable.getEndRowIndex();
-        if (this.overwrite()) {
+        if (isSingleLineTable()) {
             return index;
         }
         return index + 1;
@@ -94,7 +102,7 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
+    private XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
         XSSFFont bodyFont = aWorkbook.createFont();
         bodyFont.setFontName("Calibri");
@@ -148,7 +156,7 @@ public abstract class QueueByDateReport extends Report {
         return row;
     }
 
-    protected void setValuesToCells(XSSFRow row, String[] v) {
+    private void setValuesToCells(XSSFRow row, String[] v) {
         //row is an out variable
         LocalDate date = getDate();
 
