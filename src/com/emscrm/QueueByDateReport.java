@@ -17,7 +17,6 @@ import java.util.StringJoiner;
  */
 public abstract class QueueByDateReport extends Report {
 
-    protected int excelDataSheetIndex;
     protected String weeklyReportFilename;
     protected XSSFWorkbook wb;
 
@@ -44,24 +43,24 @@ public abstract class QueueByDateReport extends Report {
             composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
         }
 
-        System.out.println(wb.toString());
         return wb;
     }
 
-    private void composeExcelSheet(String summary, String tableName) {
+    protected void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
         System.out.println("Table name is " + aTable.getName());
 
-        int newRowIndex = aTable.getEndRowIndex() + 1;
-        aTable.setDataRowCount(newRowIndex);
+        int rowIndex = getRowIndex(aTable);
+
+        aTable.setDataRowCount(rowIndex);
 
         XSSFSheet sheet = aTable.getXSSFSheet();
-        XSSFRow row = sheet.createRow(newRowIndex);
-        XSSFRow addedRow = createCells(row);
+
+        XSSFRow row = getRow(sheet, rowIndex);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, addedRow);
+        XSSFRow formattedRow = formatCells(tempWorkbook, row);
 
         String[] v = summary.split("\t");
 
@@ -69,6 +68,22 @@ public abstract class QueueByDateReport extends Report {
         setValuesToCells(formattedRow, v);
 
         aTable.updateReferences();
+    }
+
+    private XSSFRow getRow(XSSFSheet sheet, int index) {
+       if (this.overwrite()) {
+           return sheet.getRow(index);
+       }
+       XSSFRow row = sheet.createRow(index);
+       return createCells(row);
+    }
+
+    private int getRowIndex(XSSFTable aTable) {
+        int index = aTable.getEndRowIndex();
+        if (this.overwrite()) {
+            return index;
+        }
+        return index + 1;
     }
 
     private XSSFRow createCells(@NotNull XSSFRow row) {
@@ -154,7 +169,7 @@ public abstract class QueueByDateReport extends Report {
         row.getCell(11).setCellValue(Double.parseDouble(v[11]) / 100);
     }
 
-    protected String cleanString(String summary) {
+    private String cleanString(String summary) {
         System.out.println("Summary line equals " + summary);
 
         String cleanedSummary = summary.replaceAll("\t:", "\t0:");
