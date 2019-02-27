@@ -8,11 +8,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 abstract class Report {
+
+    XSSFWorkbook wb;
 
     private LocalDate date;
 
@@ -24,13 +24,13 @@ abstract class Report {
 
     protected abstract boolean isSingleLineTable();
 
-    protected abstract XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException;
+    protected abstract void composeExcelSheet(String summary, String tableName);
 
     LocalDate getDate() {
         return this.date;
     }
 
-    void setDate(List<String> source) {
+    private void setDate(List<String> source) {
         DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
@@ -39,13 +39,33 @@ abstract class Report {
         this.date = theDate.orElse(LocalDate.MIN);
     }
 
+    XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
+        setDate(source);
+
+        List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
+
+        openWorkbook();
+
+        Set<String> keySet = getTableNames().keySet();
+
+        for (String tableName : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, tableName);
+            String cleanedSummary = cleanString(summary);
+            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
+        }
+
+        return wb;
+    }
+
+    public abstract int getSourceLineMinimumLength();
+
     private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
         return source.stream()
                 .filter(dp::containsDate)
                 .findFirst();
     }
 
-    List<String> filterByLength(List<String> list, int minLength) {
+    private List<String> filterByLength(List<String> list, int minLength) {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
@@ -63,7 +83,30 @@ abstract class Report {
         setWorkbook(workbook);
     }
 
-     void refreshFormulaCell(XSSFRow row, int index) {
+    private String cleanString(String summary) {
+        System.out.println("Summary line equals " + summary);
+
+        String cleanedSummary = summary.replaceAll("\t:", "\t0:");
+        cleanedSummary = cleanedSummary.replaceAll("%", "");
+        cleanedSummary = cleanedSummary.replaceAll("\"", "");
+        cleanedSummary = cleanedSummary.replaceAll(",", "");
+
+        String[] v = cleanedSummary.split("\t");
+        cleanedSummary = excludeLastElement(v);
+
+        System.out.println("Cleaned Summary equals " + cleanedSummary);
+        return cleanedSummary;
+    }
+
+    private String excludeLastElement(String[] v) {
+        StringJoiner joiner = new StringJoiner("\t");
+        for (int i = 0; i < v.length - 1; i++) {
+            joiner.add(v[i]);
+        }
+        return joiner.toString();
+    }
+
+    void refreshFormulaCell(XSSFRow row, int index) {
 
         XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
 
