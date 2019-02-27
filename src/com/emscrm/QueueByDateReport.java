@@ -16,6 +16,7 @@ public abstract class QueueByDateReport extends Report {
 
     protected QueueByDateReport() { }
 
+    @Override
     protected void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
