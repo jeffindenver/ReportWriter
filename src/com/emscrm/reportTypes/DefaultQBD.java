@@ -16,7 +16,7 @@ public final class DefaultQBD extends QueueByDateReport {
     }
 
     @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return false;
     }
 

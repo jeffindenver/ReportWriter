@@ -14,7 +14,7 @@ public final class GPSTrackitShortAband extends ShortAbandonReport {
     }
 
     @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return false;
     }
 

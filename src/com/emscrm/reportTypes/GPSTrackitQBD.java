@@ -17,7 +17,7 @@ public final class GPSTrackitQBD extends QueueByDateReport {
     }
 
     @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return false;
     }
 

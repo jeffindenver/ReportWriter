@@ -14,7 +14,7 @@ public final class NelnetShortAband extends ShortAbandonReport {
     }
 
     @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return false;
     }
 

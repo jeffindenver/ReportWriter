@@ -18,7 +18,7 @@ public final class NetworkForGoodQBD extends QueueByDateReport {
     }
 
     @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return false;
     }
 
