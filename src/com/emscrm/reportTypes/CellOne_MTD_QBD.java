@@ -1,10 +1,6 @@
 package com.emscrm.reportTypes;
 
 import com.emscrm.QueueByDateReport;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.Map;
 
@@ -39,28 +35,7 @@ public final class CellOne_MTD_QBD extends QueueByDateReport {
     }
 
     @Override
-    protected void composeExcelSheet(String summary, String tableName) {
-
-        XSSFTable aTable = wb.getTable(tableName);
-
-        int endRowIndex = aTable.getEndRowIndex();
-
-        XSSFSheet sheet = aTable.getXSSFSheet();
-        XSSFRow row = sheet.getRow(endRowIndex);
-
-        XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, row);
-
-        String[] v = summary.split("\t");
-
-        //formattedRow is an out variable
-        setValuesToCells(formattedRow, v);
-
-        aTable.updateReferences();
-    }
-
-    @Override
-    public boolean overwrite() {
+    public boolean isSingleLineTable() {
         return true;
     }
 
