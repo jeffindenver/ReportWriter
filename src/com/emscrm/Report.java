@@ -18,11 +18,11 @@ abstract class Report {
 
     protected abstract void setWorkbook(XSSFWorkbook workbook);
 
-    protected abstract int getDataSheetIndex();
-
     protected abstract Map<String, String> getTableNames();
 
     protected abstract String getWeeklyReportFilename();
+
+    protected abstract boolean overwrite();
 
     protected abstract XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException;
 
@@ -30,7 +30,7 @@ abstract class Report {
         return this.date;
     }
 
-    protected void setDate(List<String> source) {
+    void setDate(List<String> source) {
         DateParser dp = new DateParser();
 
         Optional<String> dateline = getDatelineFromList(dp, source);
@@ -45,18 +45,18 @@ abstract class Report {
                 .findFirst();
     }
 
-    protected List<String> filterByLength(List<String> list, int minLength) {
+    List<String> filterByLength(List<String> list, int minLength) {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
-    protected String getMatchingLine(List<String> source, String matcher) {
+    String getMatchingLine(List<String> source, String matcher) {
         Optional<String> matchedLine = source.stream()
                 .filter(s -> s.contains(matcher))
                 .findFirst();
         return matchedLine.orElse("");
     }
 
-    protected void openWorkbook() throws InvalidFormatException, IOException {
+    void openWorkbook() throws InvalidFormatException, IOException {
         System.out.println("In openWorkbook() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
         XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
