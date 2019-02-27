@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ModelTest {
     private Model model;
     private List<String> source;
-    private String inputFilename = "testInputFile.xls";
-    private Report report = new DefaultQBD();
+    private final String inputFilename = "testInputFile.xls";
+    private final Report report = new DefaultQBD();
 
     @BeforeEach
     void setUp() {

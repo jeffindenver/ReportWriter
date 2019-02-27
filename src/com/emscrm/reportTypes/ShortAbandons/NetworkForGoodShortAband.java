@@ -7,15 +7,15 @@ import java.util.Map;
 public final class NetworkForGoodShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Network for Good Short Abandons";
-    private static final int excelDataSheetIndex = 0;
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public NetworkForGoodShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\Network for Good\\Network for Good Weekly Stats 2019.xlsx";
     }
 
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    @Override
+    public boolean overwrite() {
+        return false;
     }
 
     public String getWeeklyReportFilename() {

@@ -7,7 +7,6 @@ import java.util.Map;
 public final class NaturalWirelessShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Natural Wireless Short Abandons";
-    private static final int excelDataSheetIndex = 0;
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public NaturalWirelessShortAband() {
@@ -15,8 +14,8 @@ public final class NaturalWirelessShortAband extends ShortAbandonReport {
     }
 
     @Override
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

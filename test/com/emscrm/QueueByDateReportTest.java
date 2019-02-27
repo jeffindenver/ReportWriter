@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueByDateReportTest {
-    private Report report = new DefaultQBD();
+    private final Report report = new DefaultQBD();
     private List<String> testList;
 
     @BeforeEach

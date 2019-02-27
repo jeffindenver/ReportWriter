@@ -1,7 +1,5 @@
 package com.emscrm;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -9,15 +7,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DateParserTest {
-    private DateParser dateParser = new DateParser();
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
+    private final DateParser dateParser = new DateParser();
 
     @Test
     void containsDate() {

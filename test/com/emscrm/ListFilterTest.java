@@ -10,8 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ListFilterTest {
 
-    private ListFilter listFilter = new ListFilter();
-    private String separator = "\t";
+    private final ListFilter listFilter = new ListFilter();
     private List<String> list;
 
     @BeforeEach
@@ -23,6 +22,7 @@ class ListFilterTest {
     @Test
     void filterByLength() {
         int minLength = 2;
+        String separator = "\t";
         List<String> resultList = listFilter.filterByLength(minLength, list, separator);
 
         assertEquals(2, resultList.size());

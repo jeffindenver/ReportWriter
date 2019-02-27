@@ -8,15 +8,14 @@ public final class CPaTShortAband extends ShortAbandonReport {
 
     private static final String reportName = "CPaT Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
-    private static final int excelDataSheetIndex = 0;
 
     public CPaTShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
     }
 
     @Override
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

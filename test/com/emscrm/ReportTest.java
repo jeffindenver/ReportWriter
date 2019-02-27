@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReportTest {
     private List<String> testList;
-    private Report report = new DefaultQBD();
+    private final Report report = new DefaultQBD();
 
     @SuppressWarnings("unchecked")
     @BeforeEach

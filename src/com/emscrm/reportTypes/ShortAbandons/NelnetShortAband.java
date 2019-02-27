@@ -7,7 +7,6 @@ import java.util.Map;
 public final class NelnetShortAband extends ShortAbandonReport {
 
     private final static String reportName = "Nelnet Short Aband";
-    private final static int excelDataSheetIndex = 0;
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public NelnetShortAband() {
@@ -15,8 +14,8 @@ public final class NelnetShortAband extends ShortAbandonReport {
     }
 
     @Override
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    public boolean overwrite() {
+        return false;
     }
 
     @Override

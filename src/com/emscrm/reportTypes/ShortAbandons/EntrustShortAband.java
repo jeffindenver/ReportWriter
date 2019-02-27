@@ -8,15 +8,14 @@ public final class EntrustShortAband extends ShortAbandonReport {
 
     private static final String reportName = "Entrust Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
-    private static final int excelDataSheetIndex = 0;
 
     public EntrustShortAband() {
         weeklyReportFilename = "s:\\reports\\call centers\\Entrust\\Entrust Weekly Stats 2019.xlsx";
     }
 
     @Override
-    public int getDataSheetIndex() {
-        return excelDataSheetIndex;
+    public boolean overwrite() {
+        return false;
     }
 
     @Override
