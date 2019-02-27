@@ -22,10 +22,6 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    public int getSourceLineMinimumLength() {
-        return 3;
-    }
-
     protected void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
@@ -159,6 +155,10 @@ public abstract class QueueByDateReport extends Report {
 
     protected void setWorkbook(XSSFWorkbook workbook) {
         this.wb = workbook;
+    }
+
+    public int getSourceLineMinimumLength() {
+        return 3;
     }
 
 }
