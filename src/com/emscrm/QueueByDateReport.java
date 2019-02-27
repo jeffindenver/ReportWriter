@@ -1,16 +1,11 @@
 package com.emscrm;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
-import java.util.StringJoiner;
 
 /**
  * @author JShepherd
@@ -18,7 +13,6 @@ import java.util.StringJoiner;
 public abstract class QueueByDateReport extends Report {
 
     protected String weeklyReportFilename;
-    private XSSFWorkbook wb;
 
     protected QueueByDateReport() {
 
@@ -28,25 +22,11 @@ public abstract class QueueByDateReport extends Report {
                 + "_QueueByDateReport.xlsx";
     }
 
-    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
-        setDate(source);
-
-        List<String> lengthFilteredSource = filterByLength(source, 2);
-
-        openWorkbook();
-
-        Set<String> keySet = getTableNames().keySet();
-
-        for (String tableName : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, tableName);
-            String cleanedSummary = cleanString(summary);
-            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
-        }
-
-        return wb;
+    public int getSourceLineMinimumLength() {
+        return 3;
     }
 
-    private void composeExcelSheet(String summary, String tableName) {
+    protected void composeExcelSheet(String summary, String tableName) {
 
         XSSFTable aTable = wb.getTable(tableName);
         System.out.println("Table name is " + aTable.getName());
@@ -79,11 +59,11 @@ public abstract class QueueByDateReport extends Report {
     }
 
     private XSSFRow getRow(XSSFSheet sheet, int index) {
-       if (isSingleLineTable()) {
-           return sheet.getRow(index);
-       }
-       XSSFRow row = sheet.createRow(index);
-       return createCells(row);
+        if (isSingleLineTable()) {
+            return sheet.getRow(index);
+        }
+        XSSFRow row = sheet.createRow(index);
+        return createCells(row);
     }
 
     private int getRowIndex(XSSFTable aTable) {
@@ -175,29 +155,6 @@ public abstract class QueueByDateReport extends Report {
         row.getCell(9).setCellValue(DurationUtility.toFractionOfDay(v[9]));
         row.getCell(10).setCellValue(DurationUtility.toFractionOfDay(v[10]));
         row.getCell(11).setCellValue(Double.parseDouble(v[11]) / 100);
-    }
-
-    private String cleanString(String summary) {
-        System.out.println("Summary line equals " + summary);
-
-        String cleanedSummary = summary.replaceAll("\t:", "\t0:");
-        cleanedSummary = cleanedSummary.replaceAll("%", "");
-        cleanedSummary = cleanedSummary.replaceAll("\"", "");
-        cleanedSummary = cleanedSummary.replaceAll(",", "");
-
-        String[] v = cleanedSummary.split("\t");
-        cleanedSummary = excludeLastElement(v);
-
-        System.out.println("Cleaned Summary equals " + cleanedSummary);
-        return cleanedSummary;
-    }
-
-    private String excludeLastElement(String[] v) {
-        StringJoiner joiner = new StringJoiner("\t");
-        for (int i = 0; i < v.length - 1; i++) {
-            joiner.add(v[i]);
-        }
-        return joiner.toString();
     }
 
     protected void setWorkbook(XSSFWorkbook workbook) {

@@ -1,23 +1,18 @@
 package com.emscrm;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.util.CellAddress;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 public abstract class ShortAbandonReport extends Report {
 
     private final int shortAbandIndex;
     protected String weeklyReportFilename;
     private double shortAbandons;
-    private XSSFWorkbook wb;
 
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
@@ -28,23 +23,7 @@ public abstract class ShortAbandonReport extends Report {
                 + "_ShortAbandonReport.xlsx";
     }
 
-    protected XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
-        setDate(source);
-
-        List<String> lengthFilteredSource = this.filterByLength(source, 1);
-
-        openWorkbook();
-
-        Set<String> keySet = getTableNames().keySet();
-
-        for (String tableName : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, tableName);
-            composeExcelSheet(summary, getTableNames().get(tableName));
-        }
-        return wb;
-    }
-
-    private void composeExcelSheet(String summary, String tableName) {
+    protected void composeExcelSheet(String summary, String tableName) {
         XSSFTable aTable = wb.getTable(tableName);
 
         int lastRowIndex = aTable.getEndRowIndex();
@@ -62,6 +41,10 @@ public abstract class ShortAbandonReport extends Report {
         refreshFormulaCell(row, shortAbandIndex);
 
         sheet.setActiveCell(CellAddress.A1);
+    }
+
+    public int getSourceLineMinimumLength() {
+        return 2;
     }
 
     protected void setWorkbook(XSSFWorkbook workbook) {
