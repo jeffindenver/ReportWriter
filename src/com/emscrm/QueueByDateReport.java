@@ -14,13 +14,7 @@ public abstract class QueueByDateReport extends Report {
 
     protected String weeklyReportFilename;
 
-    protected QueueByDateReport() {
-
-        weeklyReportFilename = System.getProperty("user.home")
-                + "\\desktop\\"
-                + LocalDate.now().toString()
-                + "_QueueByDateReport.xlsx";
-    }
+    protected QueueByDateReport() { }
 
     protected void composeExcelSheet(String summary, String tableName) {
 

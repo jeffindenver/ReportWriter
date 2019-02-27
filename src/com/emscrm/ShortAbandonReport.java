@@ -6,8 +6,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.time.LocalDate;
-
 public abstract class ShortAbandonReport extends Report {
 
     private final int shortAbandIndex;
@@ -17,10 +15,6 @@ public abstract class ShortAbandonReport extends Report {
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
         shortAbandons = 0;
-        weeklyReportFilename = System.getProperty("user.home")
-                + "\\desktop\\"
-                + LocalDate.now().toString()
-                + "_ShortAbandonReport.xlsx";
     }
 
     protected void composeExcelSheet(String summary, String tableName) {
