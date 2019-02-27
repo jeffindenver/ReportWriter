@@ -32,7 +32,7 @@ class ReportTest {
     void getMatchingLine() {
         String matcher = "CPaT Chat";
         ListFilter listFilter = new ListFilter();
-        List<String> filteredList = listFilter.filterByLength(2, testList, "\t");
+        List<String> filteredList = listFilter.filterByLength(3, testList, "\t");
         String result = report.getMatchingLine(filteredList, matcher);
 
         filteredList.forEach(System.out::println);
