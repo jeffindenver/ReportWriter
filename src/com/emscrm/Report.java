@@ -24,6 +24,8 @@ abstract class Report {
 
     protected abstract boolean isSingleLineTable();
 
+    protected abstract int getSourceLineMinimumLength();
+
     protected abstract void composeExcelSheet(String summary, String tableName);
 
     LocalDate getDate() {
@@ -56,8 +58,6 @@ abstract class Report {
 
         return wb;
     }
-
-    protected abstract int getSourceLineMinimumLength();
 
     private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
         return source.stream()
