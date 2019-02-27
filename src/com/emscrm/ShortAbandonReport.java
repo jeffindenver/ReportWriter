@@ -17,6 +17,7 @@ public abstract class ShortAbandonReport extends Report {
         shortAbandons = 0;
     }
 
+    @Override
     protected void composeExcelSheet(String summary, String tableName) {
         XSSFTable aTable = wb.getTable(tableName);
 
