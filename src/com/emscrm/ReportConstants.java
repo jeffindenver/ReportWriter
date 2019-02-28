@@ -24,6 +24,8 @@ final class ReportConstants {
     private static Map<String, Report> initializeMap() {
 
         return Map.ofEntries(
+                entry("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD()),
+                entry("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD()),
                 entry("CellOne_MTD_QBD", new CellOne_MTD_QBD()),
                 entry("CellOne_WTD_QBD", new CellOne_WTD_QBD()),
                 entry("CPaTCallsQBD", new CPaTQBD()),
