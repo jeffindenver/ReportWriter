@@ -13,7 +13,8 @@ public final class OrbitQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public OrbitQBD() {
-
+        //This report is not currently used, and no file exists. The defualt workbook is temporary.
+        this.weeklyReportFilename = "s:\\reports\\call centers\\default QBD Workbook.xlsx";
     }
 
     @Override
