@@ -15,6 +15,7 @@ import static java.util.Map.entry;
 final class ReportConstants {
 
     final static int QBD_REPORT_LENGTH = 15;
+    final static int QUEUE_SUMMARY_REPORT_LENGTH = 17;
 
     final static Map<String, Report> REPORT_TYPES = initializeMap();
 
@@ -24,6 +25,8 @@ final class ReportConstants {
     private static Map<String, Report> initializeMap() {
 
         return Map.ofEntries(
+                entry("Three_DX_Email_QS", new Three_DX_Email_QS()),
+                entry("Three_DX_Calls_QS", new Three_DX_Calls_QS()),
                 entry("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD()),
                 entry("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD()),
                 entry("CellOne_MTD_QBD", new CellOne_MTD_QBD()),
