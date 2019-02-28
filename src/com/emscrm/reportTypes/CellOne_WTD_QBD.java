@@ -31,7 +31,7 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
     );
 
     public CellOne_WTD_QBD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne WTD MTD.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Cellular One of NE Arizona\\CellOne Daily.xlsx";
     }
 
     @Override
