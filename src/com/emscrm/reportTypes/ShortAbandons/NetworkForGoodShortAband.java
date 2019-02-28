@@ -18,6 +18,7 @@ public final class NetworkForGoodShortAband extends ShortAbandonReport {
         return false;
     }
 
+    @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
     }

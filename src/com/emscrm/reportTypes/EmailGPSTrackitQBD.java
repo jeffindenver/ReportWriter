@@ -22,7 +22,6 @@ public final class EmailGPSTrackitQBD extends QueueByDateReport {
         return false;
     }
 
-
     @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
