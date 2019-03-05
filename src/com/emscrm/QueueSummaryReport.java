@@ -24,6 +24,7 @@ public abstract class QueueSummaryReport extends Report {
         return createCells(row);
     }
 
+    @Override
     protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
         XSSFFont bodyFont = aWorkbook.createFont();
@@ -80,6 +81,7 @@ public abstract class QueueSummaryReport extends Report {
         return row;
     }
 
+    @Override
     protected void setValuesToCells(XSSFRow row, String[] v) {
         //row is an out variable
         LocalDate date = getDate();
@@ -106,10 +108,12 @@ public abstract class QueueSummaryReport extends Report {
 
     }
 
+    @Override
     protected void setWorkbook(XSSFWorkbook workbook) {
         this.wb = workbook;
     }
 
+    @Override
     public int getSourceLineMinimumLength() {
         return 3;
     }
