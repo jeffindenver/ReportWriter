@@ -3,7 +3,10 @@ package com.emscrm;
 import excelops.ExcelOps;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -16,21 +19,59 @@ abstract class Report {
 
     private LocalDate date;
 
-    protected abstract void setWorkbook(XSSFWorkbook workbook);
+    XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
+        setDate(source);
 
-    protected abstract XSSFRow getRow(XSSFSheet sheet, int index);
+        List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
 
-    protected abstract Map<String, String> getTableNames();
+        openWorkbook();
 
-    protected abstract String getWeeklyReportFilename();
+        Set<String> keySet = getTableNames().keySet();
 
-    protected abstract boolean isSingleLineTable();
+        for (String tableName : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, tableName);
+            String cleanedSummary = cleanString(summary);
+            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
+        }
+        return wb;
+    }
+
+    private List<String> filterByLength(List<String> list, int minLength) {
+        return new ListFilter().filterByLength(minLength, list, "\t");
+    }
 
     protected abstract int getSourceLineMinimumLength();
 
-    protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
+    void openWorkbook() throws InvalidFormatException, IOException {
+        System.out.println("In openWorkbook() method." + " " + this.toString());
+        ExcelOps excelOps = new ExcelOps();
+        XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
+        setWorkbook(workbook);
+    }
 
-    protected abstract void setValuesToCells(XSSFRow row, String[] v);
+    protected abstract Map<String, String> getTableNames();
+
+    String getMatchingLine(List<String> source, String matcher) {
+        Optional<String> matchedLine = source.stream()
+                .filter(s -> s.contains(matcher))
+                .findFirst();
+        return matchedLine.orElse("");
+    }
+
+    private String cleanString(String summary) {
+        System.out.println("Summary line equals " + summary);
+
+        String cleanedSummary = summary.replaceAll("\t:", "\t0:");
+        cleanedSummary = cleanedSummary.replaceAll("%", "");
+        cleanedSummary = cleanedSummary.replaceAll("\"", "");
+        cleanedSummary = cleanedSummary.replaceAll(",", "");
+
+        String[] v = cleanedSummary.split("\t");
+        cleanedSummary = excludeLastElement(v);
+
+        System.out.println("Cleaned Summary equals " + cleanedSummary);
+        return cleanedSummary;
+    }
 
     private void composeExcelSheet(String summary, String tableName) {
 
@@ -57,12 +98,22 @@ abstract class Report {
         aTable.updateReferences();
     }
 
-    private int getRowCount(int rowIndex) {
-        if (isSingleLineTable()) {
-            return 1;
-        } else {
-            return rowIndex;
+    private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
+        return source.stream()
+                .filter(dp::containsDate)
+                .findFirst();
+    }
+
+    protected abstract String getWeeklyReportFilename();
+
+    protected abstract void setWorkbook(XSSFWorkbook workbook);
+
+    private String excludeLastElement(String[] v) {
+        StringJoiner joiner = new StringJoiner("\t");
+        for (int i = 0; i < v.length - 1; i++) {
+            joiner.add(v[i]);
         }
+        return joiner.toString();
     }
 
     private int getRowIndex(XSSFTable aTable) {
@@ -72,6 +123,22 @@ abstract class Report {
         }
         return index + 1;
     }
+
+    private int getRowCount(int rowIndex) {
+        if (isSingleLineTable()) {
+            return 1;
+        } else {
+            return rowIndex;
+        }
+    }
+
+    protected abstract XSSFRow getRow(XSSFSheet sheet, int index);
+
+    protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
+
+    protected abstract void setValuesToCells(XSSFRow row, String[] v);
+
+    protected abstract boolean isSingleLineTable();
 
     XSSFRow createCells(@NotNull XSSFRow row) {
         for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
@@ -91,70 +158,5 @@ abstract class Report {
         System.out.println(dateline.orElse("Report Class: dateline is empty."));
         Optional<LocalDate> theDate = dateline.map(dp::parseDate);
         this.date = theDate.orElse(LocalDate.MIN);
-    }
-
-    XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
-        setDate(source);
-
-        List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
-
-        openWorkbook();
-
-        Set<String> keySet = getTableNames().keySet();
-
-        for (String tableName : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, tableName);
-            String cleanedSummary = cleanString(summary);
-            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
-        }
-
-        return wb;
-    }
-
-    private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
-        return source.stream()
-                .filter(dp::containsDate)
-                .findFirst();
-    }
-
-    private List<String> filterByLength(List<String> list, int minLength) {
-        return new ListFilter().filterByLength(minLength, list, "\t");
-    }
-
-    String getMatchingLine(List<String> source, String matcher) {
-        Optional<String> matchedLine = source.stream()
-                .filter(s -> s.contains(matcher))
-                .findFirst();
-        return matchedLine.orElse("");
-    }
-
-    void openWorkbook() throws InvalidFormatException, IOException {
-        System.out.println("In openWorkbook() method." + " " + this.toString());
-        ExcelOps excelOps = new ExcelOps();
-        XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
-        setWorkbook(workbook);
-    }
-
-    private String cleanString(String summary) {
-        System.out.println("Summary line equals " + summary);
-
-        String cleanedSummary = summary.replaceAll("\t:", "\t0:");
-        cleanedSummary = cleanedSummary.replaceAll("%", "");
-        cleanedSummary = cleanedSummary.replaceAll("\"", "");
-        cleanedSummary = cleanedSummary.replaceAll(",", "");
-
-        String[] v = cleanedSummary.split("\t");
-        cleanedSummary = excludeLastElement(v);
-
-        System.out.println("Cleaned Summary equals " + cleanedSummary);
-        return cleanedSummary;
-    }
-
-    private String excludeLastElement(String[] v) {
-        StringJoiner joiner = new StringJoiner("\t");
-        for (int i = 0; i < v.length - 1; i++) {
-            joiner.add(v[i]);
-        }
-        return joiner.toString();
     }
 }
