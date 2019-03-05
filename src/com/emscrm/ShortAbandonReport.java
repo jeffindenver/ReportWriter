@@ -1,10 +1,6 @@
 package com.emscrm;
 
-import org.apache.poi.ss.util.CellAddress;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFTable;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 
 public abstract class ShortAbandonReport extends Report {
 
@@ -14,34 +10,34 @@ public abstract class ShortAbandonReport extends Report {
 
     protected ShortAbandonReport() {
         shortAbandIndex = 13;
-        shortAbandons = 0;
+        shortAbandons = 0.0;
     }
 
     @Override
-    protected void composeExcelSheet(String summary, String tableName) {
-        XSSFTable aTable = wb.getTable(tableName);
-
-        int lastRowIndex = aTable.getEndRowIndex();
-
-        XSSFSheet sheet = aTable.getXSSFSheet();
-        XSSFRow row = sheet.getRow(lastRowIndex);
-
-        String[] v = summary.split("\t");
-        this.shortAbandons = Double.valueOf(v[1]);
-
-        row.getCell(shortAbandIndex).setCellValue(shortAbandons);
-
-        aTable.updateReferences();
-
-        refreshFormulaCell(row, shortAbandIndex);
-
-        sheet.setActiveCell(CellAddress.A1);
+    protected XSSFRow getRow(XSSFSheet sheet, int index) {
+            return sheet.getRow(index - 1);
     }
 
+    @Override
+    protected void setValuesToCells(XSSFRow row, String[] v) {
+        this.shortAbandons = Double.valueOf(v[1]);
+        row.getCell(shortAbandIndex).setCellValue(shortAbandons);
+    }
+
+    @Override
+    public XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row){
+        if (row == null) {
+            System.out.println("In ShortAbandonReport.formatCells method. Row is null.");
+        }
+        return row;
+    }
+
+    @Override
     public int getSourceLineMinimumLength() {
         return 2;
     }
 
+    @Override
     protected void setWorkbook(XSSFWorkbook workbook) {
         this.wb = workbook;
     }
