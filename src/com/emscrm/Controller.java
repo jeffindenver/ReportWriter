@@ -136,8 +136,6 @@ class Controller {
             } catch (InterruptedException | ExecutionException ex) {
                 view.printError(ex.getMessage());
             }
-
         }
     }
-
 }
