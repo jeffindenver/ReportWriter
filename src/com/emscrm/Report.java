@@ -2,9 +2,9 @@ package com.emscrm;
 
 import excelops.ExcelOps;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.util.CellAddress;
+import org.apache.poi.xssf.usermodel.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -18,6 +18,8 @@ abstract class Report {
 
     protected abstract void setWorkbook(XSSFWorkbook workbook);
 
+    protected abstract XSSFRow getRow(XSSFSheet sheet, int index);
+
     protected abstract Map<String, String> getTableNames();
 
     protected abstract String getWeeklyReportFilename();
@@ -26,7 +28,66 @@ abstract class Report {
 
     protected abstract int getSourceLineMinimumLength();
 
-    protected abstract void composeExcelSheet(String summary, String tableName);
+    protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
+
+    protected abstract void setValuesToCells(XSSFRow row, String[] v);
+
+    private void composeExcelSheet(String summary, String tableName) {
+
+        XSSFTable aTable = wb.getTable(tableName);
+
+        int rowIndex = getRowIndex(aTable);
+
+        aTable.setDataRowCount(getRowCount(rowIndex));
+
+        XSSFSheet sheet = aTable.getXSSFSheet();
+
+        //Have all subclasses override getRow()?
+        XSSFRow row = getRow(sheet, rowIndex);
+
+        XSSFWorkbook tempWorkbook = sheet.getWorkbook();
+        XSSFRow formattedRow = formatCells(tempWorkbook, row);
+
+        String[] v = summary.split("\t");
+
+        //formattedRow is an out variable
+        setValuesToCells(formattedRow, v);
+
+        sheet.setActiveCell(CellAddress.A1);
+
+        aTable.updateReferences();
+    }
+
+    private int getRowCount(int rowIndex) {
+        if (isSingleLineTable()) {
+            return 1;
+        } else {
+            return rowIndex;
+        }
+    }
+
+//    private XSSFRow getRow(XSSFSheet sheet, int index) {
+//        if (isSingleLineTable()) {
+//            return sheet.getRow(index);
+//        }
+//        XSSFRow row = sheet.createRow(index);
+//        return createCells(row);
+//    }
+
+    private int getRowIndex(XSSFTable aTable) {
+        int index = aTable.getEndRowIndex();
+        if (isSingleLineTable()) {
+            return index;
+        }
+        return index + 1;
+    }
+
+    XSSFRow createCells(@NotNull XSSFRow row) {
+        for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
+            row.createCell(i);
+        }
+        return row;
+    }
 
     LocalDate getDate() {
         return this.date;
@@ -106,16 +167,16 @@ abstract class Report {
         return joiner.toString();
     }
 
-    void refreshFormulaCell(XSSFRow row, int index) {
-
-        XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
-
-        evaluator.notifyUpdateCell(row.getCell(index));
-
-        int formulaCellIndex = index + 1;
-
-        evaluator.notifySetFormula(row.getCell(formulaCellIndex));
-
-        evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
-    }
+//    void refreshFormulaCell(XSSFRow row, int index) {
+//
+//        XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
+//
+//        evaluator.notifyUpdateCell(row.getCell(index));
+//
+//        int formulaCellIndex = index + 1;
+//
+//        evaluator.notifySetFormula(row.getCell(formulaCellIndex));
+//
+//        evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
+//    }
 }
