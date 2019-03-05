@@ -26,9 +26,7 @@ public abstract class ShortAbandonReport extends Report {
 
     @Override
     public XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row){
-        if (row == null) {
-            System.out.println("In ShortAbandonReport.formatCells method. Row is null.");
-        }
+        //ShortAbandonReport requires no formatting
         return row;
     }
 
