@@ -3,7 +3,6 @@ package com.emscrm;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 
@@ -17,38 +16,7 @@ public abstract class QueueSummaryReport extends Report {
     protected QueueSummaryReport() { }
 
     @Override
-    protected void composeExcelSheet(String summary, String tableName) {
-
-        XSSFTable aTable = wb.getTable(tableName);
-
-        int rowIndex = getRowIndex(aTable);
-
-        aTable.setDataRowCount(getRowCount(rowIndex));
-
-        XSSFSheet sheet = aTable.getXSSFSheet();
-
-        XSSFRow row = getRow(sheet, rowIndex);
-
-        XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-        XSSFRow formattedRow = formatCells(tempWorkbook, row);
-
-        String[] v = summary.split("\t");
-
-        //formattedRow is an out variable
-        setValuesToCells(formattedRow, v);
-
-        aTable.updateReferences();
-    }
-
-    private int getRowCount(int rowIndex) {
-        if (isSingleLineTable()) {
-            return 1;
-        } else {
-            return rowIndex;
-        }
-    }
-
-    private XSSFRow getRow(XSSFSheet sheet, int index) {
+    protected XSSFRow getRow(XSSFSheet sheet, int index) {
         if (isSingleLineTable()) {
             return sheet.getRow(index);
         }
@@ -56,23 +24,7 @@ public abstract class QueueSummaryReport extends Report {
         return createCells(row);
     }
 
-    private int getRowIndex(XSSFTable aTable) {
-        int index = aTable.getEndRowIndex();
-        if (isSingleLineTable()) {
-            return index;
-        }
-        return index + 1;
-    }
-
-    private XSSFRow createCells(@NotNull XSSFRow row) {
-
-        for (int i = 0; i < ReportConstants.QUEUE_SUMMARY_REPORT_LENGTH; i++) {
-            row.createCell(i);
-        }
-        return row;
-    }
-
-    private XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
+    protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
         XSSFFont bodyFont = aWorkbook.createFont();
         bodyFont.setFontName("Calibri");
@@ -128,7 +80,7 @@ public abstract class QueueSummaryReport extends Report {
         return row;
     }
 
-    private void setValuesToCells(XSSFRow row, String[] v) {
+    protected void setValuesToCells(XSSFRow row, String[] v) {
         //row is an out variable
         LocalDate date = getDate();
 
