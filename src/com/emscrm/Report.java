@@ -42,7 +42,6 @@ abstract class Report {
 
         XSSFSheet sheet = aTable.getXSSFSheet();
 
-        //Have all subclasses override getRow()?
         XSSFRow row = getRow(sheet, rowIndex);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
@@ -65,14 +64,6 @@ abstract class Report {
             return rowIndex;
         }
     }
-
-//    private XSSFRow getRow(XSSFSheet sheet, int index) {
-//        if (isSingleLineTable()) {
-//            return sheet.getRow(index);
-//        }
-//        XSSFRow row = sheet.createRow(index);
-//        return createCells(row);
-//    }
 
     private int getRowIndex(XSSFTable aTable) {
         int index = aTable.getEndRowIndex();
@@ -166,17 +157,4 @@ abstract class Report {
         }
         return joiner.toString();
     }
-
-//    void refreshFormulaCell(XSSFRow row, int index) {
-//
-//        XSSFFormulaEvaluator evaluator = new XSSFFormulaEvaluator(row.getSheet().getWorkbook());
-//
-//        evaluator.notifyUpdateCell(row.getCell(index));
-//
-//        int formulaCellIndex = index + 1;
-//
-//        evaluator.notifySetFormula(row.getCell(formulaCellIndex));
-//
-//        evaluator.evaluateFormulaCell(row.getCell(formulaCellIndex));
-//    }
 }
