@@ -90,7 +90,6 @@ abstract class Report {
     private void composeExcelSheet(String summary, String tableName) {
         XSSFTable aTable = wb.getTable(tableName);
 
-        //getRowIndex(aTable) is adding an extra data row for the ShortAbandonReport class.
         int rowIndex = getRowIndex(aTable);
 
         aTable.setDataRowCount(getRowCount(rowIndex));
