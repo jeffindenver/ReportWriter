@@ -15,15 +15,8 @@ public abstract class QueueSummaryReport extends Report {
 
     protected QueueSummaryReport() { }
 
-    @Override
-    protected XSSFRow getRow(XSSFSheet sheet, int index) {
-        if (isSingleLineTable()) {
-            return sheet.getRow(index);
-        }
-        XSSFRow row = sheet.createRow(index);
-        return createCells(row);
-    }
-
+    //move cellStyle into style class and have this class hold a reference to a style
+    //Leave the setStyle here in the formatCells method.
     @Override
     protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
@@ -109,8 +102,8 @@ public abstract class QueueSummaryReport extends Report {
     }
 
     @Override
-    protected void setWorkbook(XSSFWorkbook workbook) {
-        this.wb = workbook;
+    protected int getReportLength() {
+        return 17;
     }
 
     @Override
