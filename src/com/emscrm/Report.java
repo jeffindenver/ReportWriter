@@ -15,9 +15,27 @@ import java.util.*;
 
 abstract class Report {
 
-    XSSFWorkbook wb;
+    private XSSFWorkbook wb;
 
     private LocalDate date;
+
+    protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
+
+    protected abstract int getReportLength();
+
+    protected abstract int getSourceLineMinimumLength();
+
+    protected abstract Map<String, String> getTableNames();
+
+    protected abstract String getWeeklyReportFilename();
+
+    protected abstract boolean isSingleLineTable();
+
+    protected abstract void setValuesToCells(XSSFRow row, String[] v);
+
+    private void setWorkbook(XSSFWorkbook workbook) {
+        this.wb = workbook;
+    }
 
     XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setDate(source);
@@ -40,16 +58,12 @@ abstract class Report {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
-    protected abstract int getSourceLineMinimumLength();
-
     void openWorkbook() throws InvalidFormatException, IOException {
         System.out.println("In openWorkbook() method." + " " + this.toString());
         ExcelOps excelOps = new ExcelOps();
         XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
         setWorkbook(workbook);
     }
-
-    protected abstract Map<String, String> getTableNames();
 
     String getMatchingLine(List<String> source, String matcher) {
         Optional<String> matchedLine = source.stream()
@@ -74,9 +88,9 @@ abstract class Report {
     }
 
     private void composeExcelSheet(String summary, String tableName) {
-
         XSSFTable aTable = wb.getTable(tableName);
 
+        //getRowIndex(aTable) is adding an extra data row for the ShortAbandonReport class.
         int rowIndex = getRowIndex(aTable);
 
         aTable.setDataRowCount(getRowCount(rowIndex));
@@ -86,6 +100,7 @@ abstract class Report {
         XSSFRow row = getRow(sheet, rowIndex);
 
         XSSFWorkbook tempWorkbook = sheet.getWorkbook();
+
         XSSFRow formattedRow = formatCells(tempWorkbook, row);
 
         String[] v = summary.split("\t");
@@ -104,10 +119,6 @@ abstract class Report {
                 .findFirst();
     }
 
-    protected abstract String getWeeklyReportFilename();
-
-    protected abstract void setWorkbook(XSSFWorkbook workbook);
-
     private String excludeLastElement(String[] v) {
         StringJoiner joiner = new StringJoiner("\t");
         for (int i = 0; i < v.length - 1; i++) {
@@ -116,7 +127,15 @@ abstract class Report {
         return joiner.toString();
     }
 
-    private int getRowIndex(XSSFTable aTable) {
+    XSSFRow getRow(XSSFSheet sheet, int index) {
+        if (isSingleLineTable()) {
+            return sheet.getRow(index);
+        }
+        XSSFRow row = sheet.createRow(index);
+        return createCells(row);
+    }
+
+    int getRowIndex(XSSFTable aTable) {
         int index = aTable.getEndRowIndex();
         if (isSingleLineTable()) {
             return index;
@@ -132,16 +151,8 @@ abstract class Report {
         }
     }
 
-    protected abstract XSSFRow getRow(XSSFSheet sheet, int index);
-
-    protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
-
-    protected abstract void setValuesToCells(XSSFRow row, String[] v);
-
-    protected abstract boolean isSingleLineTable();
-
-    XSSFRow createCells(@NotNull XSSFRow row) {
-        for (int i = 0; i < ReportConstants.QBD_REPORT_LENGTH; i++) {
+    private XSSFRow createCells(@NotNull XSSFRow row) {
+        for (int i = 0; i < getReportLength(); i++) {
             row.createCell(i);
         }
         return row;
