@@ -1,7 +1,6 @@
 package com.emscrm;
 
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.time.LocalDate;
@@ -15,59 +14,30 @@ public abstract class QueueSummaryReport extends Report {
 
     protected QueueSummaryReport() { }
 
-    //move cellStyle into style class and have this class hold a reference to a style
-    //Leave the setStyle here in the formatCells method.
     @Override
     protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
-        XSSFFont bodyFont = aWorkbook.createFont();
-        bodyFont.setFontName("Calibri");
-        bodyFont.setFontHeightInPoints((short) 9);
+        ReportStyle reportStyle = new ReportStyle(aWorkbook);
 
-        XSSFCellStyle monthAndDayStyle = aWorkbook.createCellStyle();
-        XSSFDataFormat monthAndDayFormat = aWorkbook.createDataFormat();
-        monthAndDayStyle.setDataFormat(monthAndDayFormat.getFormat("d-mmm-yy"));
-        monthAndDayStyle.setAlignment(HorizontalAlignment.CENTER);
-        monthAndDayStyle.setFont(bodyFont);
-
-        XSSFCellStyle wholeNumStyle = aWorkbook.createCellStyle();
-        XSSFDataFormat wholeNumFormat = aWorkbook.createDataFormat();
-        wholeNumStyle.setDataFormat(wholeNumFormat.getFormat("General"));
-        wholeNumStyle.setAlignment(HorizontalAlignment.CENTER);
-        wholeNumStyle.setFont(bodyFont);
-
-        XSSFCellStyle durationStyle = aWorkbook.createCellStyle();
-        XSSFDataFormat timeFormat = aWorkbook.createDataFormat();
-        durationStyle.setDataFormat(timeFormat.getFormat("[h]:mm:ss"));
-        durationStyle.setAlignment(HorizontalAlignment.CENTER);
-        durationStyle.setFont(bodyFont);
-
-        XSSFCellStyle percentStyle = aWorkbook.createCellStyle();
-        XSSFDataFormat percentFormat = aWorkbook.createDataFormat();
-        percentStyle.setDataFormat(percentFormat.getFormat("0.00%"));
-        percentStyle.setAlignment(HorizontalAlignment.CENTER);
-        percentStyle.setFont(bodyFont);
-
-        row.getCell(0).setCellStyle(monthAndDayStyle);
-        row.getCell(1).setCellStyle(wholeNumStyle);
-        row.getCell(2).setCellStyle(wholeNumStyle);
-        row.getCell(3).setCellStyle(percentStyle);
-        row.getCell(4).setCellStyle(wholeNumStyle);
-        row.getCell(5).setCellStyle(percentStyle);
-
-        row.getCell(6).setCellStyle(durationStyle);
-        row.getCell(7).setCellStyle(percentStyle);
-        row.getCell(8).setCellStyle(durationStyle);
-        row.getCell(9).setCellStyle(durationStyle);
-        row.getCell(10).setCellStyle(durationStyle);
-        row.getCell(11).setCellStyle(durationStyle);
-        row.getCell(12).setCellStyle(wholeNumStyle);
-        row.getCell(13).setCellStyle(wholeNumStyle);
-        row.getCell(14).setCellStyle(wholeNumStyle);
-        row.getCell(15).setCellStyle(wholeNumStyle);
+        row.getCell(0).setCellStyle(reportStyle.monthAndDayStyle);
+        row.getCell(1).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(2).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(3).setCellStyle(reportStyle.percentStyle);
+        row.getCell(4).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(5).setCellStyle(reportStyle.percentStyle);
+        row.getCell(6).setCellStyle(reportStyle.durationStyle);
+        row.getCell(7).setCellStyle(reportStyle.percentStyle);
+        row.getCell(8).setCellStyle(reportStyle.durationStyle);
+        row.getCell(9).setCellStyle(reportStyle.durationStyle);
+        row.getCell(10).setCellStyle(reportStyle.durationStyle);
+        row.getCell(11).setCellStyle(reportStyle.durationStyle);
+        row.getCell(12).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(13).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(14).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(15).setCellStyle(reportStyle.wholeNumStyle);
 
         //adjusted abandon percentage
-        row.getCell(16).setCellStyle(percentStyle);
+        row.getCell(16).setCellStyle(reportStyle.percentStyle);
         int currentRowIndex = row.getCell(16).getRowIndex() + 1; //Add one because POI is zero based and Excel is one based.
         row.getCell(16).setCellFormula("(E" + currentRowIndex + "-P" + currentRowIndex + ")/B" + currentRowIndex);
 
