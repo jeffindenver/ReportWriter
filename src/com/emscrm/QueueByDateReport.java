@@ -17,15 +17,6 @@ public abstract class QueueByDateReport extends Report {
     protected QueueByDateReport() { }
 
     @Override
-    protected XSSFRow getRow(XSSFSheet sheet, int index) {
-        if (isSingleLineTable()) {
-            return sheet.getRow(index);
-        }
-        XSSFRow row = sheet.createRow(index);
-        return createCells(row);
-    }
-
-    @Override
     protected XSSFRow formatCells(XSSFWorkbook aWorkbook, XSSFRow row) {
 
         XSSFFont bodyFont = aWorkbook.createFont();
@@ -103,8 +94,8 @@ public abstract class QueueByDateReport extends Report {
     }
 
     @Override
-    protected void setWorkbook(XSSFWorkbook workbook) {
-        this.wb = workbook;
+    protected int getReportLength() {
+        return 15;
     }
 
     @Override
