@@ -15,7 +15,12 @@ public abstract class ShortAbandonReport extends Report {
 
     @Override
     protected XSSFRow getRow(XSSFSheet sheet, int index) {
-            return sheet.getRow(index - 1);
+        return sheet.getRow(index);
+    }
+
+    @Override
+    protected int getRowIndex(XSSFTable aTable) {
+        return aTable.getEndRowIndex();
     }
 
     @Override
@@ -31,12 +36,13 @@ public abstract class ShortAbandonReport extends Report {
     }
 
     @Override
+    protected int getReportLength() {
+        return 1;
+    }
+
+    @Override
     public int getSourceLineMinimumLength() {
         return 2;
     }
 
-    @Override
-    protected void setWorkbook(XSSFWorkbook workbook) {
-        this.wb = workbook;
-    }
 }
