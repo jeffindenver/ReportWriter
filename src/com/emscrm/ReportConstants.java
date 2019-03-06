@@ -14,9 +14,6 @@ import static java.util.Map.entry;
  */
 final class ReportConstants {
 
-    final static int QBD_REPORT_LENGTH = 15;
-    //final static int QUEUE_SUMMARY_REPORT_LENGTH = 17;
-
     final static Map<String, Report> REPORT_TYPES = initializeMap();
 
     private ReportConstants() {
