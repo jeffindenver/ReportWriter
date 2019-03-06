@@ -11,6 +11,7 @@ import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -113,6 +114,7 @@ class Controller {
                     model.runAndWriteReport(source);
                 } catch (InvalidFormatException | IOException e) {
                     view.printError(e.getMessage());
+                    System.out.println(Arrays.toString(e.getStackTrace()));
                 }
                 count++;
                 publish(filepath);
