@@ -72,7 +72,7 @@ public abstract class QueueSummaryReport extends Report {
     }
 
     @Override
-    protected int getReportLength() {
+    protected int getReportRowLength() {
         return 17;
     }
 

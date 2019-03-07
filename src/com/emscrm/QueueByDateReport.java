@@ -66,7 +66,7 @@ public abstract class QueueByDateReport extends Report {
     }
 
     @Override
-    protected int getReportLength() {
+    protected int getReportRowLength() {
         return 15;
     }
 

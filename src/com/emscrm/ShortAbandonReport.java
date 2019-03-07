@@ -36,7 +36,7 @@ public abstract class ShortAbandonReport extends Report {
     }
 
     @Override
-    protected int getReportLength() {
+    protected int getReportRowLength() {
         return 1;
     }
 

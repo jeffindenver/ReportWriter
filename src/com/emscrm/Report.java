@@ -21,7 +21,7 @@ abstract class Report {
 
     protected abstract XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row);
 
-    protected abstract int getReportLength();
+    protected abstract int getReportRowLength();
 
     protected abstract int getSourceLineMinimumLength();
 
@@ -151,7 +151,7 @@ abstract class Report {
     }
 
     private XSSFRow createCells(@NotNull XSSFRow row) {
-        for (int i = 0; i < getReportLength(); i++) {
+        for (int i = 0; i < getReportRowLength(); i++) {
             row.createCell(i);
         }
         return row;
