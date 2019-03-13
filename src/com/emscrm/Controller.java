@@ -131,7 +131,6 @@ class Controller {
         @Override
         protected void done() {
             try {
-                System.out.println("Inside done method of ProcessFileTask. Count of files processed is " + this.get());
                 countOfFilesProcessed = this.get();
                 view.printMessage("Finished.");
                 updateView();
