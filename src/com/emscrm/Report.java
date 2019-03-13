@@ -38,7 +38,7 @@ abstract class Report {
     }
 
     XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
-        setDate(source);
+        setReportDate(source);
 
         List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
 
@@ -52,6 +52,20 @@ abstract class Report {
             composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
         }
         return wb;
+    }
+
+    private void setReportDate(List<String> source) {
+        DateParser dp = new DateParser();
+        Optional<String> dateline = getDatelineFromList(dp, source);
+        System.out.println(dateline.orElse("Report Class: dateline is empty."));
+        Optional<LocalDate> theDate = dateline.map(dp::parseDate);
+        this.date = theDate.orElse(LocalDate.MIN);
+    }
+
+    private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
+        return source.stream()
+                .filter(dp::containsDate)
+                .findFirst();
     }
 
     private List<String> filterByLength(List<String> list, int minLength) {
@@ -112,12 +126,6 @@ abstract class Report {
         aTable.updateReferences();
     }
 
-    private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
-        return source.stream()
-                .filter(dp::containsDate)
-                .findFirst();
-    }
-
     private String excludeLastElement(String[] v) {
         StringJoiner joiner = new StringJoiner("\t");
         for (int i = 0; i < v.length - 1; i++) {
@@ -161,12 +169,5 @@ abstract class Report {
         return this.date;
     }
 
-    private void setDate(List<String> source) {
-        DateParser dp = new DateParser();
 
-        Optional<String> dateline = getDatelineFromList(dp, source);
-        System.out.println(dateline.orElse("Report Class: dateline is empty."));
-        Optional<LocalDate> theDate = dateline.map(dp::parseDate);
-        this.date = theDate.orElse(LocalDate.MIN);
-    }
 }
