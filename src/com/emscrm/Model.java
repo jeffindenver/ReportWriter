@@ -20,11 +20,8 @@ class Model {
     }
 
     void runAndWriteReport(List<String> source) throws InvalidFormatException, IOException {
-        System.out.println("Reached model::runAndWriteReport");
         XSSFWorkbook wb = report.run(source);
-
         wb.setForceFormulaRecalculation(true);
-
         writeWorkbookToFile(wb);
     }
 
