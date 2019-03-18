@@ -68,7 +68,6 @@ public abstract class QueueSummaryReport extends Report {
         row.getCell(13).setCellValue(Double.parseDouble(v[13]));
         row.getCell(14).setCellValue(Double.parseDouble(v[14]));
         row.getCell(15).setCellValue(Double.parseDouble(v[20]));
-
     }
 
     @Override
