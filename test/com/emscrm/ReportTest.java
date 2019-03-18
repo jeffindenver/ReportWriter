@@ -46,7 +46,7 @@ class ReportTest {
     @Test
     void openWorkbook() {
         try{
-            report.openWorkbook();
+            report.readWorkbookFile();
         } catch (InvalidFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
