@@ -4,12 +4,12 @@ import org.apache.poi.xssf.usermodel.*;
 
 public abstract class ShortAbandonReport extends Report {
 
-    private final int shortAbandIndex;
+    private final int shortAbandCellIndex;
     protected String weeklyReportFilename;
     private double shortAbandons;
 
     protected ShortAbandonReport() {
-        shortAbandIndex = 13;
+        shortAbandCellIndex = 13;
         shortAbandons = 0.0;
     }
 
@@ -26,7 +26,7 @@ public abstract class ShortAbandonReport extends Report {
     @Override
     protected void setValuesToCells(XSSFRow row, String[] v) {
         this.shortAbandons = Double.valueOf(v[1]);
-        row.getCell(shortAbandIndex).setCellValue(shortAbandons);
+        row.getCell(shortAbandCellIndex).setCellValue(shortAbandons);
     }
 
     @Override
