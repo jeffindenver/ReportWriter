@@ -25,7 +25,7 @@ abstract class Report {
 
     protected abstract int getSourceLineMinimumLength();
 
-    protected abstract Map<String, String> getTableNames();
+    protected abstract Map<String, String> getTargetTableNames();
 
     protected abstract String getWeeklyReportFilename();
 
@@ -33,23 +33,19 @@ abstract class Report {
 
     protected abstract void setValuesToCells(XSSFRow row, String[] v);
 
-    private void setWorkbook(XSSFWorkbook workbook) {
-        this.wb = workbook;
-    }
-
     XSSFWorkbook run(List<String> source) throws InvalidFormatException, IOException {
         setReportDate(source);
 
         List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
 
-        openWorkbook();
+        setWorkbook(readWorkbookFile());
 
-        Set<String> keySet = getTableNames().keySet();
+        Set<String> keySet = getTargetTableNames().keySet();
 
-        for (String tableName : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, tableName);
-            String cleanedSummary = cleanString(summary);
-            composeExcelSheet(cleanedSummary, getTableNames().get(tableName));
+        for (String table : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, table);
+            String cleanedSummary = cleanAndFormat(summary);
+            composeExcelSheet(cleanedSummary, getTargetTableNames().get(table));
         }
         return wb;
     }
@@ -72,11 +68,13 @@ abstract class Report {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
-    void openWorkbook() throws InvalidFormatException, IOException {
-        System.out.println("In openWorkbook() method." + " " + this.toString());
+    private void setWorkbook(XSSFWorkbook workbook) {
+        this.wb = workbook;
+    }
+
+    XSSFWorkbook readWorkbookFile() throws InvalidFormatException, IOException {
         ExcelOps excelOps = new ExcelOps();
-        XSSFWorkbook workbook = (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
-        setWorkbook(workbook);
+        return (XSSFWorkbook) excelOps.openWorkbook(getWeeklyReportFilename());
     }
 
     String getMatchingLine(List<String> source, String matcher) {
@@ -86,7 +84,7 @@ abstract class Report {
         return matchedLine.orElse("");
     }
 
-    private String cleanString(String summary) {
+    private String cleanAndFormat(String summary) {
         System.out.println("Summary line equals " + summary);
 
         String cleanedSummary = summary.replaceAll("\t:", "\t0:");
@@ -104,17 +102,15 @@ abstract class Report {
     private void composeExcelSheet(String summary, String tableName) {
         XSSFTable aTable = wb.getTable(tableName);
 
-        int rowIndex = getRowIndex(aTable);
+        int rowIndex = incrementRowIndexOrNot(aTable);
 
-        aTable.setDataRowCount(getRowCount(rowIndex));
+        aTable.setDataRowCount(isSingleLineTable() ? 1 : rowIndex);
 
         XSSFSheet sheet = aTable.getXSSFSheet();
 
-        XSSFRow row = getRow(sheet, rowIndex);
+        XSSFRow row = createNewRowOrGetExistingRow(sheet, rowIndex);
 
-        XSSFWorkbook tempWorkbook = sheet.getWorkbook();
-
-        XSSFRow formattedRow = formatCells(tempWorkbook, row);
+        XSSFRow formattedRow = formatCells(wb, row);
 
         String[] v = summary.split("\t");
 
@@ -134,7 +130,7 @@ abstract class Report {
         return joiner.toString();
     }
 
-    XSSFRow getRow(XSSFSheet sheet, int index) {
+    XSSFRow createNewRowOrGetExistingRow(XSSFSheet sheet, int index) {
         if (isSingleLineTable()) {
             return sheet.getRow(index);
         }
@@ -142,20 +138,12 @@ abstract class Report {
         return createCells(row);
     }
 
-    int getRowIndex(XSSFTable aTable) {
+    int incrementRowIndexOrNot(XSSFTable aTable) {
         int index = aTable.getEndRowIndex();
         if (isSingleLineTable()) {
             return index;
         }
         return index + 1;
-    }
-
-    private int getRowCount(int rowIndex) {
-        if (isSingleLineTable()) {
-            return 1;
-        } else {
-            return rowIndex;
-        }
     }
 
     private XSSFRow createCells(@NotNull XSSFRow row) {
