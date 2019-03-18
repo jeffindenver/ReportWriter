@@ -14,12 +14,12 @@ public abstract class ShortAbandonReport extends Report {
     }
 
     @Override
-    protected XSSFRow getRow(XSSFSheet sheet, int index) {
+    protected XSSFRow createNewRowOrGetExistingRow(XSSFSheet sheet, int index) {
         return sheet.getRow(index);
     }
 
     @Override
-    protected int getRowIndex(XSSFTable aTable) {
+    protected int incrementRowIndexOrNot(XSSFTable aTable) {
         return aTable.getEndRowIndex();
     }
 
