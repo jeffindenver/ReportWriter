@@ -27,7 +27,7 @@ public final class VMNetworkForGoodQBD extends QueueByDateReport {
     }
 
     @Override
-    public Map<String, String> getTableNames() {
+    public Map<String, String> getTargetTableNames() {
         return tableNames;
     }
 

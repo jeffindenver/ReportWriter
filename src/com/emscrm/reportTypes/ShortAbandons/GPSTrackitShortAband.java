@@ -23,7 +23,7 @@ public final class GPSTrackitShortAband extends ShortAbandonReport {
     }
 
     @Override
-    public Map<String, String> getTableNames() {
+    public Map<String, String> getTargetTableNames() {
         return tableNames;
     }
 

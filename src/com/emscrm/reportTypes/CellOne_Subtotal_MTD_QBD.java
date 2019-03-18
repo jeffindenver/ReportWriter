@@ -22,7 +22,7 @@ public final class CellOne_Subtotal_MTD_QBD extends QueueByDateReport {
     }
 
     @Override
-    public Map<String, String> getTableNames() {
+    public Map<String, String> getTargetTableNames() {
         return weekToDateTableNames;
     }
 

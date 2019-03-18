@@ -24,7 +24,7 @@ public class Three_DX_Email_QS extends QueueSummaryReport {
     }
 
     @Override
-    protected Map<String, String> getTableNames() {
+    protected Map<String, String> getTargetTableNames() {
         return tableNames;
     }
 

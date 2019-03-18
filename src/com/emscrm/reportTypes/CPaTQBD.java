@@ -27,7 +27,7 @@ public final class CPaTQBD extends QueueByDateReport {
     }
 
     @Override
-    public Map<String, String> getTableNames() {
+    public Map<String, String> getTargetTableNames() {
         return tableNames;
     }
 
