@@ -22,7 +22,7 @@ class ModelTest {
     void setUp() {
         model = new Model(report);
         try {
-            source = model.readXlsFileToList(inputFilename);
+            source = model.readXlsSheetToList(inputFilename);
         } catch(InvalidFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -42,7 +42,7 @@ class ModelTest {
         @SuppressWarnings("unchecked")
         List<String> testList = Collections.EMPTY_LIST;
         try {
-            testList = model.readXlsFileToList(inputFilename);
+            testList = model.readXlsSheetToList(inputFilename);
         } catch(InvalidFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }

@@ -24,7 +24,7 @@ class ShortAbandonReportTest {
         testList = Collections.EMPTY_LIST;
         try {
             String inputFilename = "testShortAbandFile.xls";
-            testList = model.readXlsFileToList(inputFilename);
+            testList = model.readXlsSheetToList(inputFilename);
         } catch(InvalidFormatException | IOException ex) {
             System.out.println(ex.getMessage());
         }
