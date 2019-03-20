@@ -20,10 +20,10 @@ public abstract class QueueSummaryReport extends Report {
         ReportStyle reportStyle = new ReportStyle(aWorkbook);
 
         row.getCell(0).setCellStyle(reportStyle.monthAndDayStyle);
-        row.getCell(1).setCellStyle(reportStyle.wholeNumStyle);
-        row.getCell(2).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(1).setCellStyle(reportStyle.generalStyle);
+        row.getCell(2).setCellStyle(reportStyle.generalStyle);
         row.getCell(3).setCellStyle(reportStyle.percentStyle);
-        row.getCell(4).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(4).setCellStyle(reportStyle.generalStyle);
         row.getCell(5).setCellStyle(reportStyle.percentStyle);
         row.getCell(6).setCellStyle(reportStyle.durationStyle);
         row.getCell(7).setCellStyle(reportStyle.percentStyle);
@@ -31,10 +31,10 @@ public abstract class QueueSummaryReport extends Report {
         row.getCell(9).setCellStyle(reportStyle.durationStyle);
         row.getCell(10).setCellStyle(reportStyle.durationStyle);
         row.getCell(11).setCellStyle(reportStyle.durationStyle);
-        row.getCell(12).setCellStyle(reportStyle.wholeNumStyle);
-        row.getCell(13).setCellStyle(reportStyle.wholeNumStyle);
-        row.getCell(14).setCellStyle(reportStyle.wholeNumStyle);
-        row.getCell(15).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(12).setCellStyle(reportStyle.generalStyle);
+        row.getCell(13).setCellStyle(reportStyle.generalStyle);
+        row.getCell(14).setCellStyle(reportStyle.generalStyle);
+        row.getCell(15).setCellStyle(reportStyle.generalStyle);
 
         //adjusted abandon percentage
         row.getCell(16).setCellStyle(reportStyle.percentStyle);
@@ -78,6 +78,11 @@ public abstract class QueueSummaryReport extends Report {
     @Override
     public int getSourceLineMinimumLength() {
         return 3;
+    }
+
+    @Override
+    protected int getSourceSheetIndex() {
+        return 1;
     }
 
 }
