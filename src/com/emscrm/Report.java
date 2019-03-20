@@ -25,6 +25,8 @@ abstract class Report {
 
     protected abstract int getSourceLineMinimumLength();
 
+    protected abstract int getSourceSheetIndex();
+
     protected abstract Map<String, String> getTargetTableNames();
 
     protected abstract String getWeeklyReportFilename();
@@ -38,12 +40,17 @@ abstract class Report {
 
         List<String> lengthFilteredSource = filterByLength(source, getSourceLineMinimumLength());
 
-        setWorkbook(readWorkbookFile());
+        setTargetWorkbook(readWorkbookFile());
 
         Set<String> keySet = getTargetTableNames().keySet();
 
         for (String table : keySet) {
             String summary = getMatchingLine(lengthFilteredSource, table);
+
+//            if (summary.equals("No matched lines")) {
+//                continue;
+//            }
+
             String cleanedSummary = cleanAndFormat(summary);
             composeExcelSheet(cleanedSummary, getTargetTableNames().get(table));
         }
@@ -53,9 +60,8 @@ abstract class Report {
     private void setReportDate(List<String> source) {
         DateParser dp = new DateParser();
         Optional<String> dateline = getDatelineFromList(dp, source);
-        System.out.println(dateline.orElse("Report Class: dateline is empty."));
         Optional<LocalDate> theDate = dateline.map(dp::parseDate);
-        this.date = theDate.orElse(LocalDate.MIN);
+        this.date = theDate.orElse(LocalDate.now());
     }
 
     private Optional<String> getDatelineFromList(DateParser dp, List<String> source) {
@@ -68,7 +74,7 @@ abstract class Report {
         return new ListFilter().filterByLength(minLength, list, "\t");
     }
 
-    private void setWorkbook(XSSFWorkbook workbook) {
+    private void setTargetWorkbook(XSSFWorkbook workbook) {
         this.wb = workbook;
     }
 
@@ -81,7 +87,7 @@ abstract class Report {
         Optional<String> matchedLine = source.stream()
                 .filter(s -> s.contains(matcher))
                 .findFirst();
-        return matchedLine.orElse("");
+        return matchedLine.orElse("No matched lines");
     }
 
     private String cleanAndFormat(String summary) {
@@ -100,11 +106,15 @@ abstract class Report {
     }
 
     private void composeExcelSheet(String summary, String tableName) {
+        System.out.format("Table name is %s.%n", tableName);
+
         XSSFTable aTable = wb.getTable(tableName);
 
         int rowIndex = incrementRowIndexOrNot(aTable);
 
         aTable.setDataRowCount(isSingleLineTable() ? 1 : rowIndex);
+
+        System.out.println("Data row count is " + aTable.getDataRowCount());
 
         XSSFSheet sheet = aTable.getXSSFSheet();
 
