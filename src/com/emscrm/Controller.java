@@ -71,7 +71,7 @@ class Controller {
         @SuppressWarnings("unchecked")
         List<String> list = Collections.EMPTY_LIST;
         try {
-            list = model.readXlsFileToList(filename);
+            list = model.readXlsSheetToList(filename);
 
         } catch (IOException | InvalidFormatException e) {
             view.printError(e.getMessage());
