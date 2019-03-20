@@ -5,7 +5,7 @@ import org.apache.poi.xssf.usermodel.*;
 
 class ReportStyle {
 
-    XSSFCellStyle wholeNumStyle;
+    XSSFCellStyle generalStyle;
     XSSFCellStyle durationStyle;
     XSSFCellStyle percentStyle;
     XSSFCellStyle monthAndDayStyle;
@@ -26,11 +26,11 @@ class ReportStyle {
         monthAndDayStyle.setAlignment(HorizontalAlignment.CENTER);
         monthAndDayStyle.setFont(bodyFont);
 
-        wholeNumStyle = aWorkbook.createCellStyle();
+        generalStyle = aWorkbook.createCellStyle();
         XSSFDataFormat wholeNumFormat = aWorkbook.createDataFormat();
-        wholeNumStyle.setDataFormat(wholeNumFormat.getFormat("General"));
-        wholeNumStyle.setAlignment(HorizontalAlignment.CENTER);
-        wholeNumStyle.setFont(bodyFont);
+        generalStyle.setDataFormat(wholeNumFormat.getFormat("General"));
+        generalStyle.setAlignment(HorizontalAlignment.CENTER);
+        generalStyle.setFont(bodyFont);
 
         durationStyle = aWorkbook.createCellStyle();
         XSSFDataFormat timeFormat = aWorkbook.createDataFormat();

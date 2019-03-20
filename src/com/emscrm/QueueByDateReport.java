@@ -21,19 +21,19 @@ public abstract class QueueByDateReport extends Report {
         ReportStyle reportStyle = new ReportStyle(aWorkbook);
 
         row.getCell(0).setCellStyle(reportStyle.monthAndDayStyle);
-        row.getCell(1).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(1).setCellStyle(reportStyle.generalStyle);
         row.getCell(2).setCellStyle(reportStyle.durationStyle);
         row.getCell(3).setCellStyle(reportStyle.durationStyle);
         row.getCell(4).setCellStyle(reportStyle.durationStyle);
         row.getCell(5).setCellStyle(reportStyle.durationStyle);
-        row.getCell(6).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(6).setCellStyle(reportStyle.generalStyle);
         row.getCell(7).setCellStyle(reportStyle.durationStyle);
         row.getCell(8).setCellStyle(reportStyle.percentStyle);
         row.getCell(9).setCellStyle(reportStyle.durationStyle);
         row.getCell(10).setCellStyle(reportStyle.durationStyle);
         row.getCell(11).setCellStyle(reportStyle.percentStyle);
-        row.getCell(12).setCellStyle(reportStyle.wholeNumStyle);
-        row.getCell(13).setCellStyle(reportStyle.wholeNumStyle);
+        row.getCell(12).setCellStyle(reportStyle.generalStyle);
+        row.getCell(13).setCellStyle(reportStyle.generalStyle);
         row.getCell(14).setCellStyle(reportStyle.percentStyle);
 
         int currentRowIndex = row.getCell(12).getRowIndex() + 1; //Add one because POI is zero based and Excel is one based.
@@ -73,6 +73,11 @@ public abstract class QueueByDateReport extends Report {
     @Override
     public int getSourceLineMinimumLength() {
         return 3;
+    }
+
+    @Override
+    protected int getSourceSheetIndex() {
+        return 1;
     }
 
 }
