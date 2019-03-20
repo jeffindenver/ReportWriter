@@ -25,10 +25,10 @@ class Model {
         writeWorkbookToFile(wb);
     }
 
-    List<String> readXlsFileToList(String filename) throws InvalidFormatException, IOException {
+    List<String> readXlsSheetToList(String filename) throws InvalidFormatException, IOException {
         ExcelOps excelOps = new ExcelOps();
         HSSFWorkbook wb = (HSSFWorkbook) excelOps.openWorkbook(filename);
-        return excelOps.sheetToTabList(wb, 0);
+        return excelOps.sheetToTabList(wb, report.getSourceSheetIndex());
     }
 
     private void writeWorkbookToFile(XSSFWorkbook wb) {
