@@ -1,4 +1,6 @@
-package com.emscrm;
+package com.emscrm.reportTypes;
+
+import com.emscrm.FuzeQueueSummary;
 
 import java.util.Map;
 
