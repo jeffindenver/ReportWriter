@@ -46,7 +46,14 @@ final class ReportConstants {
                 entry("NaturalWirelessShortAband", new NaturalWirelessShortAband()),
                 entry("NelnetShortAband", new NelnetShortAband()),
                 entry("NetworkForGoodShortAband", new NetworkForGoodShortAband()),
-                entry("PingIdentityShortAband", new PingIdentityShortAband())
+                entry("PingIdentityShortAband", new PingIdentityShortAband()),
+                entry("BloominBrandsQS", new BloominBrandsQS()),
+                entry("ContractorSupportQS", new ContractorSupportQS()),
+                entry("IvrQS", new IvrQS()),
+                entry("Queue2QS", new Queue2QS()),
+                entry("Queue3QS", new Queue3QS()),
+                entry("RegularQS", new RegularQS())
+
         );
     }
 
