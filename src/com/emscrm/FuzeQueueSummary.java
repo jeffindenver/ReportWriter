@@ -1,7 +1,13 @@
 package com.emscrm;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFTable;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public abstract class FuzeQueueSummary extends Report {
 
@@ -44,10 +50,37 @@ public abstract class FuzeQueueSummary extends Report {
     }
 
     @Override
+    XSSFRow createNewRowOrGetExistingRow(XSSFSheet sheet, int index) {
+
+        String matchingMonth = getPreviousMonth();
+        XSSFTable theTable = sheet.getTables().get(0);
+
+        int startRowIndex = theTable.getStartRowIndex();
+        int endRowIndex = theTable.getEndRowIndex();
+
+        XSSFRow returnRow = null;
+
+        for (int i = startRowIndex; i < endRowIndex; i++) {
+            if (sheet.getRow(i).getCell(0).getStringCellValue().contains(matchingMonth)) {
+                returnRow = sheet.getRow(i);
+                break;
+            } else {
+                returnRow = createCells(sheet.createRow(endRowIndex + 1));
+            }
+        }
+
+        return returnRow;
+    }
+
+    @Override
     protected void setValuesToCells(XSSFRow row, String[] v) {
         //row is an out variable
 
-        //Cell 0 should already be populated with the month
+        System.out.println("Element 15 is " + v[15] + ".");
+        double durationAsFraction = DurationUtility.toFractionOfDay(v[15]);
+        System.out.println("Duration as fraction is " + durationAsFraction);
+
+        row.getCell(0).setCellValue(getPreviousMonth());
         row.getCell(1).setCellValue(v[1]);
         row.getCell(2).setCellValue(Double.parseDouble(v[2]));
         row.getCell(3).setCellValue(Double.parseDouble(v[3]));
@@ -60,8 +93,8 @@ public abstract class FuzeQueueSummary extends Report {
         row.getCell(10).setCellValue(Double.parseDouble(v[10]));
         row.getCell(11).setCellValue(Double.parseDouble(v[11]));
         row.getCell(12).setCellValue(Double.parseDouble(v[12]));
-        row.getCell(13).setCellValue(Double.parseDouble(v[13]) / 100);
-        row.getCell(14).setCellValue(Double.parseDouble(v[14]) / 100);
+        row.getCell(13).setCellValue(Double.parseDouble(v[13]));
+        row.getCell(14).setCellValue(Double.parseDouble(v[14]));
         row.getCell(15).setCellValue(DurationUtility.toFractionOfDay(v[15]));
         row.getCell(16).setCellValue(DurationUtility.toFractionOfDay(v[16]));
         row.getCell(17).setCellValue(DurationUtility.toFractionOfDay(v[17]));
@@ -73,12 +106,17 @@ public abstract class FuzeQueueSummary extends Report {
         row.getCell(23).setCellValue(Double.parseDouble(v[23]));
         row.getCell(24).setCellValue(Double.parseDouble(v[24]));
         row.getCell(25).setCellValue(Double.parseDouble(v[25]));
-        row.getCell(26).setCellValue(Double.parseDouble(v[26]));
+    }
+
+    private String getPreviousMonth() {
+        LocalDate current = LocalDate.now();
+        LocalDate lastMonth = current.withMonth(current.getMonthValue() - 1);
+        return lastMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.US);
     }
 
     @Override
     protected int getReportRowLength() {
-        return 26;
+        return 27;
     }
 
     @Override
@@ -88,7 +126,7 @@ public abstract class FuzeQueueSummary extends Report {
 
     @Override
     protected int getSourceSheetIndex() {
-        return 2;
+        return 1;
     }
 
 }
