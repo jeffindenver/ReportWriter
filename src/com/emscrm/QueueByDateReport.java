@@ -77,7 +77,7 @@ public abstract class QueueByDateReport extends Report {
 
     @Override
     protected int getSourceSheetIndex() {
-        return 1;
+        return 0;
     }
 
 }
