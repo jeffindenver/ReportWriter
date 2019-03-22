@@ -47,9 +47,9 @@ abstract class Report {
         for (String table : keySet) {
             String summary = getMatchingLine(lengthFilteredSource, table);
 
-//            if (summary.equals("No matched lines")) {
-//                continue;
-//            }
+            if (summary.equals("No matched lines")) {
+                continue;
+            }
 
             String cleanedSummary = cleanAndFormat(summary);
             composeExcelSheet(cleanedSummary, getTargetTableNames().get(table));
@@ -106,15 +106,12 @@ abstract class Report {
     }
 
     private void composeExcelSheet(String summary, String tableName) {
-        System.out.format("Table name is %s.%n", tableName);
 
         XSSFTable aTable = wb.getTable(tableName);
 
         int rowIndex = incrementRowIndexOrNot(aTable);
 
         aTable.setDataRowCount(isSingleLineTable() ? 1 : rowIndex);
-
-        System.out.println("Data row count is " + aTable.getDataRowCount());
 
         XSSFSheet sheet = aTable.getXSSFSheet();
 
@@ -156,7 +153,7 @@ abstract class Report {
         return index + 1;
     }
 
-    private XSSFRow createCells(@NotNull XSSFRow row) {
+    XSSFRow createCells(@NotNull XSSFRow row) {
         for (int i = 0; i < getReportRowLength(); i++) {
             row.createCell(i);
         }
