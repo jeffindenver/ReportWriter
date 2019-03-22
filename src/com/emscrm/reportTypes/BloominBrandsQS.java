@@ -30,6 +30,6 @@ public class BloominBrandsQS extends FuzeQueueSummary {
 
     @Override
     public String toString() {
-        return reportName;
+        return "Bloomin Brands";
     }
 }

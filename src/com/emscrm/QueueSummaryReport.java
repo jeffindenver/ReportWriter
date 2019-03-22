@@ -82,7 +82,7 @@ public abstract class QueueSummaryReport extends Report {
 
     @Override
     protected int getSourceSheetIndex() {
-        return 1;
+        return 0;
     }
 
 }

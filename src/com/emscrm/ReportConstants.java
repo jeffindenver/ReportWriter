@@ -52,7 +52,8 @@ final class ReportConstants {
                 entry("IvrQS", new IvrQS()),
                 entry("Queue2QS", new Queue2QS()),
                 entry("Queue3QS", new Queue3QS()),
-                entry("RegularQS", new RegularQS())
+                entry("RegularQS", new RegularQS()),
+                entry("ServiceChannelQS", new ServiceChannelQS())
 
         );
     }

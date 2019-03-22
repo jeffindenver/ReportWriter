@@ -31,6 +31,6 @@ public class RegularQS extends FuzeQueueSummary {
 
     @Override
     public String toString() {
-        return reportName;
+        return "Regular";
     }
 }

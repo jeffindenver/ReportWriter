@@ -30,6 +30,6 @@ public class ContractorSupportQS extends FuzeQueueSummary {
 
     @Override
     public String toString() {
-        return reportName;
+        return "Contractor Support";
     }
 }

@@ -30,6 +30,6 @@ public class Queue2QS extends FuzeQueueSummary {
 
     @Override
     public String toString() {
-        return reportName;
+        return "Queue2";
     }
 }
