@@ -47,7 +47,7 @@ public abstract class ShortAbandonReport extends Report {
 
     @Override
     protected int getSourceSheetIndex() {
-        return 1;
+        return 0;
     }
 
 }
