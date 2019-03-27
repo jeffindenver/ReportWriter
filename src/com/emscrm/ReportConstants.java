@@ -54,7 +54,8 @@ final class ReportConstants {
                 entry("Queue3QS", new Queue3QS()),
                 entry("RegularQS", new RegularQS()),
                 entry("ServiceChannelQS", new ServiceChannelQS()),
-                entry("YKHC_QS", new YKHC_QS())
+                entry("YKHC_QBD", new YKHC_QBD()),
+                entry("YKHCShortAband", new YKHCShortAband())
 
         );
     }

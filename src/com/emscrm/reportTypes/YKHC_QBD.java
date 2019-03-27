@@ -1,28 +1,26 @@
 package com.emscrm.reportTypes;
 
-import com.emscrm.QueueSummaryReport;
+import com.emscrm.QueueByDateReport;
 
 import java.util.Map;
 
-public class YKHC_QS extends QueueSummaryReport {
+public class YKHC_QBD extends QueueByDateReport {
 
     private static final String reportName = "YKHC";
-    private static final Map<String, String> tableNames = Map.of("Summary", "CallsTable");
+    private static final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public YKHC_QS() {
+    public YKHC_QBD() {
         weeklyReportFilename = "s:\\reports\\call centers\\YKHC\\YKHC Monthly Report 2019.xlsx";
     }
 
     @Override
     protected Map<String, String> getTargetTableNames() {
-        //@TODO add the table name map
-        return null;
+        return tableNames;
     }
 
     @Override
     protected String getWeeklyReportFilename() {
-        //@TODO add the filename
-        return null;
+        return weeklyReportFilename;
     }
 
     @Override
