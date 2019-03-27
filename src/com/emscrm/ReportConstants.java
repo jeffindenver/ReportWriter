@@ -53,7 +53,8 @@ final class ReportConstants {
                 entry("Queue2QS", new Queue2QS()),
                 entry("Queue3QS", new Queue3QS()),
                 entry("RegularQS", new RegularQS()),
-                entry("ServiceChannelQS", new ServiceChannelQS())
+                entry("ServiceChannelQS", new ServiceChannelQS()),
+                entry("YKHC_QS", new YKHC_QS())
 
         );
     }
