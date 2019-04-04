@@ -1,18 +1,15 @@
-package com.emscrm.reportTypes;
+package com.emscrm.reportTypes.ShortAbandons;
 
-import com.emscrm.QueueByDateReport;
+import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-/**
- * @author JShepherd
- */
-public final class OrbitQBD extends QueueByDateReport {
+public class OrbitShortAband extends ShortAbandonReport {
 
-    private final static String reportName = "Orbit";
+    private static final String reportName = "Orbit Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public OrbitQBD() {
+    public OrbitShortAband() {
         this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Call Statistics FY 2015-2019.xlsx";
     }
 

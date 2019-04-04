@@ -4,15 +4,14 @@ import com.emscrm.QueueByDateReport;
 
 import java.util.Map;
 
-/**
- * @author JShepherd
- */
-public final class OrbitQBD extends QueueByDateReport {
+public class OrbitEmailQBD extends QueueByDateReport {
 
-    private final static String reportName = "Orbit";
-    private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public OrbitQBD() {
+    private final static String reportName = "Orbit Email";
+    private final Map<String, String> tableNames = Map.of("Grand Total:", "EmailTable");
+
+    public OrbitEmailQBD() {
+
         this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Call Statistics FY 2015-2019.xlsx";
     }
 
