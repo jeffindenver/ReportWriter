@@ -36,6 +36,7 @@ final class ReportConstants {
                 entry("NelnetCallsQBD", new NelnetQBD()),
                 entry("NetworkForGoodCallsQBD", new NetworkForGoodQBD()),
                 entry("OrbitCallsQBD", new OrbitQBD()),
+                entry("OrbitChatQBD", new OrbitChatQBD()),
                 entry("OrbitEmailQBD", new OrbitEmailQBD()),
                 entry("PingIdentityCallsQBD", new PingIdentityQBD()),
                 entry("EntrustEmailQBD", new EmailEntrustQBD()),
