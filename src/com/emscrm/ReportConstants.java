@@ -49,6 +49,7 @@ final class ReportConstants {
                 entry("NelnetShortAband", new NelnetShortAband()),
                 entry("NetworkForGoodShortAband", new NetworkForGoodShortAband()),
                 entry("OrbitShortAband", new OrbitShortAband()),
+                entry("OrbitChatShortAband", new OrbitChatShortAband()),
                 entry("PingIdentityShortAband", new PingIdentityShortAband()),
                 entry("BloominBrandsQS", new BloominBrandsQS()),
                 entry("ContractorSupportQS", new ContractorSupportQS()),
