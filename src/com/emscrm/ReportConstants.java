@@ -39,6 +39,7 @@ final class ReportConstants {
                 entry("OrbitChatQBD", new OrbitChatQBD()),
                 entry("OrbitEmailQBD", new OrbitEmailQBD()),
                 entry("OrbitHydroRainQBD", new OrbitHydroRainQBD()),
+                entry("OrbitHydroRainCallbackQBD", new OrbitHydroRainCallbackQBD()),
                 entry("PingIdentityCallsQBD", new PingIdentityQBD()),
                 entry("EntrustEmailQBD", new EmailEntrustQBD()),
                 entry("NetworkForGoodEmailQBD", new EmailNetworkForGoodQBD()),
