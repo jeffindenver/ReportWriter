@@ -18,6 +18,8 @@ public final class CellOne_WTD_QBD extends QueueByDateReport {
             entry("CellularOne Hotline", "HotlineWTD"),
             entry("CellularOne Info Email", "InfoEmailWTD"),
             entry("CellularOne NakedMobile", "NakedMobileWTD"),
+            entry("CellularOne NM Activate", "NMActivateWTD"),
+            entry("CellularOne NM Renew", "NMRenewWTD"),
             entry("CellularOne NM Info Email", "NMInfoEmailWTD"),
             entry("CellularOne NM Web Sales Email", "NMWebSalesEmailWTD"),
             entry("CellularOne Prepaid CS", "PrepaidCSWTD"),
