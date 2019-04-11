@@ -5,7 +5,6 @@ import com.emscrm.QueueSummaryReport;
 import java.util.Map;
 
 public class SergeantsMonthlyQS extends QueueSummaryReport {
-
     private final static String reportName = "Sergeants Monthly";
     private final Map<String, String> tableNames = Map.of("Summary", "CallsTable");
 
