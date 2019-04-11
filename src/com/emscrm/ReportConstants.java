@@ -36,6 +36,8 @@ final class ReportConstants {
                 entry("NelnetCallsQBD", new NelnetQBD()),
                 entry("NetworkForGoodCallsQBD", new NetworkForGoodQBD()),
                 entry("OrbitCallsQBD", new OrbitQBD()),
+                entry("OrbitHydroRainWeeklyQS", new OrbitHydroRainWeeklyQS()),
+                entry("OrbitHydroRainWeeklyCallbackQS", new OrbitHydroRainWeeklyCallbackQS()),
                 entry("OrbitChatQBD", new OrbitChatQBD()),
                 entry("OrbitEmailQBD", new OrbitEmailQBD()),
                 entry("OrbitHydroRainQBD", new OrbitHydroRainQBD()),
