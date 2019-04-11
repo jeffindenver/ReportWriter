@@ -7,12 +7,12 @@ import java.util.Map;
 /**
  * @author JShepherd
  */
-public final class OrbitQBD extends QueueByDateReport {
+public final class OrbitCallsQBD extends QueueByDateReport {
 
     private final static String reportName = "Orbit";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public OrbitQBD() {
+    public OrbitCallsQBD() {
         this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Call Statistics FY 2015-2019.xlsx";
     }
 
