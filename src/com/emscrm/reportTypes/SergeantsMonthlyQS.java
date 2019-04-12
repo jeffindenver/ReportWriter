@@ -9,7 +9,7 @@ public class SergeantsMonthlyQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "CallsTable");
 
     public SergeantsMonthlyQS() {
-        this.weeklyReportFilename = "S:\\Reports\\Cell Centers\\Sergeants\\Sergeants Statistics Overview 2015-2019.xlsx";
+        this.weeklyReportFilename = "S:\\Reports\\Call Centers\\Sergeants\\Sergeants Statistics Overview 2015-2019.xlsx";
     }
 
     @Override
