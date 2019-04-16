@@ -1,0 +1,24 @@
+
+body {
+    margin: 40px;
+    font: Arial, sans-serif;
+}
+
+.stepInstruction {
+    font-size: 14;
+    font: "Comic Sans", cursive, sans-serif;
+    padding: 40px;
+}
+
+.innerList {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.listImage {
+    list-style-type: none;
+}
+
+p {
+    background-color: lightblue;
+}
