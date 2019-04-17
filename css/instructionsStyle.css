@@ -30,8 +30,13 @@ body {
     list-style-type: none;
 }
 
+.rightImage {
+    margin-top: 20px;
+    float: right;
+}
+
 h2 {
-    text-align: center;
+    text-align: left;
 }
 p {
 
