@@ -6,96 +6,105 @@
     <link rel="stylesheet" type="text/css" href="css\instructionsStyle.css">
 </head>
 <body>
-<div>
-    EMS LOGO and Stuff
+<div class="logoBackground">
+    <img src="images\EMS-Logo.png" alt="Logo" height="68" width="177">
 </div>
-<div>
-    <h2>Step by Step</h2>
+
+<h1>CellularOne Daily Report Step by Step Instructions</h1>
+
+
+<div class="stepInstruction">
+    <h2>Step 1</h2>
+    <p>First, you will want to gather all the necessary files. You may download all files from
+        the FTPS site using your favorite FTP program. Site: ftps.us.caas.hosted-inin.com</p>
+
+    <h4>Required Files</h4>
+    <p>Folder: ../ScheduledReports/</p>
 
     <ul>
-        <li>
-            First, you will want to gather all the necessary files. You may download all files from the FTPS site using
-            your favorite FTP program.
-            FTP: ftps.us.caas.hosted-inin.com
+        <li>CellOne_MTD_QBD.xls</li>
+        <li>CellOne_Summary_MTD_QBD.xls</li>
+        <li>CellOne_Summary_WTD_QBD.xls</li>
+        <li>CellOne_WTD_QBD.xls</li>
+    </ul>
 
-            <p>Folder: ../ScheduledReports/</p>
+    <p>Folder: ../ScheduledReports/Agents/</p>
 
-            <ul>
-                <li>CellOne_MTD_QBD.xls</li>
-                <li>CellOne_Summary_MTD_QBD.xls</li>
-                <li>CellOne_Summary_WTD_QBD.xls</li>
-                <li>CellOne_WTD_QBD.xls</li>
-            </ul>
-
-            <p>Folder: ../ScheduledReports/Agents/</p>
-
-            <ul style="margin-bottom: 20px;">
-                <li>CellularOne Outbound MTD.xls</li>
-                <li>CellularOne Outbound WTD.xls</li>
-                <li>CellularOne QA MTD.xls</li>
-                <li>ThisMonth_C1.xls</li>
-                <li>ThisWeek_C1.xls</li>
-            </ul>
-
-        </li>
-        <li>
-            Second, the report requires occupancy numbers for the agents. For this, we use the Efficiency Reporter
-            program located at <b>S:\Reports\Utilities\EfficiencyReporter\EfficiencyReporterAuto.jar</b>
-
-            <div class="innerList">
-
-                <p>Double click the jar file to run the program.</p>
-                <img src="images\launcher.png" alt="Launcher" height="110" width="591">
-
-
-                <p>Drag the files ThisMonth_C1.xls and ThisWeek_C1.xls onto the program window. The program will
-                    process the files and output efficiency reports, including the occupancy stats. The output file
-                    will be written to the same directory from which the files were dragged.</p>
-                <img src="images\programWindow.png" alt="Program Window" height="443" width="825">
-
-                <p>Open each of the output files.</p>
-
-                <p>In the agent name column, add rows named "outbound" and "total."</p>
-
-                <p>Open the file "CellularOne Outbound MTD.xls"</p>
-
-                <p>Filter the table for outbound calls only. Once filtered, copy the entire Interaction Duration
-                    column.</p>
-                <img src="images\filter.png" alt="Filter image" height="785" width="926">
-
-                <p>Paste the copied column in a new sheet. Highlight a cell in the column and insert a table.</p>
-
-                <p>In column B next to the new table, add the following formula: =A2*1440</p>
-
-                <p>Next, either accept the option to use the formula for the length of the column or copy the
-                    formula the length of the column manually.</p>
-
-                <p>Sum column B. The result will be the total number of outbound minutes.</p>
-
-                <p>Now copy the total minutes and paste the value into each of the following columns: Login Time,
-                    Working Time, and Talk Time.</p>
-
-                <p>Enter Zero in the Available Time column.</p>
-
-                <p>The formula in the Working Rate and Occupancy columns should auto populate. If not, manually
-                    extend the formula to the outbound and total rows.</p>
-
-                <p>Select the Login Time, Working Time, Talk Time, and ACW Time cells of the "total" row then click
-                    on AutoSum.</p>
-
-                <p>Select the Available Time and Handle Time cells of the "total" row then click AutoSum.</p>
-
-                <p>Extend the Working Rate and Occupancy formulas if you have not already.</p>
-
-                <p>Repeat for the same steps for the file "CellularOne Outbound WTD.xls"</p>
-
-                <p>Save both files for later use.</p>
-
-
-            </div>
-        </li>
-
+    <ul style="margin-bottom: 20px;">
+        <li>CellularOne Outbound MTD.xls</li>
+        <li>CellularOne Outbound WTD.xls</li>
+        <li>CellularOne QA MTD.xls</li>
+        <li>ThisMonth_C1.xls</li>
+        <li>ThisWeek_C1.xls</li>
     </ul>
 </div>
+
+<div class="stepInstruction"><p>
+    <h2>Step 2</h2>
+    Second, the report requires occupancy numbers for the agents. For this, we use the
+    Efficiency Reporter program located at
+    <b>S:\Reports\Utilities\EfficiencyReporter\EfficiencyReporterAuto.jar</b>
+    <ul>
+        <li>Double click the jar file to run the program.</li>
+        <li>Drag the files ThisMonth_C1.xls and ThisWeek_C1.xls onto the program window.</li>
+    </ul>
+
+    <img src="images\launcher.png" alt="Launcher" width="800">
+
+    <p>The program will process the files and output efficiency reports, including the
+        occupancy stats. The output file will be written to the same directory from which
+        the files were dragged.</p>
+</div>
+
+
+<div class="stepInstruction">
+    <h2>Step 3</h2>
+    <p>Outbound calls are not included in regular agent efficiency reports. Consequently, we need to add them.
+    <ul>
+        <li>Open each of the output files.</li>
+        <li>In the agent name column, add rows named "outbound" and "total."</li>
+    </ul>
+    </p>
+    <img src="images\NewRows.PNG" alt="New Rows" width="800">
+</div>
+
+
+<p>Open the file "CellularOne Outbound MTD.xls"</p>
+
+<p>Filter the table for outbound calls only. Once filtered, copy the entire
+    Interaction Duration column.</p>
+<img src="images\filter.png" alt="Filter image" width="800">
+
+<p>Paste the copied column in a new sheet. Highlight a cell in the column and insert
+    a table.</p>
+
+<p>In column B next to the new table, add the following formula: =A2*1440</p>
+
+<p>Next, either accept the option to use the formula for the length of the column
+    or copy the formula the length of the column manually.</p>
+
+<p>Sum column B. The result will be the total number of outbound minutes.</p>
+
+<p>Now copy the total minutes and paste the value into each of the following
+    columns: Login Time, Working Time, and Talk Time.</p>
+
+<p>Enter Zero in the Available Time column.</p>
+
+<p>The formula in the Working Rate and Occupancy columns should auto populate.
+    If not, manually extend the formula to the outbound and total rows.</p>
+
+<p>Select the Login Time, Working Time, Talk Time, and ACW Time cells of the
+    "total" row then click on AutoSum.</p>
+
+<p>Select the Available Time and Handle Time cells of the "total" row then click
+    AutoSum.</p>
+
+<p>Extend the Working Rate and Occupancy formulas if you have not already.</p>
+
+<p>Repeat for the same steps for the file "CellularOne Outbound WTD.xls"</p>
+
+<p>Save both files for later use.</p>
+
+
 </body>
 </html>

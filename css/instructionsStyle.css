@@ -1,13 +1,24 @@
 
 body {
     margin: 40px;
-    font: Arial, sans-serif;
+    background-color: #cce6ff;
+    font-family: Helvetica, Arial, Calibri, sans-serif;
 }
 
 .stepInstruction {
     font-size: 14;
-    font: "Comic Sans", cursive, sans-serif;
-    padding: 40px;
+    background-color: #80bfff;
+    padding: 20px;
+    box-shadow: 10px 10px 5px grey;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+.logoBackground {
+    background-color: white;
+    border-style: solid;
+    border-color: lightblue;
 }
 
 .innerList {
@@ -19,6 +30,9 @@ body {
     list-style-type: none;
 }
 
+h2 {
+    text-align: center;
+}
 p {
-    background-color: lightblue;
+
 }
