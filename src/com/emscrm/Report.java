@@ -99,6 +99,7 @@ abstract class Report {
         cleanedSummary = cleanedSummary.replaceAll(",", "");
 
         String[] v = cleanedSummary.split("\t");
+        //the call to "excludeLastElement() should be moved.
         cleanedSummary = excludeLastElement(v);
 
         System.out.println("Cleaned Summary equals " + cleanedSummary);
