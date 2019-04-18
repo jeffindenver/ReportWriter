@@ -44,15 +44,15 @@ abstract class Report {
 
         Set<String> keySet = getTargetTableNames().keySet();
 
-        for (String table : keySet) {
-            String summary = getMatchingLine(lengthFilteredSource, table);
+        for (String tableName : keySet) {
+            String summary = getMatchingLine(lengthFilteredSource, tableName);
 
             if (summary.equals("No matched lines")) {
                 continue;
             }
 
             String cleanedSummary = cleanAndFormat(summary);
-            composeExcelSheet(cleanedSummary, getTargetTableNames().get(table));
+            composeExcelSheet(cleanedSummary, getTargetTableNames().get(tableName));
         }
         return wb;
     }
