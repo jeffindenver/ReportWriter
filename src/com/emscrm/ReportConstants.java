@@ -40,6 +40,7 @@ final class ReportConstants {
                 entry("OrbitHydroRainWeeklyCallbackQS", new OrbitHydroRainWeeklyCallbackQS()),
                 entry("OrbitChatQBD", new OrbitChatQBD()),
                 entry("OrbitEmailQBD", new OrbitEmailQBD()),
+                entry("OrbitBhyveMonthlyCallsQBD", new OrbitBhyveMonthlyCallsQBD()),
                 entry("OrbitBhyveWeeklyCallsQS", new OrbitBhyveWeeklyCallsQS()),
                 entry("OrbitBhyveWeeklyEmailQS", new OrbitBhyveWeeklyEmailQS()),
                 entry("OrbitBhyveWeeklyChatQS", new OrbitBhyveWeeklyChatQS()),
