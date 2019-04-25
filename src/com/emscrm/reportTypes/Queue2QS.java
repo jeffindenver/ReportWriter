@@ -7,7 +7,7 @@ import java.util.Map;
 public class Queue2QS extends FuzeQueueSummary {
     public static final String reportName = "SC Queue2 monthly";
 
-    protected final Map<String, String> tableNames = Map.of("Report Totals", "Queue2Table2019");
+    private final Map<String, String> tableNames = Map.of("Report Totals", "Queue2Table2019");
 
     public Queue2QS() {
         super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2019.xlsx";

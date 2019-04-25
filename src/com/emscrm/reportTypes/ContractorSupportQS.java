@@ -7,7 +7,7 @@ import java.util.Map;
 public class ContractorSupportQS extends FuzeQueueSummary {
     public static final String reportName = "SC Contractor monthly";
 
-    protected final Map<String, String> tableNames = Map.of("Report Totals", "ContractorTable2019");
+    private final Map<String, String> tableNames = Map.of("Report Totals", "ContractorTable2019");
 
     public ContractorSupportQS() {
         super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2019.xlsx";
