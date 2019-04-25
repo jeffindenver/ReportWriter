@@ -21,7 +21,8 @@ final class ReportConstants {
 
     private static Map<String, Report> initializeMap() {
 
-        Map<String, Report> stringReportMap = Map.ofEntries(
+        Map<String, Report> stringReportMap;
+        stringReportMap = Map.ofEntries(
                 entry("Three_DX_Email_QS", new Three_DX_Email_QS()),
                 entry("Three_DX_Calls_QS", new Three_DX_Calls_QS()),
                 entry("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD()),
