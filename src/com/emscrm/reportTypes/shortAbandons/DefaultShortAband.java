@@ -1,16 +1,16 @@
-package com.emscrm.reportTypes.ShortAbandons;
+package com.emscrm.reportTypes.shortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-public final class PingIdentityShortAband extends ShortAbandonReport {
+public class DefaultShortAband extends ShortAbandonReport {
 
-    private static final String reportName = "Ping Identity Short Abandons";
+    private static final String reportName = "Default Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public PingIdentityShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2019.xlsx";
+    public DefaultShortAband() {
+        this.weeklyReportFilename = "s:\\reports\\call centers\\default QBD workbook.xlsx";
     }
 
     @Override

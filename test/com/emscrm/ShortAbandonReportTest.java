@@ -1,6 +1,6 @@
 package com.emscrm;
 
-import com.emscrm.reportTypes.ShortAbandons.DefaultShortAband;
+import com.emscrm.reportTypes.shortAbandons.DefaultShortAband;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.BeforeEach;

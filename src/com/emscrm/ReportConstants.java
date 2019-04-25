@@ -1,7 +1,7 @@
 package com.emscrm;
 
 import com.emscrm.reportTypes.*;
-import com.emscrm.reportTypes.ShortAbandons.*;
+import com.emscrm.reportTypes.shortAbandons.*;
 
 import java.util.Map;
 
@@ -41,6 +41,8 @@ final class ReportConstants {
                 entry("OrbitChatQBD", new OrbitChatQBD()),
                 entry("OrbitEmailQBD", new OrbitEmailQBD()),
                 entry("OrbitBhyveMonthlyCallsQBD", new OrbitBhyveMonthlyCallsQBD()),
+                entry("OrbitBhyveMonthlyChatQBD", new OrbitBhyveMonthlyChatQBD()),
+                entry("OrbitBhyveMonthlyEmailQBD", new OrbitBhyveMonthlyEmailQBD()),
                 entry("OrbitBhyveWeeklyCallsQS", new OrbitBhyveWeeklyCallsQS()),
                 entry("OrbitBhyveWeeklyEmailQS", new OrbitBhyveWeeklyEmailQS()),
                 entry("OrbitBhyveWeeklyChatQS", new OrbitBhyveWeeklyChatQS()),

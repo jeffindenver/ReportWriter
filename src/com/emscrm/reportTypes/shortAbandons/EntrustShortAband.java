@@ -1,16 +1,16 @@
-package com.emscrm.reportTypes.ShortAbandons;
+package com.emscrm.reportTypes.shortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-public final class CPaTShortAband extends ShortAbandonReport {
+public final class EntrustShortAband extends ShortAbandonReport {
 
-    private static final String reportName = "CPaT Short Abandons";
+    private static final String reportName = "Entrust Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public CPaTShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\cpat\\CPaT Weekly Stats 2019.xlsx";
+    public EntrustShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\Entrust\\Entrust Weekly Stats 2019.xlsx";
     }
 
     @Override

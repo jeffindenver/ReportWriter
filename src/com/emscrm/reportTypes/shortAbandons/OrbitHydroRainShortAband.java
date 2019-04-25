@@ -1,4 +1,4 @@
-package com.emscrm.reportTypes.ShortAbandons;
+package com.emscrm.reportTypes.shortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 

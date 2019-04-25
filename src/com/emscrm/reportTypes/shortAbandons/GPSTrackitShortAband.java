@@ -1,16 +1,16 @@
-package com.emscrm.reportTypes.ShortAbandons;
+package com.emscrm.reportTypes.shortAbandons;
 
 import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-public class OrbitShortAband extends ShortAbandonReport {
+public final class GPSTrackitShortAband extends ShortAbandonReport {
 
-    private static final String reportName = "Orbit Short Abandons";
+    private static final String reportName = "CPaT Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public OrbitShortAband() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Call Statistics FY 2015-2019.xlsx";
+    public GPSTrackitShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
     }
 
     @Override
@@ -18,7 +18,6 @@ public class OrbitShortAband extends ShortAbandonReport {
         return false;
     }
 
-    @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
     }
