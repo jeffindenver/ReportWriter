@@ -27,6 +27,8 @@ final class ReportConstants {
                 entry("Three_DX_Calls_QS", new Three_DX_Calls_QS()),
                 entry("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD()),
                 entry("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD()),
+                entry("CellOneMonthlyQBD", new CellOneMonthlyQBD()),
+                entry("CellOneMonthlyBigThreeQBD", new CellOneMonthlyBigThreeQBD()),
                 entry("CellOne_MTD_QBD", new CellOne_MTD_QBD()),
                 entry("CellOne_WTD_QBD", new CellOne_WTD_QBD()),
                 entry("CPaTCallsQBD", new CPaTQBD()),
