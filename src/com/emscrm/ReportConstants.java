@@ -3,9 +3,8 @@ package com.emscrm;
 import com.emscrm.reportTypes.*;
 import com.emscrm.reportTypes.shortAbandons.*;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import static java.util.Map.entry;
 
 /**
  * The QBD reports contain summaries by workgroup subtotal and by grand total.
@@ -21,57 +20,61 @@ final class ReportConstants {
 
     private static Map<String, Report> initializeMap() {
 
-        Map<String, Report> stringReportMap;
-        stringReportMap = Map.ofEntries(
-                entry("Three_DX_Email_QS", new Three_DX_Email_QS()),
-                entry("Three_DX_Calls_QS", new Three_DX_Calls_QS()),
-                entry("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD()),
-                entry("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD()),
-                entry("CellOneMonthlyQBD", new CellOneMonthlyQBD()),
-                entry("CellOneMonthlyBigThreeQBD", new CellOneMonthlyBigThreeQBD()),
-                entry("CellOne_MTD_QBD", new CellOne_MTD_QBD()),
-                entry("CellOne_WTD_QBD", new CellOne_WTD_QBD()),
-                entry("CPaTCallsQBD", new CPaTQBD()),
-                entry("EntrustCallsQBD", new EntrustQBD()),
-                entry("EntrustEmailQBD", new EmailEntrustQBD()),
-                entry("GPSTrackitCallsQBD", new GPSTrackitQBD()),
-                entry("GPSTrackitEmailQBD", new EmailGPSTrackitQBD()),
-                entry("NaturalWirelessCallsQBD", new NaturalWirelessQBD()),
-                entry("NelnetCallsQBD", new NelnetQBD()),
-                entry("OrbitCallsQBD", new OrbitCallsQBD()),
-                entry("OrbitChatQBD", new OrbitChatQBD()),
-                entry("OrbitEmailQBD", new OrbitEmailQBD()),
-                entry("OrbitHydroRainQBD", new OrbitHydroRainQBD()),
-                entry("OrbitHydroRainWeeklyQS", new OrbitHydroRainWeeklyQS()),
-                entry("OrbitHydroRainWeeklyCallbackQS", new OrbitHydroRainWeeklyCallbackQS()),
-                entry("OrbitBhyveMonthlyCallsQBD", new OrbitBhyveMonthlyCallsQBD()),
-                entry("OrbitBhyveMonthlyChatQBD", new OrbitBhyveMonthlyChatQBD()),
-                entry("OrbitBhyveMonthlyEmailQBD", new OrbitBhyveMonthlyEmailQBD()),
-                entry("OrbitBhyveWeeklyCallsQS", new OrbitBhyveWeeklyCallsQS()),
-                entry("OrbitBhyveWeeklyEmailQS", new OrbitBhyveWeeklyEmailQS()),
-                entry("OrbitBhyveWeeklyChatQS", new OrbitBhyveWeeklyChatQS()),
-                entry("OrbitHydroRainCallbackQBD", new OrbitHydroRainCallbackQBD()),
-                entry("OrbitIrrigationWeeklyCallsQS", new OrbitIrrigationWeeklyCallsQS()),
-                entry("OrbitIrrigationWeeklyEmailQS", new OrbitIrrigationWeeklyEmailQS()),
-                entry("OrbitIrrigationWeeklyChatQS", new OrbitIrrigationWeeklyChatQS()),
-                entry("PingIdentityCallsQBD", new PingIdentityQBD()),
-                entry("CPaTShortAband", new CPaTShortAband()),
-                entry("EntrustShortAband", new EntrustShortAband()),
-                entry("GPSTrackitShortAband", new GPSTrackitShortAband()),
-                entry("NaturalWirelessShortAband", new NaturalWirelessShortAband()),
-                entry("NelnetShortAband", new NelnetShortAband()),
-                entry("OrbitShortAband", new OrbitShortAband()),
-                entry("OrbitChatShortAband", new OrbitChatShortAband()),
-                entry("OrbitHydroRainShortAband", new OrbitHydroRainShortAband()),
-                entry("OrbitBhyveMonthlyCallsShortAband", new OrbitBhyveMonthlyCallsShortAband()),
-                entry("OrbitBhyveMonthlyChatShortAband", new OrbitBhyveMonthlyChatShortAband()),
-                entry("PingIdentityShortAband", new PingIdentityShortAband()),
-                entry("SergeantsMonthlyQS", new SergeantsMonthlyQS()),
-                entry("ServiceChannelQS", new ServiceChannelQS()),
-                entry("YKHC_QBD", new YKHC_QBD()),
-                entry("YKHCShortAband", new YKHCShortAband())
+        Map<String, Report> stringReportMap = new HashMap<>();
 
-        );
+        stringReportMap.put("Three_DX_Email_QS", new Three_DX_Email_QS());
+        stringReportMap.put("Three_DX_Calls_QS", new Three_DX_Calls_QS());
+        stringReportMap.put("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD());
+        stringReportMap.put("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD());
+        stringReportMap.put("CellOneMonthlyQBD", new CellOneMonthlyQBD());
+        stringReportMap.put("CellOneMonthlyBigThreeQBD", new CellOneMonthlyBigThreeQBD());
+        stringReportMap.put("CellOne_MTD_QBD", new CellOne_MTD_QBD());
+        stringReportMap.put("CellOne_WTD_QBD", new CellOne_WTD_QBD());
+        stringReportMap.put("CPaTCallsQBD", new CPaTQBD());
+        stringReportMap.put("EntrustCallsQBD", new EntrustQBD());
+        stringReportMap.put("EntrustEmailQBD", new EmailEntrustQBD());
+        stringReportMap.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
+        stringReportMap.put("GPSTrackitEmailQBD", new EmailGPSTrackitQBD());
+        stringReportMap.put("NaturalWirelessCallsQBD", new NaturalWirelessQBD());
+        stringReportMap.put("NelnetCallsQBD", new NelnetQBD());
+        stringReportMap.put("OrbitPhoneMTD", new OrbitPhoneMTD());
+        stringReportMap.put("OrbitChatMTD", new OrbitChatMTD());
+        stringReportMap.put("OrbitEmailMTD", new OrbitEmailMTD());
+        stringReportMap.put("BhyvePhoneMTD", new BhyvePhoneMTD());
+        stringReportMap.put("BhyveChatMTD", new BhyveChatMTD());
+        stringReportMap.put("BhyveEmailMTD", new BhyveEmailMTD());
+        stringReportMap.put("HydroRainPhoneMTD", new HydroRainPhoneMTD());
+        stringReportMap.put("OrbitCallsQBD", new OrbitCallsQBD());
+        stringReportMap.put("OrbitChatQBD", new OrbitChatQBD());
+        stringReportMap.put("OrbitEmailQBD", new OrbitEmailQBD());
+        stringReportMap.put("OrbitHydroRainQBD", new OrbitHydroRainQBD());
+        stringReportMap.put("OrbitHydroRainWeeklyQS", new OrbitHydroRainWeeklyQS());
+        stringReportMap.put("OrbitHydroRainWeeklyCallbackQS", new OrbitHydroRainWeeklyCallbackQS());
+        stringReportMap.put("OrbitBhyveMonthlyCallsQBD", new OrbitBhyveMonthlyCallsQBD());
+        stringReportMap.put("OrbitBhyveMonthlyChatQBD", new OrbitBhyveMonthlyChatQBD());
+        stringReportMap.put("OrbitBhyveMonthlyEmailQBD", new OrbitBhyveMonthlyEmailQBD());
+        stringReportMap.put("OrbitBhyveWeeklyCallsQS", new OrbitBhyveWeeklyCallsQS());
+        stringReportMap.put("OrbitBhyveWeeklyEmailQS", new OrbitBhyveWeeklyEmailQS());
+        stringReportMap.put("OrbitBhyveWeeklyChatQS", new OrbitBhyveWeeklyChatQS());
+        stringReportMap.put("OrbitHydroRainCallbackQBD", new OrbitHydroRainCallbackQBD());
+        stringReportMap.put("OrbitIrrigationWeeklyCallsQS", new OrbitIrrigationWeeklyCallsQS());
+        stringReportMap.put("OrbitIrrigationWeeklyEmailQS", new OrbitIrrigationWeeklyEmailQS());
+        stringReportMap.put("OrbitIrrigationWeeklyChatQS", new OrbitIrrigationWeeklyChatQS());
+        stringReportMap.put("PingIdentityCallsQBD", new PingIdentityQBD());
+        stringReportMap.put("CPaTShortAband", new CPaTShortAband());
+        stringReportMap.put("EntrustShortAband", new EntrustShortAband());
+        stringReportMap.put("GPSTrackitShortAband", new GPSTrackitShortAband());
+        stringReportMap.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());
+        stringReportMap.put("NelnetShortAband", new NelnetShortAband());
+        stringReportMap.put("OrbitShortAband", new OrbitShortAband());
+        stringReportMap.put("OrbitChatShortAband", new OrbitChatShortAband());
+        stringReportMap.put("OrbitHydroRainShortAband", new OrbitHydroRainShortAband());
+        stringReportMap.put("OrbitBhyveMonthlyCallsShortAband", new OrbitBhyveMonthlyCallsShortAband());
+        stringReportMap.put("OrbitBhyveMonthlyChatShortAband", new OrbitBhyveMonthlyChatShortAband());
+        stringReportMap.put("PingIdentityShortAband", new PingIdentityShortAband());
+        stringReportMap.put("SergeantsMonthlyQS", new SergeantsMonthlyQS());
+        stringReportMap.put("ServiceChannelQS", new ServiceChannelQS());
+
         return stringReportMap;
     }
 
