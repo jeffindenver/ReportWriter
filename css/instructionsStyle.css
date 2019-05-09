@@ -5,6 +5,10 @@ body {
     font-family: Helvetica, Arial, Calibri, sans-serif;
 }
 
+div {
+    max-width: 900px;
+    margin: auto;
+}
 .stepInstruction {
     font-size: 14;
     background-color: #80bfff;
