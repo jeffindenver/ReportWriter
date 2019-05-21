@@ -9,14 +9,14 @@ div {
     max-width: 900px;
     margin: auto;
 }
+
 .stepInstruction {
     font-size: 14;
-    background-color: #80bfff;
     padding: 20px;
+    background-color: #80bfff;
     box-shadow: 10px 10px 5px grey;
     margin-top: 30px;
     margin-bottom: 30px;
-
 }
 
 .logoBackground {
