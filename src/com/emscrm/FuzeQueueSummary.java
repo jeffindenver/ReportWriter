@@ -58,18 +58,18 @@ public abstract class FuzeQueueSummary extends Report {
         int startRowIndex = theTable.getStartRowIndex();
         int endRowIndex = theTable.getEndRowIndex();
 
-        XSSFRow returnRow = null;
+        XSSFRow row = null;
 
         for (int i = startRowIndex; i < endRowIndex; i++) {
             if (sheet.getRow(i).getCell(0).getStringCellValue().contains(matchingMonth)) {
-                returnRow = sheet.getRow(i);
+                row = sheet.getRow(i);
                 break;
             } else {
-                returnRow = createCells(sheet.createRow(endRowIndex + 1));
+                row = createCells(sheet.createRow(endRowIndex + 1));
             }
         }
 
-        return returnRow;
+        return row;
     }
 
     @Override
