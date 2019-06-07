@@ -4,13 +4,13 @@ import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-public final class GPSTrackitShortAband extends ShortAbandonReport {
+public class GPSTrackitMonthlyShortAband extends ShortAbandonReport {
 
-    private static final String reportName = "GPS Trackit Short Abandons";
+    private static final String reportName = "GPS Monthly Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public GPSTrackitShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
+    public GPSTrackitMonthlyShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Monthly Report 2019.xlsx";
     }
 
     @Override

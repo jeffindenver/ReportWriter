@@ -47,6 +47,8 @@ final class ReportConstants {
 
         reportMap.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         reportMap.put("GPSTrackitShortAband", new GPSTrackitShortAband());
+        reportMap.put("GPSTrackitMonthlyQBD", new GPSTrackitMonthlyQBD());
+        reportMap.put("GPSTrackitMonthlyShortAband", new GPSTrackitMonthlyShortAband());
 
         reportMap.put("NaturalWirelessCallsQBD", new NaturalWirelessQBD());
         reportMap.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());

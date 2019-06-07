@@ -1,16 +1,16 @@
-package com.emscrm.reportTypes.shortAbandons;
+package com.emscrm.reportTypes;
 
-import com.emscrm.ShortAbandonReport;
+import com.emscrm.QueueByDateReport;
 
 import java.util.Map;
 
-public final class GPSTrackitShortAband extends ShortAbandonReport {
+public class GPSTrackitMonthlyQBD extends QueueByDateReport {
 
-    private static final String reportName = "GPS Trackit Short Abandons";
+    private final static String reportName = "GPS Trackit Monthly";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public GPSTrackitShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
+    public GPSTrackitMonthlyQBD() {
+        this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Monthly Report 2019.xlsx";
     }
 
     @Override
@@ -18,6 +18,7 @@ public final class GPSTrackitShortAband extends ShortAbandonReport {
         return false;
     }
 
+    @Override
     public String getWeeklyReportFilename() {
         return weeklyReportFilename;
     }
