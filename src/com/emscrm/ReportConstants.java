@@ -86,6 +86,7 @@ final class ReportConstants {
         reportMap.put("OrbitIrrigationWeeklyCallsQS", new OrbitIrrigationWeeklyCallsQS());
         reportMap.put("OrbitIrrigationWeeklyEmailQS", new OrbitIrrigationWeeklyEmailQS());
         reportMap.put("OrbitIrrigationWeeklyChatQS", new OrbitIrrigationWeeklyChatQS());
+        reportMap.put("OrbitIrrigationWeeklyCallbacksQS", new OrbitIrrigationWeeklyCallbacksQS());
         reportMap.put("OrbitHydroRainShortAband", new OrbitHydroRainShortAband());
         reportMap.put("OrbitBhyveMonthlyCallsShortAband", new OrbitBhyveMonthlyCallsShortAband());
         reportMap.put("OrbitBhyveMonthlyChatShortAband", new OrbitBhyveMonthlyChatShortAband());
