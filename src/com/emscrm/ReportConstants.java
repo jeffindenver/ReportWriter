@@ -42,9 +42,6 @@ final class ReportConstants {
         reportMap.put("EntrustEmailQBD", new EmailEntrustQBD());
         reportMap.put("EntrustShortAband", new EntrustShortAband());
 
-        reportMap.put("Three_DX_Email_QS", new Three_DX_Email_QS());
-        reportMap.put("Three_DX_Calls_QS", new Three_DX_Calls_QS());
-
         reportMap.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         reportMap.put("GPSTrackitShortAband", new GPSTrackitShortAband());
         reportMap.put("GPSTrackitMonthlyQBD", new GPSTrackitMonthlyQBD());
