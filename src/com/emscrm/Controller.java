@@ -18,6 +18,8 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 /**
+ * The Controller class holds a reference to the view and the model and handles the one and only event, which
+ * is a drag and drop to the GUI.
  * @author JShepherd
  */
 class Controller {
@@ -56,11 +58,11 @@ class Controller {
     private Report selectReport(String filepath) {
         Report report = model.getReport();
 
-        Set<String> keys = ReportConstants.REPORT_TYPES.keySet();
+        Set<String> keys = ReportConstants.reportTypes.keySet();
 
         for (String key : keys) {
             if (filepath.contains(key)) {
-                report = ReportConstants.REPORT_TYPES.get(key);
+                report = ReportConstants.reportTypes.get(key);
                 break;
             }
         }
@@ -91,7 +93,7 @@ class Controller {
     private class ProcessFileTask extends SwingWorker<Integer, String> {
         //SwingWorker<T, V>
         // T is return type of doInBackground and get methods
-        // v is the type used to carry out intermediate results by publish and process methods
+        // V is the type used to carry out intermediate results by publish and process methods
         final List<File> fileList;
 
         ProcessFileTask(List<File> list) {

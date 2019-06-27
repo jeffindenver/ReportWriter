@@ -13,7 +13,7 @@ import java.util.Map;
  */
 final class ReportConstants {
 
-    final static Map<String, Report> REPORT_TYPES = initializeMap();
+    final static Map<String, Report> reportTypes = initializeMap();
 
     private ReportConstants() {
     }

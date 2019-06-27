@@ -9,10 +9,21 @@ import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+/**
+ * FuzeQueueSummary is a report type used by the Service Channel workgroup.
+ */
 public abstract class FuzeQueueSummary extends Report {
 
     protected String weeklyReportFilename;
 
+    /**
+     * FormatCells method sets the style (font, size, colors, etc) of a row
+     * and its cells.
+     *
+     * @param wb  Styles need to be associated with a workbook.
+     * @param row The row to be styled.
+     * @return returns the row once its component cells are styled.
+     */
     @Override
     protected XSSFRow formatCells(XSSFWorkbook wb, XSSFRow row) {
 
