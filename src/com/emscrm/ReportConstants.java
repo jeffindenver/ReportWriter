@@ -41,14 +41,22 @@ final class ReportConstants {
         reportMap.put("EntrustCallsQBD", new EntrustQBD());
         reportMap.put("EntrustEmailQBD", new EmailEntrustQBD());
         reportMap.put("EntrustShortAband", new EntrustShortAband());
+        reportMap.put("EntrustMonthlyCallsQS", new EntrustMonthlyCallsQS());
+        reportMap.put("EntrustMonthlyEmailQS", new EntrustMonthlyEmailQS());
+
 
         reportMap.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         reportMap.put("GPSTrackitShortAband", new GPSTrackitShortAband());
         reportMap.put("GPSTrackitMonthlyQBD", new GPSTrackitMonthlyQBD());
         reportMap.put("GPSTrackitMonthlyShortAband", new GPSTrackitMonthlyShortAband());
 
+        reportMap.put("MSRB_MonthlyCallsQBD", new MSRB_MonthlyCallsQBD());
+        reportMap.put("MSRB_MonthlyEmailQBD", new MSRB_MonthlyEmailQBD());
+        reportMap.put("MSRB_MonthlyShortAband", new MSRB_MonthlyShortAband());
+
         reportMap.put("NaturalWirelessCallsQBD", new NaturalWirelessQBD());
         reportMap.put("NaturalWirelessShortAband", new NaturalWirelessShortAband());
+        reportMap.put("NaturalWirelessMonthlyQS", new NaturalWirelessMonthlyCallsQS());
 
         reportMap.put("NelnetCallsQBD", new NelnetQBD());
         reportMap.put("NelnetShortAband", new NelnetShortAband());
@@ -70,6 +78,7 @@ final class ReportConstants {
         reportMap.put("OrbitEmailQBD", new OrbitEmailQBD());
         reportMap.put("OrbitCallacksQBD", new OrbitCallbacksQBD());
         reportMap.put("OrbitHydroRainQBD", new OrbitHydroRainQBD());
+        reportMap.put("OrbitHydroRainCallbackQBD", new OrbitHydroRainCallbackQBD());
         reportMap.put("OrbitHydroRainWeeklyQS", new OrbitHydroRainWeeklyQS());
         reportMap.put("OrbitHydroRainWeeklyCallbackQS", new OrbitHydroRainWeeklyCallbackQS());
         reportMap.put("OrbitBhyveMonthlyCallsQBD", new OrbitBhyveMonthlyCallsQBD());
@@ -79,7 +88,6 @@ final class ReportConstants {
         reportMap.put("OrbitBhyveWeeklyCallsQS", new OrbitBhyveWeeklyCallsQS());
         reportMap.put("OrbitBhyveWeeklyEmailQS", new OrbitBhyveWeeklyEmailQS());
         reportMap.put("OrbitBhyveWeeklyChatQS", new OrbitBhyveWeeklyChatQS());
-        reportMap.put("OrbitHydroRainCallbackQBD", new OrbitHydroRainCallbackQBD());
         reportMap.put("OrbitIrrigationWeeklyCallsQS", new OrbitIrrigationWeeklyCallsQS());
         reportMap.put("OrbitIrrigationWeeklyEmailQS", new OrbitIrrigationWeeklyEmailQS());
         reportMap.put("OrbitIrrigationWeeklyChatQS", new OrbitIrrigationWeeklyChatQS());
@@ -98,6 +106,9 @@ final class ReportConstants {
         reportMap.put("SwitchmateMonthlyShortAband", new SwitchmateMonthlyShortAband());
 
         reportMap.put("ServiceChannelQS", new ServiceChannelQS());
+
+        reportMap.put("YKHC_MonthlyCallsQBD", new YKHC_MonthlyCallsQBD());
+        reportMap.put("YKHC_MonthlyShortAband", new YKHC_MonthlyShortAband());
 
         return reportMap;
     }

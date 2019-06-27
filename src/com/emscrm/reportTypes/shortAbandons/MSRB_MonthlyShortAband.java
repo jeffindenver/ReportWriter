@@ -4,13 +4,12 @@ import com.emscrm.ShortAbandonReport;
 
 import java.util.Map;
 
-public class YKHCShortAband extends ShortAbandonReport {
-
-    private static final String reportName = "YKHC Short Abandons";
+public class MSRB_MonthlyShortAband extends ShortAbandonReport {
+    private static final String reportName = "MSRB Short Abandons";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
-    public YKHCShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\YKHC\\YKHC Monthly Report 2019.xlsx";
+    public MSRB_MonthlyShortAband() {
+        weeklyReportFilename = "s:\\reports\\call centers\\MSRB\\MSRB Monthly Report 2019.xlsx";
     }
 
     @Override
