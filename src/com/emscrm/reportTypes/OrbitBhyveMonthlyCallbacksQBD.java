@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class OrbitBhyveMonthlyCallbacksQBD extends QueueByDateReport {
 
-    private final static String reportName = "Orbit Bhyve Callbackss";
+    private final static String reportName = "Orbit Bhyve Callbacks";
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallbacksTable");
 
     public OrbitBhyveMonthlyCallbacksQBD() {
