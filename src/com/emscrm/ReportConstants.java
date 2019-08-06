@@ -22,6 +22,10 @@ final class ReportConstants {
 
         Map<String, Report> reportMap = new HashMap<>();
 
+        reportMap.put("AmbraCallsDailyQS", new AmbraCallsDailyQS());
+        reportMap.put("AmbraEmailDailyQS", new AmbraEmailDailyQS());
+        reportMap.put("AmbraVM_DailyQS", new AmbraVM_DailyQS());
+
         reportMap.put("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD());
         reportMap.put("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD());
         reportMap.put("CellOneMonthlyQBD", new CellOneMonthlyQBD());
