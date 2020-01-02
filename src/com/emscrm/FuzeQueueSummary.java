@@ -121,8 +121,17 @@ public abstract class FuzeQueueSummary extends Report {
 
     private String getPreviousMonth() {
         LocalDate current = LocalDate.now();
-        LocalDate lastMonth = current.withMonth(current.getMonthValue() - 1);
+        LocalDate lastMonth = current.withMonth(determineLastMonth());
         return lastMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.US);
+    }
+
+    private int determineLastMonth() {
+        LocalDate current = LocalDate.now();
+        int lastMonth = current.getMonthValue() - 1;
+        if (lastMonth == 0) {
+            lastMonth = 12;
+        }
+        return lastMonth;
     }
 
     @Override
