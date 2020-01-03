@@ -14,7 +14,7 @@ public class MSRB_MonthlyEmailQBD extends QueueByDateReport {
 
     @Override
     public boolean isSingleLineTable() {
-        return true;
+        return false;
     }
 
     @Override
