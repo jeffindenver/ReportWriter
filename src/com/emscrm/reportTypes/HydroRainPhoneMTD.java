@@ -9,7 +9,7 @@ public class HydroRainPhoneMTD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "HydroRainCallsTable");
 
     public HydroRainPhoneMTD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\EMS Goals FY 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\EMS Goals FY 2020.xlsx";
     }
 
     @Override

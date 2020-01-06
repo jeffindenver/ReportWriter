@@ -9,7 +9,7 @@ public class EntrustMonthlyEmailQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "EmailTable");
 
     public EntrustMonthlyEmailQS() {
-        this.weeklyReportFilename = "S:\\Reports\\Call Centers\\Entrust\\Entrust Monthly Report 2019.xlsx";
+        this.weeklyReportFilename = "S:\\Reports\\Call Centers\\Entrust\\Entrust Monthly Report 2020.xlsx";
     }
 
     @Override

@@ -9,7 +9,7 @@ public class OrbitBhyveWeeklyEmailQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "EmailTable");
 
     public OrbitBhyveWeeklyEmailQS() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit b-hyve Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit b-hyve Weekly Stats 2020.xlsx";
     }
 
 

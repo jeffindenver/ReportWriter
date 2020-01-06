@@ -12,7 +12,7 @@ public final class NaturalWirelessQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public NaturalWirelessQBD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Natural Wireless\\Natural Wireless Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Natural Wireless\\Natural Wireless Weekly Stats 2020.xlsx";
     }
 
     @Override

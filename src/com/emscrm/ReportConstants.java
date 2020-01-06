@@ -26,13 +26,6 @@ final class ReportConstants {
         reportMap.put("AmbraEmailDailyQS", new AmbraEmailDailyQS());
         reportMap.put("AmbraVM_DailyQS", new AmbraVM_DailyQS());
 
-        reportMap.put("CellOne_Summary_WTD_QBD", new CellOne_Subtotal_WTD_QBD());
-        reportMap.put("CellOne_Summary_MTD_QBD", new CellOne_Subtotal_MTD_QBD());
-        reportMap.put("CellOneMonthlyQBD", new CellOneMonthlyQBD());
-        reportMap.put("CellOneMonthlyBigThreeQBD", new CellOneMonthlyBigThreeQBD());
-        reportMap.put("CellOne_MTD_QBD", new CellOne_MTD_QBD());
-        reportMap.put("CellOne_WTD_QBD", new CellOne_WTD_QBD());
-
         reportMap.put("ChildrensVillageMonthlyQBD", new ChildrensVillageMonthlyQBD());
         reportMap.put("ChildrensVillageMonthlyShortAband", new ChildrensVillageMonthlyShortAband());
 
@@ -47,7 +40,6 @@ final class ReportConstants {
         reportMap.put("EntrustShortAband", new EntrustShortAband());
         reportMap.put("EntrustMonthlyCallsQS", new EntrustMonthlyCallsQS());
         reportMap.put("EntrustMonthlyEmailQS", new EntrustMonthlyEmailQS());
-
 
         reportMap.put("GPSTrackitCallsQBD", new GPSTrackitQBD());
         reportMap.put("GPSTrackitEmailQBD", new GPSTrackitEmailQBD());

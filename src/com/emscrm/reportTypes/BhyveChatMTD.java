@@ -9,7 +9,7 @@ public class BhyveChatMTD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "BhyveChatTable");
 
     public BhyveChatMTD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\EMS Goals FY 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\EMS Goals FY 2020.xlsx";
     }
 
     @Override

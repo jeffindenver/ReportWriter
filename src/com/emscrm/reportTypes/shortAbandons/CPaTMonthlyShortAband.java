@@ -10,7 +10,7 @@ public class CPaTMonthlyShortAband extends ShortAbandonReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public CPaTMonthlyShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\CPaT\\CPaT Monthly Report 2019.xlsx";
+        weeklyReportFilename = "s:\\reports\\call centers\\CPaT\\CPaT Monthly Report 2020.xlsx";
     }
 
     @Override

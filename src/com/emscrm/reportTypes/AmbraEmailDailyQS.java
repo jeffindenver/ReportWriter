@@ -9,7 +9,7 @@ public class AmbraEmailDailyQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "EmailTable");
 
     public AmbraEmailDailyQS() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Ambra\\Ambra Daily Report 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Ambra\\Ambra Daily Report 2020.xlsx";
     }
 
     @Override

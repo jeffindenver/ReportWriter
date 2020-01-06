@@ -13,7 +13,7 @@ public final class EntrustQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public EntrustQBD() {
-        this.weeklyReportFilename = "s:\\Reports\\Call Centers\\Entrust\\Entrust Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\Reports\\Call Centers\\Entrust\\Entrust Weekly Stats 2020.xlsx";
     }
 
     @Override

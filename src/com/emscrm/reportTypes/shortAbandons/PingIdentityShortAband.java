@@ -10,7 +10,7 @@ public final class PingIdentityShortAband extends ShortAbandonReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public PingIdentityShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2019.xlsx";
+        weeklyReportFilename = "s:\\reports\\call centers\\Ping Identity\\Ping Identity Weekly Stats 2020.xlsx";
     }
 
     @Override

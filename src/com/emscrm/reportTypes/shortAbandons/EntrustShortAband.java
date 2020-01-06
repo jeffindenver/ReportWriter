@@ -10,7 +10,7 @@ public final class EntrustShortAband extends ShortAbandonReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public EntrustShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\Entrust\\Entrust Weekly Stats 2019.xlsx";
+        weeklyReportFilename = "s:\\reports\\call centers\\Entrust\\Entrust Weekly Stats 2020.xlsx";
     }
 
     @Override

@@ -10,7 +10,7 @@ public class CPaTMonthlyQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public CPaTMonthlyQBD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\CPaT\\CPaT Monthly Report 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\CPaT\\CPaT Monthly Report 2020.xlsx";
     }
 
     @Override

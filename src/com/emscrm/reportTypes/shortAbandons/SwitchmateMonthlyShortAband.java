@@ -10,7 +10,7 @@ public class SwitchmateMonthlyShortAband extends ShortAbandonReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public SwitchmateMonthlyShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\Switchmate\\Switchmate Monthly Report 2019.xlsx";
+        weeklyReportFilename = "s:\\reports\\call centers\\Switchmate\\Switchmate Monthly Report 2020.xlsx";
     }
 
     @Override

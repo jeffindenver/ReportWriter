@@ -10,7 +10,7 @@ public class OrbitHydroRainWeeklyCallbackQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "CallbackTable");
 
     public OrbitHydroRainWeeklyCallbackQS() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\HydroRain Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\HydroRain Weekly Stats 2020.xlsx";
     }
 
     @Override

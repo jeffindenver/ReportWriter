@@ -10,7 +10,7 @@ public class ContractorSupportQS extends FuzeQueueSummary {
     private final Map<String, String> tableNames = Map.of("Report Totals", "ContractorTable2019");
 
     public ContractorSupportQS() {
-        super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2019.xlsx";
+        super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2020.xlsx";
     }
 
     @Override

@@ -9,7 +9,7 @@ public class OrbitIrrigationWeeklyCallsQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "CallsTable");
 
     public OrbitIrrigationWeeklyCallsQS() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Orbit\\Orbit Irrigation Weekly Stats 2020.xlsx";
     }
 
 

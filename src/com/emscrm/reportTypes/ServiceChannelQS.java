@@ -14,7 +14,7 @@ public class ServiceChannelQS extends FuzeQueueSummary {
             "srvchl-queue2", "Queue2Table2019", "srvchl-queue3", "Queue3Table2019");
 
     public ServiceChannelQS() {
-        super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2019.xlsx";
+        super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2020.xlsx";
     }
 
     @Override

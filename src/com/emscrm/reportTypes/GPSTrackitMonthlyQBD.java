@@ -10,7 +10,7 @@ public class GPSTrackitMonthlyQBD extends QueueByDateReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public GPSTrackitMonthlyQBD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Monthly Report 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Monthly Report 2020.xlsx";
     }
 
     @Override

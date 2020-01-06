@@ -14,7 +14,7 @@ public final class GPSTrackitEmailQBD extends QueueByDateReport {
 
 
     public GPSTrackitEmailQBD() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2019.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\GPS Trackit\\GPS Trackit Weekly Stats 2020.xlsx";
     }
 
     @Override

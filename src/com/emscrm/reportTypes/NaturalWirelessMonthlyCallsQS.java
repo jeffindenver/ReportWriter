@@ -9,7 +9,7 @@ public class NaturalWirelessMonthlyCallsQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "CallsTable");
 
     public NaturalWirelessMonthlyCallsQS() {
-        this.weeklyReportFilename = "S:\\Reports\\Call Centers\\Natural Wireless\\Natural Wireless Monthly Report 2019.xlsx";
+        this.weeklyReportFilename = "S:\\Reports\\Call Centers\\Natural Wireless\\Natural Wireless Monthly Report 2020.xlsx";
     }
 
     @Override

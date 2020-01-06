@@ -9,7 +9,7 @@ public class MSRB_MonthlyShortAband extends ShortAbandonReport {
     private final Map<String, String> tableNames = Map.of("Grand Total:", "CallsTable");
 
     public MSRB_MonthlyShortAband() {
-        weeklyReportFilename = "s:\\reports\\call centers\\MSRB\\MSRB Monthly Report 2019.xlsx";
+        weeklyReportFilename = "s:\\reports\\call centers\\MSRB\\MSRB Monthly Report 2020.xlsx";
     }
 
     @Override
