@@ -16,7 +16,7 @@ final class ReportConstants {
     final static Map<String, Report> reportTypes = initializeMap();
 
     private ReportConstants() {
-    }
+    }    //private constructor prevents instantiation
 
     private static Map<String, Report> initializeMap() {
 
@@ -59,14 +59,6 @@ final class ReportConstants {
         reportMap.put("NelnetShortAband", new NelnetShortAband());
         reportMap.put("NelnetMonthlyQBD", new NelnetMonthlyQBD());
         reportMap.put("NelnetMonthlyShortAband", new NelnetMonthlyShortAband());
-
-        reportMap.put("OrbitPhoneMTD", new OrbitPhoneMTD());
-        reportMap.put("OrbitChatMTD", new OrbitChatMTD());
-        reportMap.put("OrbitEmailMTD", new OrbitEmailMTD());
-        reportMap.put("BhyvePhoneMTD", new BhyvePhoneMTD());
-        reportMap.put("BhyveChatMTD", new BhyveChatMTD());
-        reportMap.put("BhyveEmailMTD", new BhyveEmailMTD());
-        reportMap.put("HydroRainPhoneMTD", new HydroRainPhoneMTD());
 
         reportMap.put("OrbitCallsQBD", new OrbitCallsQBD());
         reportMap.put("OrbitShortAband", new OrbitShortAband());
