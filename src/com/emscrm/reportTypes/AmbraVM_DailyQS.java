@@ -9,7 +9,7 @@ public class AmbraVM_DailyQS extends QueueSummaryReport {
     private final Map<String, String> tableNames = Map.of("Summary", "VMTable");
 
     public AmbraVM_DailyQS() {
-        this.weeklyReportFilename = "s:\\reports\\call centers\\Ambra\\Ambra Daily Report 2020.xlsx";
+        this.weeklyReportFilename = "s:\\reports\\call centers\\Ambra\\Ambra Daily Report.xlsx";
     }
 
     @Override
