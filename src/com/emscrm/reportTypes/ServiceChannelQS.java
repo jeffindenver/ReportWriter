@@ -8,10 +8,10 @@ public class ServiceChannelQS extends FuzeQueueSummary {
 
     private static final String reportName = "Service Channel";
 
-    private final Map<String, String> tableNames = Map.of("srvchl-badge-support", "BadgeTable2019",
-            "srvchl-bloomin-brands", "BBI_Table2019", "srvchl-call-center-regular", "RegularTable2019",
-            "srvchl-contractor-support", "ContractorTable2019", "srvchl-ivr", "IVRTable2019",
-            "srvchl-queue2", "Queue2Table2019", "srvchl-queue3", "Queue3Table2019");
+    private final Map<String, String> tableNames = Map.of("srvchl-badge-support", "BadgeTable2020",
+            "srvchl-bloomin-brands", "BBI_Table2020", "srvchl-call-center-regular", "RegularTable2020",
+            "srvchl-contractor-support", "ContractorTable2020", "srvchl-ivr", "IVRTable2020",
+            "srvchl-queue2", "Queue2Table2020", "srvchl-queue3", "Queue3Table2020");
 
     public ServiceChannelQS() {
         super.weeklyReportFilename = "s:\\reports\\call Centers\\service channel\\service channel monthly 2020.xlsx";
