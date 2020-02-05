@@ -1,5 +1,10 @@
 # IDE
+.idea
 
+# other
+/images
+/out
+/css
 
 # Excel
 .xlsx
